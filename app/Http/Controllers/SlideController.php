@@ -75,7 +75,6 @@ class SlideController extends Controller
 		$reponse = $cate->update([
 			'name'   => $name,
 			'image' => $image,
-			'status' => 1,
 			'link' => $link,
 			'lang' => 1
 		]);

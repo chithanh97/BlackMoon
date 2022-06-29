@@ -1,5 +1,5 @@
 @extends('backend.index')
-@section('title', 'Thêm Sldie')
+@section('title', 'Thêm Slide')
 @push('styles')
 <style>
 	select option, select {
@@ -17,13 +17,13 @@
 <div class="content bg-gray-lighter">
 	<div class="row items-push">
 		<div class="col-sm-7">
-			<h1 class="page-heading">Sldie <small>Thêm mới Sldie</small></h1>
+			<h1 class="page-heading">Slide <small>Thêm mới Slide</small></h1>
 		</div>
 		<div class="col-sm-5 text-right hidden-xs">
 			<ol class="breadcrumb push-10-t">
 				<li><a href="{{ route('dashboard') }}">Quản trị</a>
 				</li>
-				<li><a href="{{ route('slide') }}">Sldie</a>
+				<li><a href="{{ route('slide') }}">Slide</a>
 				</li>
 				<li>Thêm mới</li>
 			</ol>
@@ -83,7 +83,7 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label class="control-label">
-										Tên Sldie <font color="red">*</font>
+										Tên Slide <font color="red">*</font>
 									</label>
 									<input type="text" name="name" class="form-control" value="" />
 								</div>

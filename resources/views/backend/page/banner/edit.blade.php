@@ -1,5 +1,5 @@
 @extends('backend.index')
-@section('title', 'Chỉnh sửa Slide')
+@section('title', 'Chỉnh sửa Banner')
 @push('styles')
 <style>
 	select option, select {
@@ -17,13 +17,13 @@
 <div class="content bg-gray-lighter">
 	<div class="row items-push">
 		<div class="col-sm-7">
-			<h1 class="page-heading">Bài Slide <small>Thêm mới Bài Slide</small></h1>
+			<h1 class="page-heading">Bài Banner <small>Thêm mới Bài Banner</small></h1>
 		</div>
 		<div class="col-sm-5 text-right hidden-xs">
 			<ol class="breadcrumb push-10-t">
 				<li><a href="{{ route('dashboard') }}">Quản trị</a>
 				</li>
-				<li><a href="{{ route('slide') }}">Bài Slide</a>
+				<li><a href="{{ route('banner') }}">Banner</a>
 				</li>
 				<li>Thêm mới</li>
 			</ol>
@@ -83,13 +83,21 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label class="control-label">
-										Tên bài Slide <font color="red">*</font>
+										Tên bài Banner <font color="red">*</font>
 									</label>
 									<input type="text" name="name" class="form-control" value="{{ $item->name }}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Link</label>
 									<input type="text" name="link" class="form-control" value="{{ $item->link }}" />
+								</div>
+								<div class="form-group">
+									<label class="control-label">Loại banner</label>
+									<select name="type" id="type" class="form-control">
+										@foreach(getTypeBanner() as $key => $val)
+										<option value="{{ $key }}" {{ $key == $item->type ? "selected" : "" }}>{{ $val }}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 						</div>
@@ -102,7 +110,7 @@
 						<div class="form-group" style="margin-bottom: 0;">
 							<div class="btn-gr">
 								<button type="submit" name="btnSave" class="btn btn-sm btn-primary">Lưu</button>
-								<button onclick="javascript:window.location.href = '{{ route('slide') }}' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
+								<button onclick="javascript:window.location.href = '{{ route('banner') }}' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
 							</div>
 						</div>
 					</div>

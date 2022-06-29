@@ -69,5 +69,11 @@ function getParentCate($arr, $parent){
 	}
 	return $res;
 }
-
+function getTypeBanner(){
+	$res = [
+		1 => "Banner trang chủ",
+		2 => "Banner trang con"
+	];
+	return $res;
+}
 ?>

@@ -32,11 +32,13 @@ class BannerController extends Controller
 		$name = $request->name;
 		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
 		$link = $request->link;
+		$type = $request->type;
 
 		$reponse = Banner::create([
 			'name'   => $name,
 			'image' => $image,
 			'status' => 1,
+			'type' => $type,
 			'link' => $link,
 			'lang' => 1
 		]);
@@ -69,14 +71,15 @@ class BannerController extends Controller
 		$name = $request->name;
 		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
 		$link = $request->link;
+		$type = $request->type;
 
 		$cate = Banner::findOrFail($id);
 
 		$reponse = $cate->update([
 			'name'   => $name,
 			'image' => $image,
-			'status' => 1,
 			'link' => $link,
+			'type' => $type,
 			'lang' => 1
 		]);
 		if($reponse){

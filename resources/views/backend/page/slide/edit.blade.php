@@ -17,15 +17,15 @@
 <div class="content bg-gray-lighter">
 	<div class="row items-push">
 		<div class="col-sm-7">
-			<h1 class="page-heading">Bài Slide <small>Thêm mới Bài Slide</small></h1>
+			<h1 class="page-heading">Slide <small>Chỉnh sửa Slide</small></h1>
 		</div>
 		<div class="col-sm-5 text-right hidden-xs">
 			<ol class="breadcrumb push-10-t">
 				<li><a href="{{ route('dashboard') }}">Quản trị</a>
 				</li>
-				<li><a href="{{ route('slide') }}">Bài Slide</a>
+				<li><a href="{{ route('slide') }}">Slide</a>
 				</li>
-				<li>Thêm mới</li>
+				<li>Chỉnh sửa</li>
 			</ol>
 		</div>
 	</div>
@@ -83,7 +83,7 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label class="control-label">
-										Tên bài Slide <font color="red">*</font>
+										Tên Slide <font color="red">*</font>
 									</label>
 									<input type="text" name="name" class="form-control" value="{{ $item->name }}" />
 								</div>
