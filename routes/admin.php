@@ -8,6 +8,7 @@ use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\VideoController;
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 
@@ -54,5 +55,13 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/banner/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
 	Route::post('/banner/edit/{id}', [BannerController::class, 'update'])->name('banner.update');
 	Route::get('/banner/delete/{id}', [BannerController::class, 'delete'])->name('banner.delete');
+
+	//video
+	Route::get('/video', [VideoController::class, 'index'])->name('video');
+	Route::get('/video/add', [VideoController::class, 'store'])->name('video.add');
+	Route::post('/video/add', [VideoController::class, 'create'])->name('video.create');
+	Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
+	Route::post('/video/edit/{id}', [VideoController::class, 'update'])->name('video.update');
+	Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('video.delete');
 
 });

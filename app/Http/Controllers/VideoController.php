@@ -4,23 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\News;
-use App\Models\Newscategory;
+use App\Models\Video;
 use Session;
 use Illuminate\Pagination\Paginator;
 
-class NewsController extends Controller
+class VideoController extends Controller
 {
 	public function index()
 	{
-		$list = News::paginate(10)->withQueryString();
-		$parent = Newscategory::get();
-		return view('backend.page.news.index', compact('list', 'parent'));
+		$list = Video::paginate(10)->withQueryString();
+		return view('backend.page.video.index', compact('list'));
 	}
 
 	public function store(){
-		$parent = Newscategory::where('status', 1)->get();
-		return view('backend.page.news.store', compact('parent'));
+		return view('backend.page.video.store');
 	}
 
 	public function create(Request $request){
@@ -47,7 +44,7 @@ class NewsController extends Controller
 		$subject = $request->subject;
 		$sort = $request->sort == '' ? 0 : $request->sort;
 
-		$reponse = News::create([
+		$reponse = Video::create([
 			'name'   => $name,
 			'subject'   => $subject,
 			'parent' => $parent,
@@ -63,24 +60,23 @@ class NewsController extends Controller
 			'lang' => 1
 		]);
 		if($reponse){
-			return redirect()->route('news')->with('alert', '- Thêm thành công!');
+			return redirect()->route('video')->with('alert', '- Thêm thành công!');
 		}
-		return view('backend.page.news.store');
+		return view('backend.page.video.store');
 	}
 
 	public function delete($id){
-		$res = News::find($id)->delete();
-		return redirect()->route('news')->with('alert', '- Xóa thành công!');
+		$res = Video::find($id)->delete();
+		return redirect()->route('video')->with('alert', '- Xóa thành công!');
 	}
 
 	public function edit($id){
-		$parent = Newscategory::where('status', 1)->get();
-		$item = News::where('id', $id)->get();
+		$item = Video::where('id', $id)->get();
 		$item = $item[0];
 		// echo '<pre>';
 		// print_r($item[0]->image);
 		// echo '</pre>';
-		return view('backend.page.news.edit', compact('parent', 'item'));
+		return view('backend.page.video.edit', compact('parent', 'item'));
 	}
 
 	public function update($id, Request $request){
@@ -107,7 +103,7 @@ class NewsController extends Controller
 		$subject = $request->subject;
 		$sort = $request->sort == '' ? 0 : $request->sort;
 
-		$cate = News::findOrFail($id);
+		$cate = Video::findOrFail($id);
 
 		$reponse = $cate->update([
 			'name'   => $name,
@@ -125,9 +121,9 @@ class NewsController extends Controller
 			'lang' => 1
 		]);
 		if($reponse){
-			return redirect()->route('news')->with('alert', '- Chỉnh sửa thành công!');
+			return redirect()->route('video')->with('alert', '- Chỉnh sửa thành công!');
 		}
-		return redirect()->route('news.edit', $id);
+		return redirect()->route('video.edit', $id);
 	}
 
 }

@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('title', 'Danh sách Banner'); ?>
+<?php $__env->startSection('title', 'Danh sách Slide'); ?>
 <?php $__env->startPush('styles'); ?>
 <style>
 	.status{
@@ -92,7 +92,7 @@
 							<h3 class="f_s_30 f_w_700 text_white" >Quản trị</h3>
 							<ol class="t-breadcrumb page_bradcam mb-0">
 								<li class="breadcrumb-item"><a href="javascript:void(0);">Quản trị</a></li>
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Banner</a></li>
+								<li class="breadcrumb-item"><a href="javascript:void(0);">Slide</a></li>
 							</ol>
 						</div>
 					</div>
@@ -108,14 +108,14 @@
 					<div class="white_card_header">
 						<div class="box_header m-0">
 							<div class="main-title">
-								<h3 class="m-0">Danh sách Banner</h3>
+								<h3 class="m-0">Danh sách Slide</h3>
 							</div>
 							<div>
 							</div>
 							<div class="header_more_tool">
 								<div class="dropdown">
 									<span class="" id="">
-										<button class="btn btn-primary add-button"><a href="<?php echo e(route('banner.add')); ?>" class='text-light'><i class="fa fa-plus-circle text-light" aria-hidden="true"></i> Thêm</a></button>
+										<button class="btn btn-primary add-button"><a href="<?php echo e(route('slide.add')); ?>" class='text-light'><i class="fa fa-plus-circle text-light" aria-hidden="true"></i> Thêm</a></button>
 									</span>
 								</div>
 							</div>
@@ -143,14 +143,14 @@
 										</td>
 										<td><?php echo e($value->name); ?></td>
 										<td>
-											<div class="<?php echo e($value->status == 1 ? 'active' : ''); ?> status changestatus" data-table='Banner' data-field='status' data-id='<?php echo e($value->id); ?>'></div>
+											<div class="<?php echo e($value->status == 1 ? 'active' : ''); ?> status changestatus" data-table='slide' data-field='status' data-id='<?php echo e($value->id); ?>'></div>
 										</td>
 										<td class="column-action">
-											<a href="<?php echo e(route('banner.edit', $value->id)); ?>" class="btn-edit">
+											<a href="<?php echo e(route('slide.edit', $value->id)); ?>" class="btn-edit">
 												<i class="fa fa-pencil"></i>
 											</a>
 											<a href="
-											javascript:if(confirm('Bạn chắc chắn muốn xóa?')) window.location.href = '<?php echo e(route('banner.delete', $value->id)); ?>' ;
+											javascript:if(confirm('Bạn chắc chắn muốn xóa?')) window.location.href = '<?php echo e(route('slide.delete', $value->id)); ?>' ;
 											" class="btn-delete">
 											<i class="fa fa-trash"></i>
 										</a>
@@ -170,4 +170,4 @@
 	</div>
 </div>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/banner/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/slide/index.blade.php ENDPATH**/ ?>

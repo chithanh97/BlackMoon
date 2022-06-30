@@ -65,7 +65,7 @@
 								</div>
 								<div class="pull-left">
 									<div style="margin: 0 10px 10px;">
-										<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID&type=1&fldr=category">
+										<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID&type=1&fldr=news">
 											<i class="fa fa-pencil"></i>
 										</a>
 									</div>

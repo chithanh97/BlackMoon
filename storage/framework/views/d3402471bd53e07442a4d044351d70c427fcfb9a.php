@@ -166,11 +166,33 @@
 					</div>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="<?php echo e(route('slide')); ?>">
+					<a class="nav-link" data-toggle="collapse" href="#option" aria-expanded="false" aria-controls="option">
+						<span class="menu-icon">
+							<i class="mdi mdi-laptop"></i>
+						</span>
+						<span class="menu-title">Tính năng</span>
+						<i class="menu-arrow"></i>
+					</a>
+					<div class="collapse" id="option">
+						<ul class="nav flex-column sub-menu">
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('slide')); ?>">Slide</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Banner</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('video')); ?>">Video</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Bản đồ</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Phân quyền</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Fanpage Facebook</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Liên kết MXH</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Thư viện ảnh</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Watermark</a></li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item menu-items">
+					<a class="nav-link" href="<?php echo e(route('banner')); ?>">
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>
-						<span class="menu-title">Slide</span>
+						<span class="menu-title">Cấu hình website</span>
 					</a>
 				</li>
 				<li class="nav-item menu-items">
@@ -178,66 +200,8 @@
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>
-						<span class="menu-title">Banner</span>
+						<span class="menu-title">Ngôn ngữ</span>
 					</a>
-				</li>
-				<li class="nav-item menu-items">
-					<a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-						<span class="menu-icon">
-							<i class="mdi mdi-laptop"></i>
-						</span>
-						<span class="menu-title">Basic UI Elements</span>
-						<i class="menu-arrow"></i>
-					</a>
-					<div class="collapse" id="ui-basic">
-						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-						</ul>
-					</div>
-				</li>
-				<li class="nav-item menu-items">
-					<a class="nav-link" href="pages/tables/basic-table.html">
-						<span class="menu-icon">
-							<i class="mdi mdi-table-large"></i>
-						</span>
-						<span class="menu-title">Tables</span>
-					</a>
-				</li>
-				<li class="nav-item menu-items">
-					<a class="nav-link" href="pages/charts/chartjs.html">
-						<span class="menu-icon">
-							<i class="mdi mdi-chart-bar"></i>
-						</span>
-						<span class="menu-title">Charts</span>
-					</a>
-				</li>
-				<li class="nav-item menu-items">
-					<a class="nav-link" href="pages/icons/mdi.html">
-						<span class="menu-icon">
-							<i class="mdi mdi-contacts"></i>
-						</span>
-						<span class="menu-title">Icons</span>
-					</a>
-				</li>
-				<li class="nav-item menu-items">
-					<a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-						<span class="menu-icon">
-							<i class="mdi mdi-security"></i>
-						</span>
-						<span class="menu-title">User Pages</span>
-						<i class="menu-arrow"></i>
-					</a>
-					<div class="collapse" id="auth">
-						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"> <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> 404 </a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-						</ul>
-					</div>
 				</li>
 				<li class="nav-item menu-items">
 					<a class="nav-link iframe-btn" href="/storage/filemanager/dialog.php">
@@ -247,7 +211,6 @@
 						<span class="menu-title">Media</span>
 					</a>
 				</li>
-
 			</ul>
 		</nav>
 		<!-- partial -->

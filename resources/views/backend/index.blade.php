@@ -177,7 +177,7 @@
 						<ul class="nav flex-column sub-menu">
 							<li class="nav-item"> <a class="nav-link" href="{{ route('slide') }}">Slide</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Banner</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Video</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('video') }}">Video</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Bản đồ</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Phân quyền</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Fanpage Facebook</a></li>

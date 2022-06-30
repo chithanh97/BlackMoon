@@ -1,6 +1,6 @@
-
-<?php $__env->startSection('title', 'Danh sách Banner'); ?>
-<?php $__env->startPush('styles'); ?>
+@extends('backend.index')
+@section('title', 'Danh sách Video')
+@push('styles')
 <style>
 	.status{
 		width: 25px;
@@ -80,8 +80,8 @@
 		padding: 7px 10px!important;
 		display: inline-block;
 	</style>
-	<?php $__env->stopPush(); ?>
-	<?php $__env->startSection('content'); ?>
+	@endpush
+	@section('content')
 	<div class="main_content_iner ">
 		<div class="container-fluid p-0">
 			<!-- page title  -->
@@ -92,30 +92,30 @@
 							<h3 class="f_s_30 f_w_700 text_white" >Quản trị</h3>
 							<ol class="t-breadcrumb page_bradcam mb-0">
 								<li class="breadcrumb-item"><a href="javascript:void(0);">Quản trị</a></li>
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Banner</a></li>
+								<li class="breadcrumb-item"><a href="javascript:void(0);">Video</a></li>
 							</ol>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<?php if(session('alert')): ?>
-		    <div class='alert alert-success'><?php echo e(session('alert')); ?></div>
-		<?php endif; ?>
+		@if(session('alert'))
+		    <div class='alert alert-success'>{{session('alert')}}</div>
+		@endif
 		<div>
 			<div class="">
 				<div class="white_card card_height_100 mb_30 QA_section">
 					<div class="white_card_header">
 						<div class="box_header m-0">
 							<div class="main-title">
-								<h3 class="m-0">Danh sách Banner</h3>
+								<h3 class="m-0">Danh sách Video</h3>
 							</div>
 							<div>
 							</div>
 							<div class="header_more_tool">
 								<div class="dropdown">
 									<span class="" id="">
-										<button class="btn btn-primary add-button"><a href="<?php echo e(route('banner.add')); ?>" class='text-light'><i class="fa fa-plus-circle text-light" aria-hidden="true"></i> Thêm</a></button>
+										<button class="btn btn-primary add-button"><a href="{{ route('video.add') }}" class='text-light'><i class="fa fa-plus-circle text-light" aria-hidden="true"></i> Thêm</a></button>
 									</span>
 								</div>
 							</div>
@@ -135,33 +135,32 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php $__currentLoopData = $list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+									@foreach ($list as $value)
 									<tr>
-										<td><?php echo e($value->id); ?></td>
+										<td>{{ $value->id }}</td>
 										<td>
-											<img class="thumbnail" src="<?php echo e($value->image == '' ? '/storage/uploads/default/default.png' : $value->image); ?>" alt="">
+											<img class="thumbnail" src="{{ $value->image == '' ? '/storage/uploads/default/default.png' : $value->image }}" alt="">
 										</td>
-										<td><?php echo e($value->name); ?></td>
+										<td>{{ $value->name }}</td>
 										<td>
-											<div class="<?php echo e($value->status == 1 ? 'active' : ''); ?> status changestatus" data-table='Banner' data-field='status' data-id='<?php echo e($value->id); ?>'></div>
+											<div class="{{ $value->status == 1 ? 'active' : ''}} status changestatus" data-table='Video' data-field='status' data-id='{{ $value->id }}'></div>
 										</td>
 										<td class="column-action">
-											<a href="<?php echo e(route('banner.edit', $value->id)); ?>" class="btn-edit">
+											<a href="{{ route('video.edit', $value->id) }}" class="btn-edit">
 												<i class="fa fa-pencil"></i>
 											</a>
 											<a href="
-											javascript:if(confirm('Bạn chắc chắn muốn xóa?')) window.location.href = '<?php echo e(route('banner.delete', $value->id)); ?>' ;
+											javascript:if(confirm('Bạn chắc chắn muốn xóa?')) window.location.href = '{{ route('video.delete', $value->id) }}' ;
 											" class="btn-delete">
 											<i class="fa fa-trash"></i>
 										</a>
 									</td>
 								</tr>
-								<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+								@endforeach
 							</tbody>
 						</table>
 						<div class="navigation">
-							<?php echo e($list->links()); ?>
-
+							{{ $list->links() }}
 						</div>
 					</div>
 				</div>
@@ -169,5 +168,4 @@
 		</div>
 	</div>
 </div>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/banner/index.blade.php ENDPATH**/ ?>
+@endsection
