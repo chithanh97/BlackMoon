@@ -53,11 +53,11 @@
 						<div class="input-group">
 							<div id="img_preview_main" class="wrap-img-product-thumbnail">
 								<div class="img-thumbnail img-product-thumbnail pull-left">
-									<img class="img-responsive" src="/storage/uploads/default/default.png" style="width: 120px; height: 120px;" />
+									<img class="img-responsive" src="{{old('image') == '' ? '/storage/uploads/default/default.png' : old('image')}}" style="width: 120px; height: 120px;" />
 								</div>
 								<div class="pull-left">
 									<div style="margin: 0 10px 10px;">
-										<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID&type=1&fldr=category">
+										<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID&type=1&fldr=banner">
 											<i class="fa fa-pencil"></i>
 										</a>
 									</div>
@@ -68,7 +68,7 @@
 									</div>
 								</div>
 							</div>
-							<input id="fieldID" type="hidden" name="image" value="/storage/uploads/default/default.png" class="form-control thumbnail">
+							<input id="fieldID" type="hidden" name="image" value="{{old('image') == '' ? '/storage/uploads/default/default.png' : old('image')}}" class="form-control thumbnail">
 						</div>
 						<br/>
 						<p class="text-muted">
@@ -85,17 +85,17 @@
 									<label class="control-label">
 										Tên Banner <font color="red">*</font>
 									</label>
-									<input type="text" name="name" class="form-control" value="" />
+									<input type="text" name="name" class="form-control" value="{{old('name')}}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Link</label>
-									<input type="text" name="link" class="form-control" value="" />
+									<input type="text" name="link" class="form-control" value="{{old('link')}}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Loại banner</label>
 									<select name="type" id="type" class="form-control">
 										@foreach(getTypeBanner() as $key => $val)
-										<option value="{{ $key }}">{{ $val }}</option>
+										<option {{old("name") == $key ? 'selected' : ''}} value="{{ $key }}">{{ $val }}</option>
 										@endforeach
 									</select>
 								</div>

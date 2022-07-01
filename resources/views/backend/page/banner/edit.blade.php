@@ -53,11 +53,11 @@
 						<div class="input-group">
 							<div id="img_preview_main" class="wrap-img-product-thumbnail">
 								<div class="img-thumbnail img-product-thumbnail pull-left">
-									<img class="img-responsive" src="{{ $item->image == '' ? '' : $item->image }}" style="width: 120px; height: 120px;" />
+									<img class="img-responsive" src="{{ old('image') == '' ? $item->image : old('image') }}" style="width: 120px; height: 120px;" />
 								</div>
 								<div class="pull-left">
 									<div style="margin: 0 10px 10px;">
-										<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID&type=1&fldr=category">
+										<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID&type=1&fldr=banner">
 											<i class="fa fa-pencil"></i>
 										</a>
 									</div>
@@ -68,7 +68,7 @@
 									</div>
 								</div>
 							</div>
-							<input id="fieldID" type="hidden" name="image" value="{{ $item->image == '' ? '' : $item->image }}" class="form-control thumbnail">
+							<input id="fieldID" type="hidden" name="image" value="{{ old('image') == '' ? $item->image : old('image') }}" class="form-control thumbnail">
 						</div>
 						<br/>
 						<p class="text-muted">
@@ -85,18 +85,25 @@
 									<label class="control-label">
 										Tên bài Banner <font color="red">*</font>
 									</label>
-									<input type="text" name="name" class="form-control" value="{{ $item->name }}" />
+									<input type="text" name="name" class="form-control" value="{{ old('name') == '' ? $item->name : old('name') }}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Link</label>
-									<input type="text" name="link" class="form-control" value="{{ $item->link }}" />
+									<input type="text" name="link" class="form-control" value="{{ old('name') == '' ? $item->link : old('name') }}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Loại banner</label>
 									<select name="type" id="type" class="form-control">
+										@if(old('type') == '')
 										@foreach(getTypeBanner() as $key => $val)
 										<option value="{{ $key }}" {{ $key == $item->type ? "selected" : "" }}>{{ $val }}</option>
 										@endforeach
+										@endif
+										@if(old('type') != '')
+										@foreach(getTypeBanner() as $key => $val)
+										<option value="{{ $key }}" {{ $key == old('type') ? "selected" : "" }}>{{ $val }}</option>
+										@endforeach
+										@endif
 									</select>
 								</div>
 							</div>

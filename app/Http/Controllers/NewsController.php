@@ -65,7 +65,7 @@ class NewsController extends Controller
 		if($reponse){
 			return redirect()->route('news')->with('alert', '- Thêm thành công!');
 		}
-		return view('backend.page.news.store');
+		return redirect()->back()->withInput();
 	}
 
 	public function delete($id){

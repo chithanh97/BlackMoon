@@ -64,7 +64,7 @@ class NewsCategoryController extends Controller
 		if($reponse){
 			return redirect()->route('newscategory')->with('alert', '- Thêm thành công!');
 		}
-		return view('backend.page.newscategory.store');
+		return redirect()->back()->withInput();
 	}
 
 	public function delete($id){

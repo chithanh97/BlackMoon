@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('title', 'Thêm Banner'); ?>
+<?php $__env->startSection('title', 'Chỉnh sửa Banner'); ?>
 <?php $__env->startPush('styles'); ?>
 <style>
 	select option, select {
@@ -17,7 +17,7 @@
 <div class="content bg-gray-lighter">
 	<div class="row items-push">
 		<div class="col-sm-7">
-			<h1 class="page-heading">Banner <small>Thêm mới Banner</small></h1>
+			<h1 class="page-heading">Bài Banner <small>Thêm mới Bài Banner</small></h1>
 		</div>
 		<div class="col-sm-5 text-right hidden-xs">
 			<ol class="breadcrumb push-10-t">
@@ -53,7 +53,7 @@
 						<div class="input-group">
 							<div id="img_preview_main" class="wrap-img-product-thumbnail">
 								<div class="img-thumbnail img-product-thumbnail pull-left">
-									<img class="img-responsive" src="<?php echo e(old('image') == '' ? '/storage/uploads/default/default.png' : old('image')); ?>" style="width: 120px; height: 120px;" />
+									<img class="img-responsive" src="<?php echo e(old('image') == '' ? $item->image : old('image')); ?>" style="width: 120px; height: 120px;" />
 								</div>
 								<div class="pull-left">
 									<div style="margin: 0 10px 10px;">
@@ -68,7 +68,7 @@
 									</div>
 								</div>
 							</div>
-							<input id="fieldID" type="hidden" name="image" value="<?php echo e(old('image') == '' ? '/storage/uploads/default/default.png' : old('image')); ?>" class="form-control thumbnail">
+							<input id="fieldID" type="hidden" name="image" value="<?php echo e(old('image') == '' ? $item->image : old('image')); ?>" class="form-control thumbnail">
 						</div>
 						<br/>
 						<p class="text-muted">
@@ -83,20 +83,27 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label class="control-label">
-										Tên Banner <font color="red">*</font>
+										Tên bài Banner <font color="red">*</font>
 									</label>
-									<input type="text" name="name" class="form-control" value="<?php echo e(old('name')); ?>" />
+									<input type="text" name="name" class="form-control" value="<?php echo e(old('name') == '' ? $item->name : old('name')); ?>" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Link</label>
-									<input type="text" name="link" class="form-control" value="<?php echo e(old('link')); ?>" />
+									<input type="text" name="link" class="form-control" value="<?php echo e(old('name') == '' ? $item->link : old('name')); ?>" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Loại banner</label>
 									<select name="type" id="type" class="form-control">
+										<?php if(old('type') == ''): ?>
 										<?php $__currentLoopData = getTypeBanner(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-										<option <?php echo e(old("name") == $key ? 'selected' : ''); ?> value="<?php echo e($key); ?>"><?php echo e($val); ?></option>
+										<option value="<?php echo e($key); ?>" <?php echo e($key == $item->type ? "selected" : ""); ?>><?php echo e($val); ?></option>
 										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+										<?php endif; ?>
+										<?php if(old('type') != ''): ?>
+										<?php $__currentLoopData = getTypeBanner(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+										<option value="<?php echo e($key); ?>" <?php echo e($key == old('type') ? "selected" : ""); ?>><?php echo e($val); ?></option>
+										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+										<?php endif; ?>
 									</select>
 								</div>
 							</div>
@@ -122,10 +129,10 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('scripts'); ?>
 <script>
-	$('select#parent').select2({
+	$('#parent').select2({
 		placeholder: '-- Chọn --'
 	});
 	checkKeyword();
 </script>
 <?php $__env->stopPush(); ?>
-<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/banner/store.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/banner/edit.blade.php ENDPATH**/ ?>

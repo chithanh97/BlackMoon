@@ -43,7 +43,7 @@ class SlideController extends Controller
 		if($reponse){
 			return redirect()->route('slide')->with('alert', '- Thêm thành công!');
 		}
-		return view('backend.page.slide.store');
+		return redirect()->back()->withInput();
 	}
 
 	public function delete($id){

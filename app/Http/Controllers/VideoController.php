@@ -23,46 +23,29 @@ class VideoController extends Controller
 	public function create(Request $request){
 		$messages = [
 			'name.required' => '- Tên không được để trống!',
-			'subject.required' => '- Đường dẫn không được để trống!',
 			'sort.numeric' => '- Thứ tự phải là số tự nhiên!'
 		];
 
 		$validator = $request->validate([
 			'name'   => 'required',
-			'subject' => 'required',
 			'sort' => 'numeric'
 		], $messages);
 
 		$name = $request->name;
-		$parent = $request->parent == '' ? 0 : implode(',', $request->parent);
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
-		$detail = $request->detail;
-		$title = $request->title;
-		$description = $request->description;
-		$keyword = $request->keyword;
 		$link = $request->link;
-		$subject = $request->subject;
 		$sort = $request->sort == '' ? 0 : $request->sort;
 
 		$reponse = Video::create([
 			'name'   => $name,
-			'subject'   => $subject,
-			'parent' => $parent,
-			'image' => $image,
 			'status' => 1,
-			'detail' => $detail,
-			'title' => $title,
-			'description' => $description,
-			'keyword' => $keyword,
 			'link' => $link,
-			'subject' => $subject,
 			'sort' => $sort,
 			'lang' => 1
 		]);
 		if($reponse){
 			return redirect()->route('video')->with('alert', '- Thêm thành công!');
 		}
-		return view('backend.page.video.store');
+		return redirect()->back()->withInput();
 	}
 
 	public function delete($id){
@@ -73,57 +56,37 @@ class VideoController extends Controller
 	public function edit($id){
 		$item = Video::where('id', $id)->get();
 		$item = $item[0];
-		// echo '<pre>';
-		// print_r($item[0]->image);
-		// echo '</pre>';
-		return view('backend.page.video.edit', compact('parent', 'item'));
+		return view('backend.page.video.edit', compact('item'));
 	}
 
 	public function update($id, Request $request){
 		$messages = [
 			'name.required' => '- Tên không được để trống!',
-			'subject.required' => '- Đường dẫn không được để trống!',
 			'sort.numeric' => '- Thứ tự phải là số tự nhiên!'
 		];
 
 		$validator = $request->validate([
 			'name'   => 'required',
-			'subject' => 'required',
 			'sort' => 'numeric'
 		], $messages);
 
 		$name = $request->name;
-		$parent = $request->parent == '' ? 0 : $request->parent;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
-		$detail = $request->detail;
-		$title = $request->title;
-		$description = $request->description;
-		$keyword = $request->keyword;
 		$link = $request->link;
-		$subject = $request->subject;
 		$sort = $request->sort == '' ? 0 : $request->sort;
 
 		$cate = Video::findOrFail($id);
 
 		$reponse = $cate->update([
 			'name'   => $name,
-			'subject'   => $subject,
-			'parent' => $parent,
-			'image' => $image,
 			'status' => 1,
-			'detail' => $detail,
-			'title' => $title,
-			'description' => $description,
-			'keyword' => $keyword,
 			'link' => $link,
-			'subject' => $subject,
 			'sort' => $sort,
 			'lang' => 1
 		]);
 		if($reponse){
 			return redirect()->route('video')->with('alert', '- Chỉnh sửa thành công!');
 		}
-		return redirect()->route('video.edit', $id);
+		return redirect()->back()->withInput();
 	}
 
 }

@@ -64,7 +64,7 @@ class ItemCategoryController extends Controller
 		if($reponse){
 			return redirect()->route('itemcategory')->with('alert', '- Thêm thành công!');
 		}
-		return view('backend.page.itemcategory.store');
+		return redirect()->back()->withInput();
 	}
 
 	public function delete($id){

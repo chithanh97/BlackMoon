@@ -45,7 +45,7 @@ class BannerController extends Controller
 		if($reponse){
 			return redirect()->route('banner')->with('alert', '- Thêm thành công!');
 		}
-		return view('backend.page.banner.store');
+		return redirect()->back()->withInput();
 	}
 
 	public function delete($id){
