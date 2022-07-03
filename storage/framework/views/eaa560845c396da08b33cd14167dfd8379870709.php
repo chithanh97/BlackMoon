@@ -177,18 +177,18 @@
 						<ul class="nav flex-column sub-menu">
 							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('slide')); ?>">Slide</a></li>
 							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Banner</a></li>
-							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Video</a></li>
-							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Bản đồ</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('video')); ?>">Video</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('map')); ?>">Bản đồ</a></li>
 							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Phân quyền</a></li>
-							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Fanpage Facebook</a></li>
-							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Liên kết MXH</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('fanpage')); ?>">Fanpage Facebook</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('social')); ?>">Liên kết MXH</a></li>
 							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Thư viện ảnh</a></li>
 							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Watermark</a></li>
 						</ul>
 					</div>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="<?php echo e(route('banner')); ?>">
+					<a class="nav-link" href="<?php echo e(route('config.edit')); ?>">
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>
@@ -196,7 +196,7 @@
 					</a>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="<?php echo e(route('banner')); ?>">
+					<a class="nav-link" href="<?php echo e(route('language')); ?>">
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>

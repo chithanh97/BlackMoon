@@ -76,4 +76,12 @@ function getTypeBanner(){
 	];
 	return $res;
 }
+function getVideo($string){
+	$link_goc = 'https://www.youtube.com/embed/';
+	$LK1 = explode("=", $string);
+	$ls1 = $LK1[1];
+	$LK2 = explode("&", $ls1);
+	$ls2 = $link_goc . $LK2[0];
+	return $ls2;
+}
 ?>

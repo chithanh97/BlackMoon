@@ -56,15 +56,15 @@
 									<label class="control-label">
 										Tên Video <font color="red">*</font>
 									</label>
-									<input type="text" name="name" class="form-control" value="{{ $item->name }}" />
+									<input type="text" name="name" class="form-control" value="{{ old('name') == '' ? $item->name : old('name') }}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Link</label>
-									<input type="text" name="link" class="form-control" value="{{ $item->link }}" />
+									<input type="text" name="link" class="form-control" value="{{ old('link') == '' ? $item->link : old('link') }}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Thứ tự</label>
-									<input type="text" name="sort" class="form-control" value="{{ $item->sort }}" />
+									<input type="text" name="sort" class="form-control" value="{{ old('sort') == '' ? $item->sort : old('sort') }}" />
 								</div>
 							</div>
 						</div>

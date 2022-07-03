@@ -13,10 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fanpage', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+    	Schema::create('fanpage', function (Blueprint $table) {
+    		$table->increments('id');
+    		$table->text('name');
+    		$table->text('detail');
+    		$table->integer('status');
+    		$table->integer('sort');
+    		$table->integer('lang');
+    		$table->timestamps();
+    	});
     }
 
     /**
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fanpage');
+    	Schema::dropIfExists('fanpage');
     }
-};
+  };

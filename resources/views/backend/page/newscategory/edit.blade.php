@@ -61,7 +61,7 @@
 						<div class="input-group">
 							<div id="img_preview_main" class="wrap-img-product-thumbnail">
 								<div class="img-thumbnail img-product-thumbnail pull-left">
-									<img class="img-responsive" src="{{ $item->image == '' ? '' : $item->image }}" style="width: 120px; height: 120px;" />
+									<img class="img-responsive" src="{{ old('image') == '' ? $item->image : old('image') }}" style="width: 120px; height: 120px;" />
 								</div>
 								<div class="pull-left">
 									<div style="margin: 0 10px 10px;">
@@ -77,7 +77,7 @@
 								</div>
 							</div>
 
-							<input id="fieldID" type="hidden" name="image" value="{{ $item->image == '' ? '' : $item->image }}" class="form-control thumbnail">
+							<input id="fieldID" type="hidden" name="image" value="{{ old('image') == '' ? $item->image : old('image') }}" class="form-control thumbnail">
 						</div>
 					</div>
 					<div class="col-sm-9">
@@ -87,7 +87,7 @@
 									<label class="control-label">
 										Tên danh mục <font color="red">*</font>
 									</label>
-									<input type="text" name="name" class="form-control get-subject" data-table='newscategory' value="{{ $item->name }}" />
+									<input type="text" name="name" class="form-control get-subject" data-table='newscategory' value="{{ old('name') == '' ? $item->name : old('name') }}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">
@@ -100,7 +100,7 @@
 								</div>
 								<div class="form-group">
 									<label class="control-label">Mô tả</label>
-									<textarea name="detail" class="form-control tinymce-editor" id="txtDetailShort">{{ $item->detail }}</textarea>
+									<textarea name="detail" class="form-control tinymce-editor" id="txtDetailShort">{{ old('detail') == '' ? $item->detail : old('detail') }}</textarea>
 								</div>
 							</div>
 						</div>
@@ -122,20 +122,20 @@
 										<label class="control-label">Tiêu đề trang (tối đa 70 ký tự)</label>
 										<span class="pull-right">Số ký tự đã dùng <b class="elcount">0</b>/70</span>
 									</div>
-									<input type="text" name="title" class="form-control countW" id="seo_title" value="{{ $item->title }}" maxlength="70" />
+									<input type="text" name="title" class="form-control countW" id="seo_title" value="{{ old('title') == '' ? $item->title : old('title') }}" maxlength="70" />
 								</div>
 								<div class="form-group">
 									<div>
 										<label class="control-label">Thẻ mô tả (tối đa 160 ký tự)</label>
 										<span class="pull-right">Số ký tự đã dùng <b class="elcount">0</b>/160</span>
 									</div>
-									<input type="text" name="description" class="form-control countW" id="seo_description" value="{{ $item->description }}" maxlength="160" />
+									<input type="text" name="description" class="form-control countW" id="seo_description" value="{{ old('description') == '' ? $item->description : old('description') }}" maxlength="160" />
 								</div>
 								<div class="form-group">
 									<div>
 										<label class="control-label">Từ khóa</label>
 									</div>
-									<input type="text" name="keyword" class="form-control" id="seo_keyword" value="{{ $item->keyword }}" />
+									<input type="text" name="keyword" class="form-control" id="seo_keyword" value="{{ old('keyword') == '' ? $item->keyword : old('keyword') }}" />
 
 									<div class="alert alert-info" role="alert">
 										<b>Sử dụng từ khóa mục tiêu</b>
@@ -154,12 +154,12 @@
 									</label>
 									<div class="input-group">
 										<span class="input-group-addon" id="basic-addon3">/</span>
-										<input type="text" name="subject" class="form-control" value="{{ $item->subject }}" />
+										<input type="text" name="subject" class="form-control" value="{{ old('subject') == '' ? $item->subject : old('subject') }}" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="label-control">Link khác</label>
-									<input type="text" name="link" class="form-control" value="{{ $item->link }}" />
+									<input type="text" name="link" class="form-control" value="{{ old('link') == '' ? $item->link : old('link') }}" />
 								</div>
 							</div>
 						</div>
@@ -173,7 +173,7 @@
 							<div class="panel-body">
 								<div class="form-group">
 									<label class="control-label">Thứ tự</label>
-									<input type="text" name="sort" class="form-control" value="{{ $item->sort == '' ? 0 : $item->sort }}" />
+									<input type="text" name="sort" class="form-control" value="{{ old('sort') == '' ? $item->sort : old('sort') }}" />
 								</div>
 							</div>
 						</div>

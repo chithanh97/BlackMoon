@@ -14,6 +14,7 @@ class Video extends Model
     'name',
     'image',
     'link',
+    'sort',
     'status',
     'lang',
   ];

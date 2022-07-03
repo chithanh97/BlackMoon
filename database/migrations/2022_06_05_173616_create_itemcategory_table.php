@@ -15,19 +15,19 @@ return new class extends Migration
     {
     	Schema::create('itemcategory', function (Blueprint $table) {
     		$table->increments('id');
-    		$table->string('name');
-    		$table->string('subject');
-    		$table->string('parent');
-    		$table->string('detail')->nullable();
-    		$table->string('detail_short')->nullable();
-    		$table->string('image')->nullable();
-    		$table->string('link')->nullable();
+    		$table->text('name');
+    		$table->text('subject');
+    		$table->text('parent');
+    		$table->text('detail')->nullable();
+    		$table->text('detail_short')->nullable();
+    		$table->text('image')->nullable();
+    		$table->text('link')->nullable();
     		$table->integer('sort')->nullable();
     		$table->integer('hot')->nullable();
     		$table->integer('status');
-    		$table->string('title')->nullable();
-    		$table->string('description')->nullable();
-    		$table->string('keyword')->nullable();
+    		$table->text('title')->nullable();
+    		$table->text('description')->nullable();
+    		$table->text('keyword')->nullable();
     		$table->integer('lang');
     		// $table->collation = 'utf8_general_ci';
     		$table->timestamps();

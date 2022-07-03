@@ -34,7 +34,6 @@ class VideoController extends Controller
 		$name = $request->name;
 		$link = $request->link;
 		$sort = $request->sort == '' ? 0 : $request->sort;
-
 		$reponse = Video::create([
 			'name'   => $name,
 			'status' => 1,

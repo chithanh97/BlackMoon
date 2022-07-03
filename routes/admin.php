@@ -2,19 +2,29 @@
 
 use App\Http\Controllers\auth\admin\LoginController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\backend\HomeController;
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\MapController;
+use App\Http\Controllers\FanpageController;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\LanguageController;
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 
 Route::middleware('auth:admin')->group(function (){
 	Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 	Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+	//config
+	Route::get('/config/edit', [ConfigController::class, 'edit'])->name('config.edit');
+	Route::post('/config/edit', [ConfigController::class, 'update'])->name('config.update');
 
 	//itemcategory
 	Route::get('/itemcategory', [ItemCategoryController::class, 'index'])->name('itemcategory');
@@ -63,5 +73,37 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
 	Route::post('/video/edit/{id}', [VideoController::class, 'update'])->name('video.update');
 	Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('video.delete');
+
+	//map
+	Route::get('/map', [MapController::class, 'index'])->name('map');
+	Route::get('/map/add', [MapController::class, 'store'])->name('map.add');
+	Route::post('/map/add', [MapController::class, 'create'])->name('map.create');
+	Route::get('/map/edit/{id}', [MapController::class, 'edit'])->name('map.edit');
+	Route::post('/map/edit/{id}', [MapController::class, 'update'])->name('map.update');
+	Route::get('/map/delete/{id}', [MapController::class, 'delete'])->name('map.delete');
+
+	//fanpage
+	Route::get('/fanpage', [FanpageController::class, 'index'])->name('fanpage');
+	Route::get('/fanpage/add', [FanpageController::class, 'store'])->name('fanpage.add');
+	Route::post('/fanpage/add', [FanpageController::class, 'create'])->name('fanpage.create');
+	Route::get('/fanpage/edit/{id}', [FanpageController::class, 'edit'])->name('fanpage.edit');
+	Route::post('/fanpage/edit/{id}', [FanpageController::class, 'update'])->name('fanpage.update');
+	Route::get('/fanpage/delete/{id}', [FanpageController::class, 'delete'])->name('fanpage.delete');
+
+	//social
+	Route::get('/social', [SocialController::class, 'index'])->name('social');
+	Route::get('/social/add', [SocialController::class, 'store'])->name('social.add');
+	Route::post('/social/add', [SocialController::class, 'create'])->name('social.create');
+	Route::get('/social/edit/{id}', [SocialController::class, 'edit'])->name('social.edit');
+	Route::post('/social/edit/{id}', [SocialController::class, 'update'])->name('social.update');
+	Route::get('/social/delete/{id}', [SocialController::class, 'delete'])->name('social.delete');
+
+	//language
+	Route::get('/language', [LanguageController::class, 'index'])->name('language');
+	Route::get('/language/add', [LanguageController::class, 'store'])->name('language.add');
+	Route::post('/language/add', [LanguageController::class, 'create'])->name('language.create');
+	Route::get('/language/edit/{id}', [LanguageController::class, 'edit'])->name('language.edit');
+	Route::post('/language/edit/{id}', [LanguageController::class, 'update'])->name('language.update');
+	Route::get('/language/delete/{id}', [LanguageController::class, 'delete'])->name('language.delete');
 
 });

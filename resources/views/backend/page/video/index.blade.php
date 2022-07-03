@@ -139,7 +139,10 @@
 									<tr>
 										<td>{{ $value->id }}</td>
 										<td>
-											<img class="thumbnail" src="{{ $value->image == '' ? '/storage/uploads/default/default.png' : $value->image }}" alt="">
+											@if($value->link != '')
+											<iframe width="200" height="100" src="{{getVideo($value->link)}}">
+											</iframe>
+											@endif
 										</td>
 										<td>{{ $value->name }}</td>
 										<td>

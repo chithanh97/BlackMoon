@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('language', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+    	Schema::create('language', function (Blueprint $table) {
+    		$table->increments('id');
+    		$table->text('name');
+    		$table->text('image');
+    		$table->integer('status');
+    		$table->timestamps();
+    	});
     }
 
     /**
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('language');
+    	Schema::dropIfExists('language');
     }
-};
+  };

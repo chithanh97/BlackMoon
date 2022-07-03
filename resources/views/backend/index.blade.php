@@ -178,17 +178,17 @@
 							<li class="nav-item"> <a class="nav-link" href="{{ route('slide') }}">Slide</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Banner</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('video') }}">Video</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Bản đồ</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('map') }}">Bản đồ</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Phân quyền</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Fanpage Facebook</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Liên kết MXH</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('fanpage') }}">Fanpage Facebook</a></li>
+							<li class="nav-item"> <a class="nav-link" href="{{ route('social') }}">Liên kết MXH</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Thư viện ảnh</a></li>
 							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Watermark</a></li>
 						</ul>
 					</div>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="{{ route('banner') }}">
+					<a class="nav-link" href="{{ route('config.edit') }}">
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>
@@ -196,7 +196,7 @@
 					</a>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="{{ route('banner') }}">
+					<a class="nav-link" href="{{ route('language') }}">
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>
