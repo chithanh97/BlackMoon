@@ -1,6 +1,6 @@
-@extends('backend.index')
-@section('title', 'Menu')
-@section('content')
+
+<?php $__env->startSection('title', 'Menu'); ?>
+<?php $__env->startSection('content'); ?>
 <div class="main_content_iner ">
 	<div class="container-fluid p-0">
 		<!-- page title  -->
@@ -43,4 +43,5 @@
 		<div class="col-md-9"></div>
 	</div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\BlackMoon\Documents\GitHub\BlackMoon\resources\views/backend/page/menu/index.blade.php ENDPATH**/ ?>

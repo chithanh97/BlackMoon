@@ -39,7 +39,7 @@
 	<meta name="geo.position" content="10.806105;106.63668" />
 	<meta name="ICBM" content="10.806105, 106.63668" />
 
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/plugin/bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/plugin/bootstrap/css/bootstrap.min.css')}}">
 
 	<!-- Login css -->
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
@@ -428,7 +428,6 @@
 		</div>
 		<!-- page-body-wrapper ends -->
 	</div>
-	<script type="text/javascript" src=" {{asset('assets/plugin/bootstrap/js/bootstrap.min.js')}} "></script>
 	<script src="{{asset('assets/backend/js/vendor.bundle.base.js')}}"></script>
 	<script src="{{asset('assets/backend/js/Chart.min.js')}}"></script>
 	<script src="{{asset('assets/backend/js/progressbar.min.js')}}"></script>
@@ -436,6 +435,7 @@
 	<script src="{{asset('assets/backend/js/jquery-jvectormap-world-mill-en.js')}}"></script>
 	<script src="{{asset('assets/backend/js/owl.carousel.min.js')}}"></script>
 	<script src="{{asset('assets/backend/plugin/fancybox/source/jquery.fancybox.js')}}"></script>
+	<script type="text/javascript" src=" {{asset('assets/backend/plugin/bootstrap/js/bootstrap.min.js')}} "></script>
 	<script src="{{asset('assets/backend/js/off-canvas.js')}}"></script>
 	<script src="{{asset('assets/backend/js/hoverable-collapse.js')}}"></script>
 	<script src="{{asset('assets/backend/js/settings.js')}}"></script>
