@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>@yield('title')</title>
+	<title><?php echo $__env->yieldContent('title'); ?></title>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<link rel="shortcut icon" type="image/x-icon" href="" />
@@ -39,31 +39,31 @@
 	<meta name="geo.position" content="10.806105;106.63668" />
 	<meta name="ICBM" content="10.806105, 106.63668" />
 
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/plugin/bootstrap/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/plugin/bootstrap/css/bootstrap.min.css')); ?>">
 
 	<!-- Login css -->
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/vendor/animate/animate.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/vendor/css-hamburgers/hamburgers.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/vendor/select2/select2.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/css/util.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/css/main.css')}}">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/fonts/font-awesome-4.7.0/css/font-awesome.min.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/vendor/animate/animate.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/vendor/css-hamburgers/hamburgers.min.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/vendor/select2/select2.min.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/css/util.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/css/main.css')); ?>">
 
 	<!-- Main css -->
-	<link rel="stylesheet" href="{{asset('assets/backend/css/materialdesignicons.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/backend/css/vendor.bundle.base.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/backend/css/jquery-jvectormap.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/backend/css/flag-icon.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/backend/css/owl.carousel.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/backend/plugin/fancybox/source/jquery.fancybox.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/backend/css/owl.theme.default.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/backend/plugin/select2/select2.min.css')}}">
-	<link rel="stylesheet" href="{{asset('assets/backend/css/style.css')}}">
-	<!-- <link rel="stylesheet" href="{{asset('assets/backend/plugin/tinymce/js/tinymce/skins/ui/oxide/content.min.css')}}"> -->
-	<!-- <link rel="stylesheet" href="{{asset('assets/backend/plugin/tinymce/js/tinymce/skins/ui/tinymce-5-dark/skin.min.css')}}"> -->
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/materialdesignicons.min.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/vendor.bundle.base.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/jquery-jvectormap.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/flag-icon.min.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/owl.carousel.min.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/plugin/fancybox/source/jquery.fancybox.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/owl.theme.default.min.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/plugin/select2/select2.min.css')); ?>">
+	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/style.css')); ?>">
+	<!-- <link rel="stylesheet" href="<?php echo e(asset('assets/backend/plugin/tinymce/js/tinymce/skins/ui/oxide/content.min.css')); ?>"> -->
+	<!-- <link rel="stylesheet" href="<?php echo e(asset('assets/backend/plugin/tinymce/js/tinymce/skins/ui/tinymce-5-dark/skin.min.css')); ?>"> -->
 
-	@stack('styles')
+	<?php echo $__env->yieldPushContent('styles'); ?>
 
 </head>
 <body>
@@ -145,7 +145,7 @@
 					</a>
 					<div class="collapse" id="products">
 						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"> <a class="nav-link" href="{{ route('itemcategory') }}">Danh mục</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('itemcategory')); ?>">Danh mục</a></li>
 							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Danh sách</a></li>
 						</ul>
 					</div>
@@ -160,8 +160,8 @@
 					</a>
 					<div class="collapse" id="news">
 						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"> <a class="nav-link" href="{{ route('newscategory') }}">Danh mục</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('news') }}">Bài viết</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('newscategory')); ?>">Danh mục</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('news')); ?>">Bài viết</a></li>
 						</ul>
 					</div>
 				</li>
@@ -175,21 +175,21 @@
 					</a>
 					<div class="collapse" id="option">
 						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"> <a class="nav-link" href="{{ route('slide') }}">Slide</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Banner</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('video') }}">Video</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('map') }}">Bản đồ</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Phân quyền</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('fanpage') }}">Fanpage Facebook</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('social') }}">Liên kết MXH</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Thư viện ảnh</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('banner') }}">Watermark</a></li>
-							<li class="nav-item"> <a class="nav-link" href="{{ route('menu') }}">Menu</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('slide')); ?>">Slide</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Banner</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('video')); ?>">Video</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('map')); ?>">Bản đồ</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Phân quyền</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('fanpage')); ?>">Fanpage Facebook</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('social')); ?>">Liên kết MXH</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Thư viện ảnh</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('banner')); ?>">Watermark</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('menu')); ?>">Menu</a></li>
 						</ul>
 					</div>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="{{ route('config.edit') }}">
+					<a class="nav-link" href="<?php echo e(route('config.edit')); ?>">
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>
@@ -197,7 +197,7 @@
 					</a>
 				</li>
 				<li class="nav-item menu-items">
-					<a class="nav-link" href="{{ route('language') }}">
+					<a class="nav-link" href="<?php echo e(route('language')); ?>">
 						<span class="menu-icon">
 							<i class="mdi mdi-playlist-play"></i>
 						</span>
@@ -412,7 +412,7 @@
 			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
-					@yield('content')
+					<?php echo $__env->yieldContent('content'); ?>
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
@@ -428,24 +428,24 @@
 		</div>
 		<!-- page-body-wrapper ends -->
 	</div>
-	<script type="text/javascript" src=" {{asset('assets/plugin/bootstrap/js/bootstrap.min.js')}} "></script>
-	<script src="{{asset('assets/backend/js/vendor.bundle.base.js')}}"></script>
-	<script src="{{asset('assets/backend/js/Chart.min.js')}}"></script>
-	<script src="{{asset('assets/backend/js/progressbar.min.js')}}"></script>
-	<script src="{{asset('assets/backend/js/jquery-jvectormap.min.js')}}"></script>
-	<script src="{{asset('assets/backend/js/jquery-jvectormap-world-mill-en.js')}}"></script>
-	<script src="{{asset('assets/backend/js/owl.carousel.min.js')}}"></script>
-	<script src="{{asset('assets/backend/plugin/fancybox/source/jquery.fancybox.js')}}"></script>
-	<script src="{{asset('assets/backend/js/off-canvas.js')}}"></script>
-	<script src="{{asset('assets/backend/js/hoverable-collapse.js')}}"></script>
-	<script src="{{asset('assets/backend/js/settings.js')}}"></script>
-	<script src="{{asset('assets/backend/js/todolist.js')}}"></script>
-	<script src="{{asset('assets/backend/js/dashboard.js')}}"></script>
-	<script src="{{asset('assets/backend/plugin/select2/select2.min.js')}}"></script>
-	<script src="{{asset('storage/filemanager/js/tinymce/js/tinymce/tinymce.min.js')}}"></script>
-	<script src="{{asset('storage/filemanager/js/tinymce/js/tinymce/tinymce.config.js')}}"></script>
-	<script src="{{asset('assets/backend/js/main.js')}}"></script>
-	<script src="{{asset('assets/backend/js/custom.js')}}"></script>
-	@stack('scripts')
+	<script type="text/javascript" src=" <?php echo e(asset('assets/plugin/bootstrap/js/bootstrap.min.js')); ?> "></script>
+	<script src="<?php echo e(asset('assets/backend/js/vendor.bundle.base.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/Chart.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/progressbar.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/jquery-jvectormap.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/jquery-jvectormap-world-mill-en.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/owl.carousel.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/plugin/fancybox/source/jquery.fancybox.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/off-canvas.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/hoverable-collapse.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/settings.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/todolist.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/dashboard.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/plugin/select2/select2.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('storage/filemanager/js/tinymce/js/tinymce/tinymce.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('storage/filemanager/js/tinymce/js/tinymce/tinymce.config.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/main.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/custom.js')); ?>"></script>
+	<?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
-</html>
+</html><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/index.blade.php ENDPATH**/ ?>

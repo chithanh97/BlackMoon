@@ -15,6 +15,7 @@ use App\Http\Controllers\MapController;
 use App\Http\Controllers\FanpageController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\MenuController;
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 
@@ -105,5 +106,9 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/language/edit/{id}', [LanguageController::class, 'edit'])->name('language.edit');
 	Route::post('/language/edit/{id}', [LanguageController::class, 'update'])->name('language.update');
 	Route::get('/language/delete/{id}', [LanguageController::class, 'delete'])->name('language.delete');
+
+	//Menu
+	Route::get('/manage-menus/{id?}',[MenuController::class,'index'])->name('menu');
+	Route::post('create-menu',[menuController::class,'store'])->name('menu.create');
 
 });
