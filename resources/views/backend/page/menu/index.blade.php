@@ -18,22 +18,58 @@
 			</div>
 		</div>
 	</div>
+	<br/>
 	<div class="row">
 		<div class="col-md-3">
-			<div class="accordion" id="accordion" role="tablist">
-				<div class="card">
-					<div class="card-header" role="tab" id="heading-1">
-						<h6 class="mb-0">
-							<a data-bs-toggle="collapse" href="#collapse-1" aria-expanded="false" aria-controls="collapse-1" class="collapsed"> How can I pay for an order I placed? </a>
-						</h6>
-					</div>
-					<div id="collapse-1" class="collapse" role="tabpanel" aria-labelledby="heading-1" data-bs-parent="#accordion" style="">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-3">
-									<img src="../../../assets/images/samples/300x300/10.jpg" class="mw-100">
+			<div class="accordion" id="accordion-menu" role="tablist">
+				<div class="panel-group" id="menu-items">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a href="#newscategory-list" data-toggle="collapse" data-parent="#menu-items">Danh mục sản phẩm <span class="caret pull-right"></span></a>
+						</div>
+						<div class="panel-collapse collapse in" id="itemcategory-list">
+							<div class="panel-body">
+								<div class="item-list-body">
+									@foreach($itemcategory as $cat)
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" name="select-category[]" value="{{$cat->id}}">
+										<label>{{$cat->name}}</label>
+									</div>
+									@endforeach
 								</div>
-								<div class="col-9"> You can pay for the product you have purchased using credit cards, debit cards, or via online banking. We also provide cash-on-delivery services. </div>
+								<div class="item-list-footer">
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="select-all-itemcategory">
+										<label class="btn btn-sm btn-default">Chọn tất cả</label>
+									</div>
+									<button type="button" class="pull-right btn btn-default btn-sm" id="add-itemcategory">Add to Menu</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-group" id="menu-news">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<a href="#newscategory-list" data-toggle="collapse" data-parent="#menu-news">Danh mục bài viết <span class="caret pull-right"></span></a>
+							</div>
+							<div class="panel-collapse collapse in" id="newscategory-list">
+								<div class="panel-body">
+									<div class="item-list-body">
+										@foreach($newscategory as $cat)
+										<div class="form-check">
+											<input type="checkbox" class="form-check-input" name="select-category[]" value="{{$cat->id}}">
+											<label>{{$cat->name}}</label>
+										</div>
+										@endforeach
+									</div>
+									<div class="item-list-footer">
+										<div class="form-check">
+											<input type="checkbox" class="form-check-input" id="select-all-newscategory">
+											<label class="btn btn-sm btn-default">Chọn tất cả</label>
+										</div>
+										<button type="button" class="pull-right btn btn-default btn-sm" id="add-newscategory">Add to Menu</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -44,3 +80,45 @@
 	</div>
 </div>
 @endsection
+@push('styles')
+<style>
+	#accordion-menu .panel-heading {
+	}
+	#accordion-menu .panel-heading a{
+		display: block;
+		color: #fff;
+		padding: 7px 15px;
+		border-bottom: 1px solid #ccc;
+		background: #6c7293;
+	}
+	#accordion-menu{
+		background: #191c24;
+		border-radius: 5px;
+		overflow: hidden
+	}
+	#accordion-menu input{
+		background-color: #191c24;
+		border: 1px solid #fff;
+		margin-left: -1.25rem;
+
+	}
+	#accordion-menu .item-list-body .form-check{
+		padding: 0 2.25rem;
+		border-bottom: 1px dashed #7e3838;
+		margin-bottom: 15px;
+	}
+	#accordion-menu .item-list-body .form-check label{
+		margin-left: 7px;
+		margin-bottom: 15px;
+	}
+	#accordion-menu .item-list-body .form-check:last-child{
+		border-bottom: 1px solid #fff;
+	}
+	#accordion-menu .item-list-footer{
+		padding: 0 1rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+</style>
+@endpush

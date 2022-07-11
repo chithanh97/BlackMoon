@@ -65,11 +65,11 @@
       var areaData = {
         labels: ["Paypal", "Stripe","Cash"],
         datasets: [{
-            data: [55, 25, 20],
-            backgroundColor: [
-              "#111111","#00d25b","#ffab00"
-            ]
-          }
+          data: [55, 25, 20],
+          backgroundColor: [
+          "#111111","#00d25b","#ffab00"
+          ]
+        }
         ]
       };
       var areaOptions = {
@@ -79,7 +79,7 @@
         cutoutPercentage: 70,
         elements: {
           arc: {
-              borderWidth: 0
+            borderWidth: 0
           }
         },
         legend: {
@@ -92,8 +92,8 @@
       var transactionhistoryChartPlugins = {
         beforeDraw: function(chart) {
           var width = chart.chart.width,
-              height = chart.chart.height,
-              ctx = chart.chart.ctx;
+          height = chart.chart.height,
+          ctx = chart.chart.ctx;
 
           ctx.restore();
           var fontSize = 1;
@@ -103,8 +103,8 @@
           ctx.fillStyle = "#ffffff";
 
           var text = "$1200",
-              textX = Math.round((width - ctx.measureText(text).width) / 2),
-              textY = height / 2.4;
+          textX = Math.round((width - ctx.measureText(text).width) / 2),
+          textY = height / 2.4;
 
           ctx.fillText(text, textX, textY);
 
@@ -116,8 +116,8 @@
           ctx.fillStyle = "#6c7293";
 
           var texts = "Total",
-              textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
-              textsY = height / 1.7;
+          textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
+          textsY = height / 1.7;
 
           ctx.fillText(texts, textsX, textsY);
           ctx.save();
@@ -135,11 +135,11 @@
       var areaData = {
         labels: ["Paypal", "Stripe","Cash"],
         datasets: [{
-            data: [55, 25, 20],
-            backgroundColor: [
-              "#111111","#00d25b","#ffab00"
-            ]
-          }
+          data: [55, 25, 20],
+          backgroundColor: [
+          "#111111","#00d25b","#ffab00"
+          ]
+        }
         ]
       };
       var areaOptions = {
@@ -149,7 +149,7 @@
         cutoutPercentage: 70,
         elements: {
           arc: {
-              borderWidth: 0
+            borderWidth: 0
           }
         },
         legend: {
@@ -162,8 +162,8 @@
       var transactionhistoryChartPlugins = {
         beforeDraw: function(chart) {
           var width = chart.chart.width,
-              height = chart.chart.height,
-              ctx = chart.chart.ctx;
+          height = chart.chart.height,
+          ctx = chart.chart.ctx;
 
           ctx.restore();
           var fontSize = 1;
@@ -173,8 +173,8 @@
           ctx.fillStyle = "#ffffff";
 
           var text = "$1200",
-              textX = Math.round((width - ctx.measureText(text).width) / 2),
-              textY = height / 2.4;
+          textX = Math.round((width - ctx.measureText(text).width) / 2),
+          textY = height / 2.4;
 
           ctx.fillText(text, textX, textY);
 
@@ -186,8 +186,8 @@
           ctx.fillStyle = "#6c7293";
 
           var texts = "مجموع",
-              textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
-              textsY = height / 1.7;
+          textsX = Math.round((width - ctx.measureText(text).width) / 1.93),
+          textsY = height / 1.7;
 
           ctx.fillText(texts, textsX, textsY);
           ctx.save();
@@ -247,7 +247,7 @@
         }
       });
     }
-    });
+  });
     // if ($.cookie('corona-pro-banner')!="true") {
     //   document.querySelector('#proBanner').classList.add('d-flex');
     // }
@@ -261,4 +261,10 @@
     //   date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
     //   $.cookie('corona-pro-banner', "true", { expires: date });
     // });
-})(jQuery);
+    $('.iframe-btn').fancybox({
+      'width'   : 1024,
+      'height'  : 570,
+      'type'    : 'iframe',
+      'autoScale'   : false
+    });
+  })(jQuery);
