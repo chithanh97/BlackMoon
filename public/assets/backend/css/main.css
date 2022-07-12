@@ -574,6 +574,7 @@ form .row{
 }
 .t-breadcrumb{
   display: flex;
+  padding-left: 0;
 }
 .main_content_iner a{
   color: #6c7293;
@@ -636,8 +637,12 @@ form .row{
 .container-scroller{
   min-height: 100vh;
 }
-
-
+select,input{
+  color: #fff!important;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  color: #6c7293!important;
+}
 
 
 

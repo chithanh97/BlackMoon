@@ -76,6 +76,15 @@ function getTypeBanner(){
 	];
 	return $res;
 }
+
+function getPositionMenu(){
+	$res = [
+		1 => "Menu main",
+		2 => "Menu footer"
+	];
+	return $res;
+}
+
 function getVideo($string){
 	$link_goc = 'https://www.youtube.com/embed/';
 	$LK1 = explode("=", $string);
@@ -84,4 +93,5 @@ function getVideo($string){
 	$ls2 = $link_goc . $LK2[0];
 	return $ls2;
 }
+
 ?>

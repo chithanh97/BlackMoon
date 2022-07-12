@@ -201,4 +201,4 @@
 	checkKeyword();
 </script>
 <?php $__env->stopPush(); ?>
-<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\BlackMoon\Documents\GitHub\BlackMoon\resources\views/backend/page/newscategory/store.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/newscategory/store.blade.php ENDPATH**/ ?>

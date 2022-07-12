@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('title', 'Danh sách Fanpage'); ?>
+<?php $__env->startSection('title', 'Danh mục sản phẩm'); ?>
 <?php $__env->startPush('styles'); ?>
 <style>
 	.status{
@@ -92,7 +92,7 @@
 							<h3 class="f_s_30 f_w_700 text_white" >Quản trị</h3>
 							<ol class="t-breadcrumb page_bradcam mb-0">
 								<li class="breadcrumb-item"><a href="javascript:void(0);">Quản trị</a></li>
-								<li class="breadcrumb-item"><a href="javascript:void(0);">Fanpage</a></li>
+								<li class="breadcrumb-item"><a href="javascript:void(0);">Danh mục sản phẩm</a></li>
 							</ol>
 						</div>
 					</div>
@@ -108,14 +108,14 @@
 					<div class="white_card_header">
 						<div class="box_header m-0">
 							<div class="main-title">
-								<h3 class="m-0">Danh sách Fanpage</h3>
+								<h3 class="m-0">Danh sách danh mục sản phẩm</h3>
 							</div>
 							<div>
 							</div>
 							<div class="header_more_tool">
 								<div class="dropdown">
 									<span class="" id="">
-										<button class="btn btn-primary add-button"><a href="<?php echo e(route('fanpage.add')); ?>" class='text-light'><i class="fa fa-plus-circle text-light" aria-hidden="true"></i> Thêm</a></button>
+										<button class="btn btn-primary add-button"><a href="<?php echo e(route('itemcategory.add')); ?>" class='text-light'><i class="fa fa-plus-circle text-light" aria-hidden="true"></i> Thêm</a></button>
 									</span>
 								</div>
 							</div>
@@ -128,7 +128,11 @@
 								<thead>
 									<tr>
 										<th scope="col">ID</th>
+										<th scope="col">Hình ảnh</th>
 										<th scope="col">Tên</th>
+										<th scope="col">Danh mục cha</th>
+										<th scope="col">Thứ tự</th>
+										<th scope="col">Hot</th>
 										<th scope="col">Trạng thái</th>
 										<th scope="col">Tùy chọn</th>
 									</tr>
@@ -138,18 +142,28 @@
 									<tr>
 										<td><?php echo e($value->id); ?></td>
 										<td>
-											<?php echo e($value->name); ?>
+											<img class="thumbnail" src="<?php echo e($value->image == '' ? '/storage/uploads/default/default.png' : $value->image); ?>" alt="">
+										</td>
+										<td><?php echo e($value->name); ?></td>
+										<td>
+											<button class="btn btn-info">
+												<?php echo e(getParentCate($parent, $value->parent)); ?>
 
+											</button>
+										</td>
+										<td><?php echo e($value->sort == '' ? 0 : $value->sort); ?></td>
+										<td>
+											<div class="<?php echo e($value->hot == 1 ? 'active' : ''); ?> field-status changestatus" data-table='itemcategory' data-field='hot' data-id='<?php echo e($value->id); ?>'></div>
 										</td>
 										<td>
-											<div class="<?php echo e($value->status == 1 ? 'active' : ''); ?> status changestatus" data-table='fanpage' data-field='status' data-id='<?php echo e($value->id); ?>'></div>
+											<div class="<?php echo e($value->status == 1 ? 'active' : ''); ?> status changestatus" data-table='itemcategory' data-field='status' data-id='<?php echo e($value->id); ?>'></div>
 										</td>
 										<td class="column-action">
-											<a href="<?php echo e(route('fanpage.edit', $value->id)); ?>" class="btn-edit">
+											<a href="<?php echo e(route('itemcategory.edit', $value->id)); ?>" class="btn-edit">
 												<i class="fa fa-pencil"></i>
 											</a>
 											<a href="
-											javascript:if(confirm('Bạn chắc chắn muốn xóa?')) window.location.href = '<?php echo e(route('fanpage.delete', $value->id)); ?>' ;
+											javascript:if(confirm('Bạn chắc chắn muốn xóa?')) window.location.href = '<?php echo e(route('itemcategory.delete', $value->id)); ?>' ;
 											" class="btn-delete">
 											<i class="fa fa-trash"></i>
 										</a>
@@ -169,4 +183,4 @@
 	</div>
 </div>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\BlackMoon\Documents\GitHub\BlackMoon\resources\views/backend/page/fanpage/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/itemcategory/index.blade.php ENDPATH**/ ?>

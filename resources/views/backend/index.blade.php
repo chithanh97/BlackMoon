@@ -14,6 +14,7 @@
 	<meta name="robots" content="noodp,index,follow" />
 	<meta name="revisit-after" content="1 days" />
 	<meta name="copyright" content="Copyright © 2022-<?=date('Y')?> by BlackMoon" />
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 

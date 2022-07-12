@@ -16,8 +16,8 @@ return new class extends Migration
     	Schema::create('social', function (Blueprint $table) {
     		$table->increments('id');
     		$table->text('name');
-    		$table->text('image');
-    		$table->text('link');
+    		$table->text('image')->nullable();
+    		$table->text('link')->nullable();
     		$table->integer('status');
     		$table->integer('sort');
     		$table->integer('lang');

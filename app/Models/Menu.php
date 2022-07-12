@@ -2,11 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-  use HasFactory;
-  protected $fillable = ['title','location','content','created_at','updated_at'];
+	protected $table = 'menus';
+
+	protected $fillable = [
+		'id',
+		'name',
+		'location',
+		'content',
+		'status',
+		'lang',
+		'created_at',
+		'updated_at'
+	];
 }

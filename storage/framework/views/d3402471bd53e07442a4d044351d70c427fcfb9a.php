@@ -14,6 +14,7 @@
 	<meta name="robots" content="noodp,index,follow" />
 	<meta name="revisit-after" content="1 days" />
 	<meta name="copyright" content="Copyright © 2022-<?=date('Y')?> by BlackMoon" />
+	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -435,7 +436,6 @@
 	<script src="<?php echo e(asset('assets/backend/js/progressbar.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/jquery-jvectormap.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/jquery-jvectormap-world-mill-en.js')); ?>"></script>
-	<script src="<?php echo e(asset('assets/backend/js/owl.carousel.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/plugin/bootstrap/js/bootstrap.min.js')); ?> "></script>
 	<script src="<?php echo e(asset('assets/backend/js/off-canvas.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/hoverable-collapse.js')); ?>"></script>
@@ -443,6 +443,8 @@
 	<script src="<?php echo e(asset('assets/backend/js/todolist.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/vendor.bundle.base.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/plugin/fancybox/source/jquery.fancybox.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/owl.carousel.min.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/jquery.cookie.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/dashboard.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/plugin/select2/select2.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('storage/filemanager/js/tinymce/js/tinymce/tinymce.min.js')); ?>"></script>

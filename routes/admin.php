@@ -108,10 +108,14 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/language/delete/{id}', [LanguageController::class, 'delete'])->name('language.delete');
 
 	//Menu
-	Route::get('/manage-menus/{id?}',[MenuController::class,'index'])->name('menu');
-	Route::post('create-menu',[MenuController::class,'store'])->name('menu.create');
-	Route::get('add-categories-to-menu',[MenuController::class,'addCatToMenu']);
-	Route::get('add-post-to-menu',[MenuController::class,'addPostToMenu']);
-	Route::get('add-custom-link',[MenuController::class,'addCustomLink']);
+	Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+	Route::get('/menu/add', [MenuController::class, 'store'])->name('menu.add');
+	// Route::post('/menu/add', function(){
+	// 	echo 'ffffffff';
+	// })->name('menu.create');
+	Route::post('/menu/add', [MenuController::class, 'create'])->name('menu.create');
+	Route::get('/menu/edit/{id}', [MenuController::class, 'edit'])->name('menu.edit');
+	Route::post('/menu/edit/{id}', [MenuController::class, 'update'])->name('menu.update');
+	Route::get('/menu/delete/{id}', [MenuController::class, 'delete'])->name('menu.delete');
 
 });

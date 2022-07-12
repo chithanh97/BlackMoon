@@ -14,39 +14,38 @@ use Session;
 class MenuController extends Controller
 {
 	public function index(){
-		$desiredMenu = '';
-		$menuitems = '';
-		if(isset($_GET['id']) && $_GET['id'] != 'new'){
-			$id = $_GET['id'];
-			$desiredMenu = Menu::where('id',$id)->first();
-			if($desiredMenu->content != ''){
-				$menuitems = json_decode($desiredMenu->content);
-			}else{
-				$menuitems = Menuitem::where('menu_id',$desiredMenu->id)->get();
-			}
-		}else{
-			$desiredMenu = Menu::orderby('id','DESC')->first();
-			if($desiredMenu){
-				if($desiredMenu->content != ''){
-					$menuitems = json_decode($desiredMenu->content);
-				}else{
-					$menuitems = Menuitem::where('menu_id',$desiredMenu->id)->get();
-				}
-			}
-		}
-		return view ('backend.page.menu.index',['itemcategory'=>Itemcategory::all(),'newscategory'=>Newscategory::all(),'news'=>News::all(),'menus'=>Menu::all(), 'desiredMenu'=>$desiredMenu]);
+		$list = Menu::paginate(10)->withQueryString();
+		return view('backend.page.menu.index', compact('list'));
 	}
 
 	public function store(Request $request)
 	{
-		$data = $request->all();
-		if(Menu::create($data)){
-			$newdata = Menu::orderby('id','DESC')->first();
-			session::flash('success','Menu saved successfully !');
-			return redirect("manage-menus?id=$newdata->id");
-		}else{
-			return redirect()->back()->with('error','Failed to save menu !');
+		$list = Menu::paginate(10)->withQueryString();
+		return view('backend.page.menu.index', compact('list'));
+	}
+
+	public function create(Request $request){
+		$messages = [
+			'name.required' => '- Tên không được để trống!',
+		];
+
+		$validator = $request->validate([
+			'name'   => 'required',
+		], $messages);
+
+		$name = $request->name;
+		$location = $request->location;
+
+		$reponse = Menu::create([
+			'name'  => $name,
+			'status' => 1,
+			'location' => $location,
+			'lang' => 1
+		]);
+		if($reponse){
+			return redirect()->route('menu')->with('alert', '- Thêm thành công!');
 		}
+		return redirect()->back()->withInput();
 	}
 
 	public function addCatToMenu(Request $request){
