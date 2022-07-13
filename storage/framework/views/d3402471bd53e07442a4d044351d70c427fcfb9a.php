@@ -40,7 +40,7 @@
 	<meta name="geo.position" content="10.806105;106.63668" />
 	<meta name="ICBM" content="10.806105, 106.63668" />
 
-	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/plugin/bootstrap/css/bootstrap.min.css')); ?>">
+	<!-- <link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/plugin/bootstrap/css/bootstrap.min.css')); ?>"> -->
 
 	<!-- Login css -->
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/fonts/font-awesome-4.7.0/css/font-awesome.min.css')); ?>">
@@ -58,6 +58,7 @@
 	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/flag-icon.min.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/owl.carousel.min.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/plugin/fancybox/source/jquery.fancybox.css')); ?>">
+	<link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"/>
 	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/owl.theme.default.min.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/plugin/select2/select2.min.css')); ?>">
 	<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/style.css')); ?>">
@@ -432,16 +433,17 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	<script src="<?php echo e(asset('assets/backend/js/vendor.bundle.base.js')); ?>"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 	<script src="<?php echo e(asset('assets/backend/js/Chart.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/progressbar.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/jquery-jvectormap.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/jquery-jvectormap-world-mill-en.js')); ?>"></script>
-	<script src="<?php echo e(asset('assets/backend/plugin/bootstrap/js/bootstrap.min.js')); ?> "></script>
+	<!-- <script src="<?php echo e(asset('assets/backend/plugin/bootstrap/js/bootstrap.min.js')); ?> "></script> -->
 	<script src="<?php echo e(asset('assets/backend/js/off-canvas.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/hoverable-collapse.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/settings.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/todolist.js')); ?>"></script>
-	<script src="<?php echo e(asset('assets/backend/js/vendor.bundle.base.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/plugin/fancybox/source/jquery.fancybox.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/owl.carousel.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/jquery.cookie.js')); ?>"></script>

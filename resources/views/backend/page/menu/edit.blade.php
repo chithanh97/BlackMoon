@@ -18,27 +18,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid p-0">
-		<div class="row">
-			<div class="col-md-12">
-				Select a menu to edit:
-				<form action="{{url('manage-menus')}}" class="form-inline">
-					<select name="id">
-						@foreach($menus as $menu)
-						@if($desiredMenu != '')
-						<option value="{{$menu->id}}" @if($menu->id == $desiredMenu->id) selected @endif>{{$menu->title}}</option>
-						@else
-						<option value="{{$menu->id}}">{{$menu->title}}</option>
-						@endif
-						@endforeach
-					</select>
-					<button class="btn btn-sm btn-default btn-menu-select">Select</button>
-				</form>
-				or
-				<a href="{{url('manage-menus?id=new')}}">Create a new menu</a>.
-			</div>
-		</div>
-	</div>
 	<br/>
 	<div class="row">
 		<div class="col-md-3">
@@ -130,26 +109,19 @@
 			</div>
 		</div>
 		<div class="col-md-9">
-			<h3><span>Menu Structure</span></h3>
-			@if(count($menus)== 0)
-			<h4>Create New Menu</h4>
-			<form method="post" action="{{url('create-menu')}}">
-				{{csrf_field()}}
-				<div class="row">
-					<div class="col-sm-12">
-						<label>Name</label>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<input type="text" name="title" class="form-control">
-						</div>
-					</div>
-					<div class="col-sm-6 text-right">
-						<button class="btn btn-sm btn-primary">Create Menu</button>
-					</div>
+			<h2 class="text-center pb-3 pt-1">Learning drag and dropable - CodeCheef</h2>
+			<div class="row">
+				<div class="col-md-5 p-3 bg-dark offset-md-1">
+					<ul class="list-group shadow-lg connectedSortable" id="padding-item-drop">
+
+					</ul>
 				</div>
-			</form>
-			@endif
+				<div class="col-md-5 p-3 bg-dark offset-md-1 shadow-lg complete-item">
+					<ul class="list-group  connectedSortable" id="complete-item-drop">
+
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -205,6 +177,113 @@
 		padding: 15px 1rem 0 1rem;
 	}
 </style>
+<style>
+	.item-list,.info-box{background: #fff;padding: 10px;}
+	.item-list-body{max-height: 300px;overflow-y: scroll;}
+	.panel-body p{margin-bottom: 5px;}
+	.info-box{margin-bottom: 15px;}
+	.item-list-footer{padding-top: 10px;}
+	.panel-heading a{display: block;}
+	.form-inline{display: inline;}
+	.form-inline select{padding: 4px 10px;}
+	.btn-menu-select{padding: 4px 10px}
+	.disabled{pointer-events: none; opacity: 0.7;}
+	.menu-item-bar{background: #eee;padding: 5px 10px;border:1px solid #d7d7d7;margin-bottom: 5px; width: 75%; cursor: move;display: block;}
+	#serialize_output{display: block;}
+	.menulocation label{font-weight: normal;display: block;}
+	body.dragging, body.dragging * {cursor: move !important;}
+	.dragged {position: absolute;z-index: 1;}
+	ol.example li.placeholder {position: relative;}
+	ol.example li.placeholder:before {position: absolute;}
+	#menuitem{list-style: none;}
+	#menuitem ul{list-style: none;}
+	.input-box{width:75%;background:#fff;padding: 10px;box-sizing: border-box;margin-bottom: 5px;}
+	.input-box .form-control{width: 50%}
+</style>
 @endpush
 @push('scripts')
+<script>
+	$('#add-categories').click(function(){
+		var menuid = <?=$desiredMenu->id?>;
+		var n = $('input[name="select-category[]"]:checked').length;
+		var array = $('input[name="select-category[]"]:checked');
+		var ids = [];
+		for(i=0;i<n;i++){
+			ids[i] =  array.eq(i).val();
+		}
+		if(ids.length == 0){
+			return false;
+		}
+		$.ajax({
+			type:"get",
+			data: {menuid:menuid,ids:ids},
+			url: "{{url('add-categories-to-menu')}}",
+			success:function(res){
+				location.reload();
+			}
+		})
+	})
+	$('#add-posts').click(function(){
+		var menuid = <?=$desiredMenu->id?>;
+		var n = $('input[name="select-post[]"]:checked').length;
+		var array = $('input[name="select-post[]"]:checked');
+		var ids = [];
+		for(i=0;i<n;i++){
+			ids[i] =  array.eq(i).val();
+		}
+		if(ids.length == 0){
+			return false;
+		}
+		$.ajax({
+			type:"get",
+			data: {menuid:menuid,ids:ids},
+			url: "{{url('add-post-to-menu')}}",
+			success:function(res){
+				location.reload();
+			}
+		})
+	})
+	$("#add-custom-link").click(function(){
+		var menuid = <?=$desiredMenu->id?>;
+		var url = $('#url').val();
+		var link = $('#linktext').val();
+		if(url.length > 0 && link.length > 0){
+			$.ajax({
+				type:"get",
+				data: {menuid:menuid,url:url,link:link},
+				url: "{{url('add-custom-link')}}",
+				success:function(res){
+					location.reload();
+				}
+			})
+		}
+	})
+</script>
+<script>
+	var group = $("#menuitems").sortable({
+		group: 'serialization',
+		onDrop: function ($item, container, _super) {
+			var data = group.sortable("serialize").get();
+			var jsonString = JSON.stringify(data, null, ' ');
+			$('#serialize_output').text(jsonString);
+			_super($item, container);
+		}
+	});
+</script>
+<script>
+	$('#saveMenu').click(function(){
+		var menuid = <?=$desiredMenu->id?>;
+		var location = $('input[name="location"]:checked').val();
+		var newText = $("#serialize_output").text();
+		var data = JSON.parse($("#serialize_output").text());
+		$.ajax({
+			type:"get",
+			data: {menuid:menuid,data:data,location:location},
+			url: "{{url('update-menu')}}",
+			success:function(res){
+				window.location.reload();
+			}
+		})
+	})
+</script>
 @endpush

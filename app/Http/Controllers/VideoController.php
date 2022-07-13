@@ -12,7 +12,7 @@ class VideoController extends Controller
 {
 	public function index()
 	{
-		$list = Video::paginate(10)->withQueryString();
+		$list = Video::orderby('id','DESC')->paginate(10)->withQueryString();
 		return view('backend.page.video.index', compact('list'));
 	}
 
@@ -53,8 +53,8 @@ class VideoController extends Controller
 	}
 
 	public function edit($id){
-		$item = Video::where('id', $id)->get();
-		$item = $item[0];
+		$item = Video::findOrFail($id);
+		// $item = $item[0];
 		return view('backend.page.video.edit', compact('item'));
 	}
 

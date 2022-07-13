@@ -12,7 +12,7 @@ class SlideController extends Controller
 {
 	public function index()
 	{
-		$list = Slide::paginate(10)->withQueryString();
+		$list = Slide::orderby('id','DESC')->paginate(10)->withQueryString();
 		return view('backend.page.slide.index', compact('list'));
 	}
 
@@ -52,8 +52,8 @@ class SlideController extends Controller
 	}
 
 	public function edit($id){
-		$item = Slide::where('id', $id)->get();
-		$item = $item[0];
+		$item = Slide::findOrFail($id);
+		// $item = $item[0];
 		return view('backend.page.slide.edit', compact('item'));
 	}
 

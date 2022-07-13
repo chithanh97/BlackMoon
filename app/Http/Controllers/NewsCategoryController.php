@@ -12,7 +12,7 @@ class NewsCategoryController extends Controller
 {
 	public function index()
 	{
-		$list = Newscategory::paginate(10)->withQueryString();
+		$list = Newscategory::orderby('id','DESC')->paginate(10)->withQueryString();
 		$parent = Newscategory::get();
 		return view('backend.page.newscategory.index', compact('list', 'parent'));
 	}
@@ -74,8 +74,8 @@ class NewsCategoryController extends Controller
 
 	public function edit($id){
 		$parent = Newscategory::where('status', 1)->get();
-		$item = Newscategory::where('id', $id)->get();
-		$item = $item[0];
+		$item = Newscategory::findOrFail($id);
+		// $item = $item[0];
 		// echo '<pre>';
 		// print_r($item[0]->image);
 		// echo '</pre>';

@@ -12,7 +12,7 @@ class MapController extends Controller
 {
 	public function index()
 	{
-		$list = Map::paginate(10)->withQueryString();
+		$list = Map::orderby('id','DESC')->paginate(10)->withQueryString();
 		return view('backend.page.map.index', compact('list'));
 	}
 
@@ -53,8 +53,8 @@ class MapController extends Controller
 	}
 
 	public function edit($id){
-		$item = Map::where('id', $id)->get();
-		$item = $item[0];
+		$item = Map::findOrFail($id);
+		// $item = $item[0];
 		return view('backend.page.map.edit', compact('item'));
 	}
 

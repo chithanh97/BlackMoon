@@ -109,10 +109,6 @@ Route::middleware('auth:admin')->group(function (){
 
 	//Menu
 	Route::get('/menu', [MenuController::class, 'index'])->name('menu');
-	Route::get('/menu/add', [MenuController::class, 'store'])->name('menu.add');
-	// Route::post('/menu/add', function(){
-	// 	echo 'ffffffff';
-	// })->name('menu.create');
 	Route::post('/menu/add', [MenuController::class, 'create'])->name('menu.create');
 	Route::get('/menu/edit/{id}', [MenuController::class, 'edit'])->name('menu.edit');
 	Route::post('/menu/edit/{id}', [MenuController::class, 'update'])->name('menu.update');

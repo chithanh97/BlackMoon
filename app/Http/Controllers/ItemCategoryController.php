@@ -12,7 +12,7 @@ class ItemCategoryController extends Controller
 {
 	public function index()
 	{
-		$list = ItemCategory::paginate(10)->withQueryString();
+		$list = ItemCategory::orderby('id','DESC')->paginate(10)->withQueryString();
 		$parent = ItemCategory::get();
 		return view('backend.page.itemcategory.index', compact('list', 'parent'));
 	}
@@ -74,8 +74,8 @@ class ItemCategoryController extends Controller
 
 	public function edit($id){
 		$parent = ItemCategory::where('status', 1)->get();
-		$item = ItemCategory::where('id', $id)->get();
-		$item = $item[0];
+		$item = ItemCategory::findOrFail($id);
+		// $item = $item[0];
 		// echo '<pre>';
 		// print_r($item[0]->image);
 		// echo '</pre>';

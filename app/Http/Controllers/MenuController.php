@@ -14,7 +14,7 @@ use Session;
 class MenuController extends Controller
 {
 	public function index(){
-		$list = Menu::paginate(10)->withQueryString();
+		$list = Menu::orderby('id','DESC')->paginate(10)->withQueryString();
 		return view('backend.page.menu.index', compact('list'));
 	}
 
@@ -22,6 +22,14 @@ class MenuController extends Controller
 	{
 		$list = Menu::paginate(10)->withQueryString();
 		return view('backend.page.menu.index', compact('list'));
+	}
+
+	public function edit($id){
+		$item = Menu::findOrFail($id);
+		$itemcategory = Itemcategory::where('status', 1)->get();
+		$newscategory = Newscategory::where('status', 1)->get();
+		$data = [];
+		return view('backend.page.menu.edit', compact('item', 'itemcategory', 'newscategory', 'data'));
 	}
 
 	public function create(Request $request){
@@ -46,6 +54,11 @@ class MenuController extends Controller
 			return redirect()->route('menu')->with('alert', '- Thêm thành công!');
 		}
 		return redirect()->back()->withInput();
+	}
+
+	public function delete($id){
+		$res = Menu::find($id)->delete();
+		return redirect()->route('menu')->with('alert', '- Xóa thành công!');
 	}
 
 	public function addCatToMenu(Request $request){

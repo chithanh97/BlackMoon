@@ -12,7 +12,7 @@ class BannerController extends Controller
 {
 	public function index()
 	{
-		$list = Banner::paginate(10)->withQueryString();
+		$list = Banner::orderby('id','DESC')->paginate(10)->withQueryString();
 		return view('backend.page.banner.index', compact('list'));
 	}
 
@@ -54,8 +54,8 @@ class BannerController extends Controller
 	}
 
 	public function edit($id){
-		$item = Banner::where('id', $id)->get();
-		$item = $item[0];
+		$item = Banner::findOrFail($id);
+		// $item = $item[0];
 		return view('backend.page.banner.edit', compact('item'));
 	}
 

@@ -12,7 +12,7 @@ class FanpageController extends Controller
 {
 	public function index()
 	{
-		$list = Fanpage::paginate(10)->withQueryString();
+		$list = Fanpage::orderby('id','DESC')->paginate(10)->withQueryString();
 		return view('backend.page.fanpage.index', compact('list'));
 	}
 
@@ -53,8 +53,8 @@ class FanpageController extends Controller
 	}
 
 	public function edit($id){
-		$item = Fanpage::where('id', $id)->get();
-		$item = $item[0];
+		$item = Fanpage::findOrFail($id);
+		// $item = $item[0];
 		return view('backend.page.fanpage.edit', compact('item'));
 	}
 

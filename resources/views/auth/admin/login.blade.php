@@ -11,7 +11,11 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/css/main.css')}}">
 </head>
 <body>
-
+	<style>
+		.limiter input{
+			color: #333333!important;
+		}
+	</style>
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url({{asset('assets/backend/images/img-01.jpg')}});">
 			<div class="wrap-login100 p-b-30">

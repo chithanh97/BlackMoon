@@ -12,7 +12,7 @@ class LanguageController extends Controller
 {
 	public function index()
 	{
-		$list = Language::paginate(10)->withQueryString();
+		$list = Language::orderby('id','DESC')->paginate(10)->withQueryString();
 		return view('backend.page.language.index', compact('list'));
 	}
 
@@ -49,8 +49,8 @@ class LanguageController extends Controller
 	}
 
 	public function edit($id){
-		$item = Language::where('id', $id)->get();
-		$item = $item[0];
+		$item = Language::findOrFail($id);
+		// $item = $item[0];
 		return view('backend.page.language.edit', compact('item'));
 	}
 

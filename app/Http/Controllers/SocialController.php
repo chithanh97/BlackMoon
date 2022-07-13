@@ -12,7 +12,7 @@ class SocialController extends Controller
 {
 	public function index()
 	{
-		$list = Social::paginate(10)->withQueryString();
+		$list = Social::orderby('id','DESC')->paginate(10)->withQueryString();
 		return view('backend.page.social.index', compact('list'));
 	}
 
@@ -55,8 +55,8 @@ class SocialController extends Controller
 	}
 
 	public function edit($id){
-		$item = Social::where('id', $id)->get();
-		$item = $item[0];
+		$item = Social::findOrFail($id);
+		// $item = $item[0];
 		return view('backend.page.social.edit', compact('item'));
 	}
 
