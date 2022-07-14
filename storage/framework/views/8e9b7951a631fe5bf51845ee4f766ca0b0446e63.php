@@ -20,7 +20,7 @@
 	</div>
 	<br/>
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="accordion" id="accordion-menu" role="tablist">
 				<?php if($itemcategory->count() > 0): ?>
 				<div class="panel-group" id="menu-items">
@@ -108,19 +108,27 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-9">
-			<h2 class="text-center pb-3 pt-1">Learning drag and dropable - CodeCheef</h2>
-			<div class="row">
-				<div class="col-md-5 p-3 bg-dark offset-md-1">
-					<ul class="list-group shadow-lg connectedSortable" id="padding-item-drop">
-
-					</ul>
-				</div>
-				<div class="col-md-5 p-3 bg-dark offset-md-1 shadow-lg complete-item">
-					<ul class="list-group  connectedSortable" id="complete-item-drop">
-
-					</ul>
-				</div>
+		<div class="col-md-8">
+			<div class="dd">
+				<ol class="dd-list">
+					<li class="dd-item" data-id="1">
+						<div class="dd-handle">Item 1</div>
+					</li>
+					<li class="dd-item" data-id="2">
+						<div class="dd-handle">Item 2</div>
+					</li>
+					<li class="dd-item" data-id="3">
+						<div class="dd-handle">Item 3</div>
+						<ol class="dd-list">
+							<li class="dd-item" data-id="4">
+								<div class="dd-handle">Item 4</div>
+							</li>
+							<li class="dd-item" data-id="5">
+								<div class="dd-handle">Item 5</div>
+							</li>
+						</ol>
+					</li>
+				</ol>
 			</div>
 		</div>
 	</div>
@@ -179,27 +187,9 @@
 </style>
 <?php $__env->stopPush(); ?>
 <?php $__env->startPush('scripts'); ?>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-	$( function() {
-		$( "#padding-item-drop, #complete-item-drop" ).sortable({
-			connectWith: ".connectedSortable",
-			opacity: 0.5,
-		});
-		$( ".connectedSortable" ).on( "sortupdate", function( event, ui ) {
-			var pending = [];
-			var accept = [];
-			$("#padding-item-drop li").each(function( index ) {
-				if($(this).attr('item-id')){
-					pending[index] = $(this).attr('item-id');
-				}
-			});
-			$("#complete-item-drop li").each(function( index ) {
-				accept[index] = $(this).attr('item-id');
-			});
-		});
-	});
+	var temp = $('.dd').nestable('serialize');
+	$('.dd-list').append('<li class="dd-item"><div class="dd-handle">Item 22</div></li>')
 </script>
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/menu/edit.blade.php ENDPATH**/ ?>
