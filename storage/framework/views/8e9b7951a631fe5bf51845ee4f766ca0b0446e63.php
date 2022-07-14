@@ -113,6 +113,12 @@
 				<ol class="dd-list">
 					<li class="dd-item" data-id="1">
 						<div class="dd-handle">Item 1</div>
+						<div class="accordion" role="tablist">
+							<a href="#ls-menu" data-toggle="collapse" data-parent="#ls-menu" class="" aria-expanded="true"> > <span class="caret pull-right"></span></a>
+							<div class="panel-collapse collapse in" id="ls-menu">
+								fvghjk
+							</div>
+						</div>
 					</li>
 					<li class="dd-item" data-id="2">
 						<div class="dd-handle">Item 2</div>
@@ -189,7 +195,7 @@
 <?php $__env->startPush('scripts'); ?>
 <script>
 	var temp = $('.dd').nestable('serialize');
-	$('.dd-list').append('<li class="dd-item"><div class="dd-handle">Item 22</div></li>')
+	$('.dd > .dd-list').append('<li class="dd-item"><div class="dd-handle">Item 22</div></li>')
 </script>
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/menu/edit.blade.php ENDPATH**/ ?>
