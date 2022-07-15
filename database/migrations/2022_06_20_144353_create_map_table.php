@@ -16,7 +16,7 @@ return new class extends Migration
     	Schema::create('map', function (Blueprint $table) {
     		$table->increments('id');
     		$table->text('name');
-    		$table->text('detail');
+    		$table->text('detail')->nullable();
     		$table->integer('status');
     		$table->integer('sort');
     		$table->integer('lang');

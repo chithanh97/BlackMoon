@@ -15,9 +15,9 @@ return new class extends Migration
     {
     	Schema::create('menuitems', function (Blueprint $table) {
     		$table->increments('id');
-    		$table->text('title');
-    		$table->text('name');
-    		$table->text('slug');
+    		$table->text('title')->nullable();
+    		$table->text('name')->nullable();
+    		$table->text('slug')->nullable();
     		$table->text('type');
     		$table->text('target');
     		$table->integer('menu_id');

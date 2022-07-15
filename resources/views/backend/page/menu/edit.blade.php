@@ -33,17 +33,17 @@
 								<div class="item-list-body">
 									@foreach($itemcategory as $cat)
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" name="select-category[]" value="{{$cat->id}}">
-										<label>{{$cat->name}}</label>
+										<input type="checkbox" class="form-check-input" id="itemcate{{$cat->id}}" name="select-category[]" value="{{$cat->id}}">
+										<label for="itemcate{{$cat->id}}">{{$cat->name}}</label>
 									</div>
 									@endforeach
 								</div>
 								<div class="item-list-footer">
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="select-all-itemcategory">
-										<label class="btn btn-sm btn-default">Chọn tất cả</label>
+										<input type="checkbox" class="form-check-input select-all" id="select-all-itemcategory">
+										<label for="select-all-itemcategory" class="btn btn-sm btn-default">Chọn tất cả</label>
 									</div>
-									<button type="button" class="pull-right btn btn-default btn-sm" id="add-itemcategory">Thêm vào Menu</button>
+									<button type="button" class="pull-right btn btn-default btn-sm add-menu" id="add-itemcategory">Thêm vào Menu</button>
 								</div>
 							</div>
 						</div>
@@ -62,24 +62,24 @@
 								<div class="item-list-body">
 									@foreach($newscategory as $cat)
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" name="select-category[]" value="{{$cat->id}}">
-										<label>{{$cat->name}}</label>
+										<input type="checkbox" class="form-check-input" id="newscate{{$cat->id}}" name="select-category[]" value="{{$cat->id}}">
+										<label for="newscate{{$cat->id}}">{{$cat->name}}</label>
 									</div>
 									@endforeach
 								</div>
 								<div class="item-list-footer">
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="select-all-newscategory">
-										<label class="btn btn-sm btn-default">Chọn tất cả</label>
+										<input type="checkbox" class="form-check-input select-all" id="select-all-newscategory">
+										<label for='select-all-newscategory' class="btn btn-sm btn-default">Chọn tất cả</label>
 									</div>
-									<button type="button" class="pull-right btn btn-default btn-sm" id="add-newscategory">Thêm vào Menu</button>
+									<button type="button" class="pull-right btn btn-default btn-sm add-link" id="add-newscategory">Thêm vào Menu</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				@endif
 				<br/>
+				@endif
 				<div class="panel-group" id="menu-links">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -100,7 +100,7 @@
 								<div class="item-list-footer">
 									<div class="form-check">
 									</div>
-									<button type="button" class="pull-right btn btn-default btn-sm" id="add-newscategory">Thêm vào Menu</button>
+									<button type="button" class="pull-right btn btn-default btn-sm add-menu" id="add-newscategory">Thêm vào Menu</button>
 								</div>
 							</div>
 						</div>
@@ -111,31 +111,14 @@
 		<div class="col-md-8">
 			<div class="dd">
 				<ol class="dd-list">
-					<li class="dd-item" data-id="1">
-						<div class="dd-handle">Item 1</div>
-						<div class="accordion" role="tablist">
-							<a href="#ls-menu" data-toggle="collapse" data-parent="#ls-menu" class="" aria-expanded="true"> > <span class="caret pull-right"></span></a>
-							<div class="panel-collapse collapse in" id="ls-menu">
-								fvghjk
-							</div>
-						</div>
-					</li>
-					<li class="dd-item" data-id="2">
-						<div class="dd-handle">Item 2</div>
-					</li>
-					<li class="dd-item" data-id="3">
-						<div class="dd-handle">Item 3</div>
-						<ol class="dd-list">
-							<li class="dd-item" data-id="4">
-								<div class="dd-handle">Item 4</div>
-							</li>
-							<li class="dd-item" data-id="5">
-								<div class="dd-handle">Item 5</div>
-							</li>
-						</ol>
-					</li>
 				</ol>
 			</div>
+			<form action="" id="menu-form">
+				<div class="form-group">
+					<input type="hidden" name='value-menu' id='value-menu'>
+					<button class="btn btn-primary">Lưu Menu</button>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -162,7 +145,7 @@
 	}
 	#accordion-menu input{
 		background-color: #191c24;
-		border: 1px solid #fff;
+		border: 1px solid #fff!important;
 		margin-left: -1.25rem;
 
 	}
@@ -190,11 +173,102 @@
 	#accordion-menu #custom-links .item-list-body{
 		padding: 15px 1rem 0 1rem;
 	}
+	.dd-item{
+		position: relative;
+	}
+	.dd-item i{
+		color: #000;
+		padding: 7px;
+		margin: 7px 0;
+		cursor: pointer;
+		background: #fff;
+	}
+	.dd-item{
+		position: relative;
+	}
+	.dd-item i{
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.label-menu{
+		font-style: italic;
+		font-weight: inherit;
+		font-size: 10px;
+	}
+	form#menu-form{
+		background: #191c24;
+		padding: 5px;
+		text-align: center;
+	}
 </style>
 @endpush
 @push('scripts')
 <script>
-	var temp = $('.dd').nestable('serialize');
-	$('.dd > .dd-list').append('<li class="dd-item"><div class="dd-handle">Item 22</div></li>')
+	var temp = $('.dd').nestable();
+	console.log(typeof $('.dd').nestable('serialize'));
+	function removeItem(el) {
+		let id = $(el).data('id');
+
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			url: "{{route('menu.delete.items')}}",
+			type: 'POST',
+			data: {
+				'id': id,
+			},
+		}).done((res) => {
+			let reponse = JSON.parse(res);
+			if(reponse['code'] == 1) {
+				$(el).parent().remove();
+			}
+		});
+
+	}
+
+	$('.select-all').change(function(){
+		if($(this).is(':checked')){
+			eachCheck($(this), true);
+		} else {
+			eachCheck($(this), false);
+		}
+	});
+
+	function eachCheck(item, check){
+		$(item).parents('.panel-body').find('.item-list-body input').each((index, el)=>{
+			$(el).prop('checked', check);
+		})
+	}
+
+	$('#add-itemcategory').click(() => {
+		$('#itemcategory-list .item-list-body input').each(function(){
+			if($(this).is(':checked')){
+				$.ajax({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					url: "{{route('menu.add.item')}}",
+					type: 'POST',
+					data: {
+						'target': $(this).val(),
+						'menu_id': '{{ $item->id }}',
+					},
+				}).done((res) => {
+					let reponse = JSON.parse(res);
+					if(reponse['code'] == 1) {
+						$('.dd > .dd-list').append('<li class="dd-item" data-id="'+reponse['id']+'"><div class="dd-handle">'+reponse['name']+' <span class="label-menu">Danh mục sản phẩm</span></div><i class="fa fa-times" onclick="removeItem(this)"></i></li>');
+					}
+					$('#value-menu').val(JSON.stringify($('.dd').nestable('serialize')));
+					$(this).prop('checked', false);
+				});
+			}
+		});
+	});
+
+	$('.dd').on('change', function() {
+		$('#value-menu').val(JSON.stringify($('.dd').nestable('serialize')));
+	});
 </script>
 @endpush

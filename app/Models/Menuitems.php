@@ -4,9 +4,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Menuitem extends Model
+class Menuitems extends Model
 {
 	protected $table = 'menuitems';
 
-	protected $fillable = ['title','name','slug','type','target','menu_id','created_at','updated_at'];
+	protected $fillable = [
+		'id',
+		'title',
+		'name',
+		'slug',
+		'type',
+		'target',
+		'menu_id',
+		'created_at',
+		'updated_at'
+	];
 }

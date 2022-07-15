@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Menu;
-use App\Models\Menuitem;
+use App\Models\Menuitems;
 use App\Models\Itemcategory;
 use App\Models\Newscategory;
 use App\Models\News;
@@ -50,6 +50,7 @@ class MenuController extends Controller
 			'location' => $location,
 			'lang' => 1
 		]);
+
 		if($reponse){
 			return redirect()->route('menu')->with('alert', '- Thêm thành công!');
 		}
@@ -61,92 +62,25 @@ class MenuController extends Controller
 		return redirect()->route('menu')->with('alert', '- Xóa thành công!');
 	}
 
-	public function addCatToMenu(Request $request){
-		$data = $request->all();
-		$menuid = $request->menuid;
-		$ids = $request->ids;
-		$menu = Menu::findOrFail($menuid);
-		if($menu->content == ''){
-			foreach($ids as $id){
-				$data['title'] = Itemcategory::where('id',$id)->value('title');
-				$data['slug'] = Itemcategory::where('id',$id)->value('slug');
-				$data['type'] = 'category';
-				$data['menu_id'] = $menuid;
-				Menuitem::create($data);
-			}
-		}else{
-			foreach($ids as $id){
-				$olddata = json_decode($menu->content,true);
-				$data['title'] = Itemcategory::where('id',$id)->value('title');
-				$data['slug'] = Itemcategory::where('id',$id)->value('slug');
-				$data['type'] = 'category';
-				$data['menu_id'] = $menuid;
-				$lastdata = Menuitem::create($data);
-				$newdata = [];
-				$newdata['id'] = $lastdata->id;
-				$newdata['children'] = [[]];
-				array_push($olddata[0],$newdata);
-				$olddata = json_encode($olddata);
-				$menu->update(['content'=>$olddata]);
-			}
+	function addMenuItems(Request $request){
+
+		$target = $request->target;
+		$menu_id = $request->menu_id;
+
+		if($target == '' || $menu_id == ''){
+			echo json_encode(['code' => 2, 'message' => "Lỗi thông tin"]);
+		} else {
+			$reponse = Menuitems::create([
+				'type' => 1,
+				'target' => $target,
+				'menu_id' => $menu_id,
+			]);
+			$cate = Itemcategory::findOrFail($target);
+			echo json_encode(['code' => 1, 'message' => "Thêm thành công", 'id' => $reponse->id, 'name' => $cate->name]);
 		}
 	}
 
-	public function addPostToMenu(Request $request){
-		$data = $request->all();
-		$menuid = $request->menuid;
-		$ids = $request->ids;
-		$menu = Menu::findOrFail($menuid);
-		if($menu->content == ''){
-			foreach($ids as $id){
-				$data['title'] = News::where('id',$id)->value('title');
-				$data['slug'] = News::where('id',$id)->value('slug');
-				$data['type'] = 'post';
-				$data['menu_id'] = $menuid;
-				Menuitem::create($data);
-			}
-		}else{
-			foreach($ids as $id){
-				$olddata = json_decode($menu->content,true);
-				$data['title'] = News::where('id',$id)->value('title');
-				$data['slug'] = News::where('id',$id)->value('slug');
-				$data['type'] = 'post';
-				$data['menu_id'] = $menuid;
-				$lastdata = Menuitem::create($data);
-				$newdata = [];
-				$newdata['id'] = $lastdata->id;
-				$newdata['children'] = [[]];
-				array_push($olddata[0],$newdata);
-				$olddata = json_encode($olddata);
-				$menu->update(['content'=>$olddata]);
-			}
-		}
-	}
+	function deleteMenuItem(Request $request){
 
-	public function addCustomLink(Request $request){
-		$data = $request->all();
-		$menuid = $request->menuid;
-		$menu = Menu::findOrFail($menuid);
-		if($menu->content == ''){
-			$data['title'] = $request->link;
-			$data['slug'] = $request->url;
-			$data['type'] = 'custom';
-			$data['menu_id'] = $menuid;
-			Menuitem::create($data);
-		}else{
-			$olddata = json_decode($menu->content,true);
-			$data['title'] = $request->link;
-			$data['slug'] = $request->url;
-			$data['type'] = 'custom';
-			$data['menu_id'] = $menuid;
-			Menuitem::create($data);
-			$lastdata = Menuitem::orderby('id','DESC')->first();
-			$array = [];
-			$array['id'] = $lastdata->id;
-			$array['children'] = [[]];
-			array_push($olddata[0],$array);
-			$olddata = json_encode($olddata);
-			$menu->update(['content'=>$olddata]);
-		}
 	}
 }
