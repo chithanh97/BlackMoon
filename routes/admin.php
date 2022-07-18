@@ -115,6 +115,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/menu/delete/{id}', [MenuController::class, 'delete'])->name('menu.delete');
 	Route::post('/menu/addmenuitem', [MenuController::class, 'addMenuItems'])->name('menu.add.item');
 	Route::post('/menu/addmenunews', [MenuController::class, 'addMenuNews'])->name('menu.add.news');
+	Route::post('/menu/addmenulink', [MenuController::class, 'addMenuLink'])->name('menu.add.link');
 	Route::post('/menu/deleteitems', [MenuController::class, 'deleteMenuItem'])->name('menu.delete.items');
 
 });

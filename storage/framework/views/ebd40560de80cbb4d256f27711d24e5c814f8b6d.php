@@ -1,6 +1,6 @@
-@extends('backend.index')
-@section('title', 'Menu')
-@section('content')
+
+<?php $__env->startSection('title', 'Menu'); ?>
+<?php $__env->startSection('content'); ?>
 <div class="main_content_iner ">
 	<div class="container-fluid p-0">
 		<!-- page title  -->
@@ -18,23 +18,23 @@
 			</div>
 		</div>
 	</div>
-	@if ($errors->any())
+	<?php if($errors->any()): ?>
 	<br/>
 	<div class="error-section">
 		<div class="alert alert-danger">
 			<ul>
-				@foreach ($errors->all() as $error)
-				<li>{{ $error }}</li>
-				@endforeach
+				<?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+				<li><?php echo e($error); ?></li>
+				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 			</ul>
 		</div>
 	</div>
-	@endif
+	<?php endif; ?>
 	<br/>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="accordion" id="accordion-menu" role="tablist">
-				@if($itemcategory->count() > 0)
+				<?php if($itemcategory->count() > 0): ?>
 				<div class="panel-group" id="menu-items">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -43,12 +43,12 @@
 						<div class="panel-collapse collapse in" id="itemcategory-list">
 							<div class="panel-body">
 								<div class="item-list-body">
-									@foreach($itemcategory as $cat)
+									<?php $__currentLoopData = $itemcategory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="itemcate{{$cat->id}}" name="select-category[]" value="{{$cat->id}}">
-										<label for="itemcate{{$cat->id}}">{{$cat->name}}</label>
+										<input type="checkbox" class="form-check-input" id="itemcate<?php echo e($cat->id); ?>" name="select-category[]" value="<?php echo e($cat->id); ?>">
+										<label for="itemcate<?php echo e($cat->id); ?>"><?php echo e($cat->name); ?></label>
 									</div>
-									@endforeach
+									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</div>
 								<div class="item-list-footer">
 									<div class="form-check">
@@ -62,8 +62,8 @@
 					</div>
 				</div>
 				<br/>
-				@endif
-				@if($newscategory->count() > 0)
+				<?php endif; ?>
+				<?php if($newscategory->count() > 0): ?>
 				<div class="panel-group" id="menu-news">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -72,12 +72,12 @@
 						<div class="panel-collapse collapse in" id="newscategory-list">
 							<div class="panel-body">
 								<div class="item-list-body">
-									@foreach($newscategory as $cat)
+									<?php $__currentLoopData = $newscategory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="newscate{{$cat->id}}" name="select-category[]" value="{{$cat->id}}">
-										<label for="newscate{{$cat->id}}">{{$cat->name}}</label>
+										<input type="checkbox" class="form-check-input" id="newscate<?php echo e($cat->id); ?>" name="select-category[]" value="<?php echo e($cat->id); ?>">
+										<label for="newscate<?php echo e($cat->id); ?>"><?php echo e($cat->name); ?></label>
 									</div>
-									@endforeach
+									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</div>
 								<div class="item-list-footer">
 									<div class="form-check">
@@ -91,7 +91,7 @@
 					</div>
 				</div>
 				<br/>
-				@endif
+				<?php endif; ?>
 				<div class="panel-group" id="menu-links">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -121,23 +121,23 @@
 			</div>
 		</div>
 		<div class="col-md-8">
-			<form action="{{ route('menu.update', $item->id) }}" id="" method="post">
-				@csrf
+			<form action="<?php echo e(route('menu.update', $item->id)); ?>" id="" method="post">
+				<?php echo csrf_field(); ?>
 				<div class='form-header row'>
 					<div class="form-group col-md-6">
 						<label for="menu-name" class="col-form-label">Tên Menu:</label>
-						<input type="text" name='name' class="form-control" id="menu-name" value="{{ old('name') == '' ? $item->name : old('name') }}">
+						<input type="text" name='name' class="form-control" id="menu-name" value="<?php echo e(old('name') == '' ? $item->name : old('name')); ?>">
 					</div>
 					<div class="form-group col-md-6">
 						<label for="menu-location" class="col-form-label">Vị trí Menu:</label>
 						<select name="location" id="menu-location" class="form-control">
-							@foreach(getPositionMenu() as $key => $items)
-							<option {{ $key == $item->location ? 'selected' : '' }} value="{{ $key }}">{{ $items }}</option>
-							@endforeach
+							<?php $__currentLoopData = getPositionMenu(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $items): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+							<option <?php echo e($key == $item->location ? 'selected' : ''); ?> value="<?php echo e($key); ?>"><?php echo e($items); ?></option>
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 						</select>
 					</div>
 					<div class="form-group">
-						<input type="hidden" name='content' id='value-menu' value="{{ old('content') == '' ? $item->content : old('content') }}">
+						<input type="hidden" name='content' id='value-menu' value="<?php echo e(old('content') == '' ? $item->content : old('content')); ?>">
 					</div>
 				</div>
 				<br/>
@@ -152,8 +152,8 @@
 		</div>
 	</div>
 </div>
-@endsection
-@push('scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('scripts'); ?>
 <script>
 	var temp = $('.dd').nestable();
 
@@ -163,7 +163,7 @@
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			},
-			url: "{{route('menu.delete.items')}}",
+			url: "<?php echo e(route('menu.delete.items')); ?>",
 			type: 'POST',
 			data: {
 				'id': id,
@@ -200,11 +200,11 @@
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 					},
-					url: "{{route('menu.add.item')}}",
+					url: "<?php echo e(route('menu.add.item')); ?>",
 					type: 'POST',
 					data: {
 						'target': $(this).val(),
-						'menu_id': '{{ $item->id }}',
+						'menu_id': '<?php echo e($item->id); ?>',
 					},
 				}).done((res) => {
 					let reponse = JSON.parse(res);
@@ -225,11 +225,11 @@
 					headers: {
 						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 					},
-					url: "{{route('menu.add.news')}}",
+					url: "<?php echo e(route('menu.add.news')); ?>",
 					type: 'POST',
 					data: {
 						'target': $(this).val(),
-						'menu_id': '{{ $item->id }}',
+						'menu_id': '<?php echo e($item->id); ?>',
 					},
 				}).done((res) => {
 					let reponse = JSON.parse(res);
@@ -248,12 +248,12 @@
 			headers: {
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			},
-			url: "{{route('menu.add.link')}}",
+			url: "<?php echo e(route('menu.add.link')); ?>",
 			type: 'POST',
 			data: {
 				'link': $('#url').val(),
 				'linktext': $('#linktext').val(),
-				'menu_id': '{{ $item->id }}',
+				'menu_id': '<?php echo e($item->id); ?>',
 			},
 		}).done((res) => {
 			let reponse = JSON.parse(res);
@@ -275,8 +275,8 @@
 		$('#value-menu').val(JSON.stringify($('.dd').nestable('serialize')));
 	}
 </script>
-@endpush
-@push('styles')
+<?php $__env->stopPush(); ?>
+<?php $__env->startPush('styles'); ?>
 <style>
 	#accordion-menu .panel-group {
 		background: #191c24;
@@ -372,4 +372,5 @@
 		margin-bottom: 0;
 	}
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\BlackMoon\Documents\GitHub\BlackMoon\resources\views/backend/page/menu/edit.blade.php ENDPATH**/ ?>

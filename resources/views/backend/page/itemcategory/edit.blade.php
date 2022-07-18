@@ -198,6 +198,9 @@
 @endsection
 @push('script')
 <script>
+	$('select#parent').select2({
+		placeholder: '-- Chọn --'
+	});
 	checkKeyword();
 </script>
 @endpush

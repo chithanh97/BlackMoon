@@ -93,7 +93,7 @@
 									<label class="control-label">
 										Danh mục
 									</label>
-									<select name="parent" id="" class="form-control">
+									<select name="parent" id="parent" class="form-control" multiple>
 										<option value='0'>-- Chọn --</option>
 										<?php echo getMenuParent($parent, 0) ?>
 									</select>
@@ -196,8 +196,11 @@
 	</div>
 </div>
 @endsection
-@push('script')
+@push('scripts')
 <script>
+	$('select#parent').select2({
+		placeholder: '-- Chọn --'
+	});
 	checkKeyword();
 </script>
 @endpush

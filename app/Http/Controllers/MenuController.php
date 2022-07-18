@@ -62,6 +62,35 @@ class MenuController extends Controller
 		return redirect()->route('menu')->with('alert', '- Xóa thành công!');
 	}
 
+	public function update($id, Request $request){
+
+		$messages = [
+			'name.required' => '- Tên không được để trống!',
+		];
+
+		$validator = $request->validate([
+			'name'   => 'required',
+		], $messages);
+
+		$name = $request->name;
+		$location = $request->location;
+		$content = $request->content;
+
+		$cate = Menu::findOrFail($id);
+
+		$reponse = $cate->update([
+			'name' => $name,
+			'location' => $location,
+			'content' => $content,
+		]);
+
+		if($reponse){
+			return redirect()->route('menu')->with('alert', '- Sửa thành công!');
+		} else {
+			return redirect()->back()->withInput();
+		}
+	}
+
 	function addMenuItems(Request $request){
 
 		$target = $request->target;
@@ -80,7 +109,51 @@ class MenuController extends Controller
 		}
 	}
 
-	function deleteMenuItem(Request $request){
+	function addMenuNews(Request $request){
 
+		$target = $request->target;
+		$menu_id = $request->menu_id;
+
+		if($target == '' || $menu_id == ''){
+			echo json_encode(['code' => 2, 'message' => "Lỗi thông tin"]);
+		} else {
+			$reponse = Menuitems::create([
+				'type' => 2,
+				'target' => $target,
+				'menu_id' => $menu_id,
+			]);
+			$cate = Newscategory::findOrFail($target);
+			echo json_encode(['code' => 1, 'message' => "Thêm thành công", 'id' => $reponse->id, 'name' => $cate->name]);
+		}
+	}
+
+	function addMenuLink(Request $request){
+
+		$menu_id = $request->menu_id;
+		$link = $request->link;
+		$linktext = $request->linktext;
+
+		if($menu_id == '' || $linktext == '' || $link == ''){
+			echo json_encode(['code' => 2, 'message' => "Lỗi thông tin"]);
+		} else {
+			$reponse = Menuitems::create([
+				'type' => 3,
+				'name' => $linktext,
+				'menu_id' => $menu_id,
+				'target' => 3,
+				'slug' => $link
+			]);
+			echo json_encode(['code' => 1, 'message' => "Thêm thành công", 'id' => $reponse->id, 'name' => $linktext, 'slug' => $link]);
+		}
+	}
+
+	function deleteMenuItem(Request $request){
+		$id = $request->id;
+		$res = Menuitems::find($id)->delete();
+		if(!$res){
+			echo json_encode(['code' => 2, 'message' => "Lỗi thông tin"]);
+		} else {
+			echo json_encode(['code' => 1, 'message' => "Xóa thành công"]);
+		}
 	}
 }
