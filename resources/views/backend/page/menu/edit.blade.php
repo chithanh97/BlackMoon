@@ -143,6 +143,7 @@
 				<br/>
 				<div class="dd">
 					<ol class="dd-list">
+						<?php echo getMenuItems(json_decode($item->content), $itemcategory, $newscategory, $listitem) ?>
 					</ol>
 				</div>
 				<div class="form-group save-btn">
@@ -213,6 +214,7 @@
 					}
 					checkValueMenu();
 					$(this).prop('checked', false);
+					$('.select-all').prop('checked', false);
 				});
 			}
 		});
@@ -238,6 +240,7 @@
 					}
 					checkValueMenu();
 					$(this).prop('checked', false);
+					$('.select-all').prop('checked', false);
 				});
 			}
 		});
@@ -284,7 +287,8 @@
 		overflow: hidden;
 	}
 	#accordion-menu .item-list-footer{
-		margin-top: -15px;
+		/*margin-top: -15px;*/
+		border-top: 1px solid #fff;
 	}
 	#accordion-menu .panel-heading a{
 		display: block;
@@ -310,9 +314,6 @@
 	#accordion-menu .item-list-body .form-check label{
 		margin-left: 7px;
 		margin-bottom: 15px;
-	}
-	#accordion-menu .item-list-body .form-check:last-child{
-		border-bottom: 1px solid #fff;
 	}
 	#accordion-menu .item-list-footer{
 		padding: 0 1rem;
@@ -370,6 +371,21 @@
 	}
 	.alert.alert-danger{
 		margin-bottom: 0;
+	}
+	.item-list-body{
+		max-height: 300px;
+		overflow-y: scroll;
+	}
+	.item-list-body .form-check:last-child{
+		padding-bottom: 0!important;
+		margin-bottom: 0!important;
+	}
+	#menu-links .item-list-body{
+		height: auto;
+		overflow: inherit;
+	}
+	#menu-links .item-list-footer{
+		border: 0!important;
 	}
 </style>
 @endpush

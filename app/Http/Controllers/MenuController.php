@@ -28,8 +28,8 @@ class MenuController extends Controller
 		$item = Menu::findOrFail($id);
 		$itemcategory = Itemcategory::where('status', 1)->get();
 		$newscategory = Newscategory::where('status', 1)->get();
-		$data = [];
-		return view('backend.page.menu.edit', compact('item', 'itemcategory', 'newscategory', 'data'));
+		$listitem = Menuitems::where('menu_id', $id)->get();
+		return view('backend.page.menu.edit', compact('item', 'itemcategory', 'newscategory', 'listitem'));
 	}
 
 	public function create(Request $request){

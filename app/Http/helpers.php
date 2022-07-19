@@ -50,10 +50,10 @@ function getMenuParent($array, $parent = -1, $not = -1, $select = -1, $str = '|-
 	foreach ($array as $key => $value) {
 		if($parent == $value->parent && $value->id != $not){
 			// $selected ='';
-				$selected = array_search($value->id, $selectx) > -1 ? 'selected' : '';
-				$temp = '<option '.$selected.' value="'.$value->id.'">'.$str.' '.$value->name.'</option>';
-				$reponse .= $temp;
-				$reponse .= getMenuParent($array, $value->id, $not, $select, '|--'.$str);
+			$selected = array_search($value->id, $selectx) > -1 ? 'selected' : '';
+			$temp = '<option '.$selected.' value="'.$value->id.'">'.$str.' '.$value->name.'</option>';
+			$reponse .= $temp;
+			$reponse .= getMenuParent($array, $value->id, $not, $select, '|--'.$str);
 		}
 	}
 	return $reponse;
@@ -92,6 +92,52 @@ function getVideo($string){
 	$LK2 = explode("&", $ls1);
 	$ls2 = $link_goc . $LK2[0];
 	return $ls2;
+}
+
+function findObjectById($id, $array){
+
+	foreach ( $array as $element ) {
+		if ( $id == $element->id ) {
+			return $element;
+		}
+	}
+
+	return false;
+}
+
+function getMenuItems($data, $itemcate, $newscate, $listitem){
+	$res = '';
+	foreach ($data as $key => $value) {
+		$dataItem = findObjectById($value->id, $listitem);
+		if($dataItem->type == 1){
+			$temp = findObjectById($dataItem->target, $itemcate);
+			$res.= '<li class="dd-item" data-id="'.$value->id.'"><div class="dd-handle">'.$temp->name.' <span class="label-menu">Danh mục sản phẩm</span></div><i class="fa fa-times" onclick="removeItem(this)"></i>';
+			if(isset($value->children)){
+				$res .= '<ol class="dd-list">';
+				$res .= getMenuItems($value->children, $itemcate, $newscate, $listitem);
+				$res .= '</ol>';
+			}
+			$res.= '</li>';
+		} else if ($dataItem->type == 2){
+			$temp = findObjectById($dataItem->target, $newscate);
+			$res.= '<li class="dd-item" data-id="'.$value->id.'"><div class="dd-handle">'.$temp->name.' <span class="label-menu">Danh mục bài viết</span></div><i class="fa fa-times" onclick="removeItem(this)"></i>';
+			if(isset($value->children)){
+				$res .= '<ol class="dd-list">';
+				$res .= getMenuItems($value->children, $itemcate, $newscate, $listitem);
+				$res .= '</ol>';
+			}
+			$res.= '</li>';
+		} else if($dataItem->type == 3) {
+			$res.= '<li class="dd-item" data-id="'.$value->id.'"><div class="dd-handle">'.$dataItem->name.' <span class="label-menu">'.$dataItem->slug.'</span></div><i class="fa fa-times" onclick="removeItem(this)"></i>';
+			if(isset($value->children)){
+				$res .= '<ol class="dd-list">';
+				$res .= getMenuItems($value->children, $itemcate, $newscate, $listitem);
+				$res .= '</ol>';
+			}
+			$res.= '</li>';
+		}
+	}
+	return $res;
 }
 
 ?>
