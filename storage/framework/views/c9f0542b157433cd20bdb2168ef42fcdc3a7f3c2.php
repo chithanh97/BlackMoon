@@ -191,7 +191,7 @@
 											</button>
 										</td>
 										<td>
-											<div class="<?php echo e($value->status == 1 ? 'active' : ''); ?> status changestatus" data-table='menu' data-field='status' data-id='<?php echo e($value->id); ?>'></div>
+											<div class="<?php echo e($value->status == 1 ? 'active' : ''); ?> status changestatus" data-table='menus' data-field='status' data-id='<?php echo e($value->id); ?>'></div>
 										</td>
 										<td class="column-action">
 											<a href="<?php echo e(route('menu.edit', $value->id)); ?>" class="btn-edit">

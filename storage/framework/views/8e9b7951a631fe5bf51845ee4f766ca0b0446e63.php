@@ -45,7 +45,7 @@
 								<div class="item-list-body">
 									<?php $__currentLoopData = $itemcategory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="itemcate<?php echo e($cat->id); ?>" name="select-category[]" value="<?php echo e($cat->id); ?>">
+										<input type="checkbox" class="form-check-input" id="itemcate<?php echo e($cat->id); ?>" value="<?php echo e($cat->id); ?>">
 										<label for="itemcate<?php echo e($cat->id); ?>"><?php echo e($cat->name); ?></label>
 									</div>
 									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -74,7 +74,7 @@
 								<div class="item-list-body">
 									<?php $__currentLoopData = $newscategory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="newscate<?php echo e($cat->id); ?>" name="select-category[]" value="<?php echo e($cat->id); ?>">
+										<input type="checkbox" class="form-check-input" id="newscate<?php echo e($cat->id); ?>" value="<?php echo e($cat->id); ?>">
 										<label for="newscate<?php echo e($cat->id); ?>"><?php echo e($cat->name); ?></label>
 									</div>
 									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -85,6 +85,35 @@
 										<label for='select-all-newscategory' class="btn btn-sm btn-default">Chọn tất cả</label>
 									</div>
 									<button type="button" class="pull-right btn btn-default btn-sm add-link" id="add-newscategory">Thêm vào Menu</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="panel-group" id="menu-default">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a href="#default-list" data-toggle="collapse" data-parent="#menu-default">Website mặc định <span class="caret pull-right"></span></a>
+						</div>
+						<div class="panel-collapse collapse in" id="default-list">
+							<div class="panel-body">
+								<div class="item-list-body">
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="product" value="Sản phẩm" data-url="/san-pham/">
+										<label for="product">Sản phẩm</label>
+									</div>
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="contact" value="Liên hệ" data-url="/lien-he/">
+										<label for="contact">Liên hệ</label>
+									</div>
+								</div>
+								<div class="item-list-footer">
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input select-all" id="select-all-default">
+										<label for='select-all-default' class="btn btn-sm btn-default">Chọn tất cả</label>
+									</div>
+									<button type="button" class="pull-right btn btn-default btn-sm add-link" id="add-default">Thêm vào Menu</button>
 								</div>
 							</div>
 						</div>
@@ -143,7 +172,9 @@
 				<br/>
 				<div class="dd">
 					<ol class="dd-list">
-						<?php echo getMenuItems(json_decode($item->content), $itemcategory, $newscategory, $listitem) ?>
+						<?php
+						if($item->content != null) echo getMenuItems(json_decode($item->content), $itemcategory, $newscategory, $listitem);
+						 ?>
 					</ol>
 				</div>
 				<div class="form-group save-btn">
@@ -270,6 +301,33 @@
 		});
 	});
 
+	$('#add-default').click(() => {
+		$('#default-list .item-list-body input').each(function(){
+			if($(this).is(':checked')){
+				$.ajax({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					url: "<?php echo e(route('menu.add.link')); ?>",
+					type: 'POST',
+					data: {
+						'link': $(this).data('url'),
+						'linktext': $(this).val(),
+						'menu_id': '<?php echo e($item->id); ?>',
+					},
+				}).done((res) => {
+					let reponse = JSON.parse(res);
+					if(reponse['code'] == 1) {
+						$('.dd > .dd-list').append('<li class="dd-item" data-id="'+reponse['id']+'"><div class="dd-handle">'+reponse['name']+' <span class="label-menu">'+reponse['slug']+'</span></div><i class="fa fa-times" onclick="removeItem(this)"></i></li>');
+					}
+					checkValueMenu();
+					$(this).prop('checked', false);
+					$('.select-all').prop('checked', false);
+				});
+			}
+		});
+	});
+
 	$('.dd').on('change', function() {
 		checkValueMenu();
 	});
@@ -386,6 +444,9 @@
 	}
 	#menu-links .item-list-footer{
 		border: 0!important;
+	}
+	.form-check label{
+		cursor: pointer;
 	}
 </style>
 <?php $__env->stopPush(); ?>

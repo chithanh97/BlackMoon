@@ -58,6 +58,7 @@ function getMenuParent($array, $parent = -1, $not = -1, $select = -1, $str = '|-
 	}
 	return $reponse;
 }
+
 function getParentCate($arr, $parent){
 	$res = 'Việt Nam';
 	if($parent == 0) return $res;
@@ -69,6 +70,7 @@ function getParentCate($arr, $parent){
 	}
 	return $res;
 }
+
 function getTypeBanner(){
 	$res = [
 		1 => "Banner trang chủ",
@@ -133,6 +135,41 @@ function getMenuItems($data, $itemcate, $newscate, $listitem){
 				$res .= '<ol class="dd-list">';
 				$res .= getMenuItems($value->children, $itemcate, $newscate, $listitem);
 				$res .= '</ol>';
+			}
+			$res.= '</li>';
+		}
+	}
+	return $res;
+}
+
+function getMenuFront($data, $itemcate, $newscate, $listitem){
+	$res = '';
+	foreach ($data as $key => $value) {
+		$dataItem = findObjectById($value->id, $listitem);
+		if($dataItem->type == 1){
+			$temp = findObjectById($dataItem->target, $itemcate);
+			$res.= '<li><a href="/itemcategory/'.$temp->subject.'">'.$temp->name.'</a>';
+			if(isset($value->children)){
+				$res .= '<ul>';
+				$res .= getMenuFront($value->children, $itemcate, $newscate, $listitem);
+				$res .= '</ul>';
+			}
+			$res.= '</li>';
+		} else if ($dataItem->type == 2){
+			$temp = findObjectById($dataItem->target, $newscate);
+			$res.= '<li><a href="/newscategory/'.$temp->subject.'">'.$temp->name.'</a>';
+			if(isset($value->children)){
+				$res .= '<ul>';
+				$res .= getMenuFront($value->children, $itemcate, $newscate, $listitem);
+				$res .= '</ul>';
+			}
+			$res.= '</li>';
+		} else if($dataItem->type == 3) {
+			$res.= '<li><a href="'.$dataItem->slug.'">'.$dataItem->name.'</a>';
+			if(isset($value->children)){
+				$res .= '<ul>';
+				$res .= getMenuFront($value->children, $itemcate, $newscate, $listitem);
+				$res .= '</ul>';
 			}
 			$res.= '</li>';
 		}

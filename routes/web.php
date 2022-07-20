@@ -14,9 +14,8 @@ use App\Http\Controllers\auth\user\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-	return view('welcome');
-})->name('home');
+Route::get('/', [HomeController::class, 'home'])->name('home');
+
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/xoa', function() {

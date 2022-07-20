@@ -190,7 +190,7 @@
 											</button>
 										</td>
 										<td>
-											<div class="{{ $value->status == 1 ? 'active' : ''}} status changestatus" data-table='menu' data-field='status' data-id='{{ $value->id }}'></div>
+											<div class="{{ $value->status == 1 ? 'active' : ''}} status changestatus" data-table='menus' data-field='status' data-id='{{ $value->id }}'></div>
 										</td>
 										<td class="column-action">
 											<a href="{{ route('menu.edit', $value->id) }}" class="btn-edit">

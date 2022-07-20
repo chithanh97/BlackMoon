@@ -14,6 +14,9 @@
 	.form-group input, .form-group textarea {
 		color: #fff!important;
 	}
+	.breadcrumb{
+		border: none;
+	}
 </style>
 @endpush
 @section('content')
@@ -33,6 +36,7 @@
 		</div>
 	</div>
 </div>
+@if(session('alert') != '')
 <div class="error-section">
 	<div class="alert alert-danger">
 		<ul>
@@ -40,6 +44,7 @@
 		</ul>
 	</div>
 </div>
+@endif
 <div class="content" style="min-height: 530px;">
 	<div class="bs-example bs-example-bg-classes">
 	</div>
@@ -160,7 +165,7 @@
 											</div>
 											<div class="pull-left">
 												<div style="margin: 0 10px 10px;">
-													<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID1&type=1&fldr=category">
+													<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID1&type=1&fldr=logo">
 														<i class="fa fa-pencil"></i>
 													</a>
 												</div>
@@ -185,7 +190,7 @@
 											</div>
 											<div class="pull-left">
 												<div style="margin: 0 10px 10px;">
-													<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID2&type=1&fldr=category">
+													<a class="btn btn-info iframe-btn" href="/storage/filemanager/dialog.php?field_id=fieldID2&type=1&fldr=logo">
 														<i class="fa fa-pencil"></i>
 													</a>
 												</div>

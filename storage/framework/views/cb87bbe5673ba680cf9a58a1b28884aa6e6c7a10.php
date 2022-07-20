@@ -1,0 +1,1 @@
+<?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/frontend/layout/footer.blade.php ENDPATH**/ ?>
