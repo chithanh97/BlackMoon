@@ -90,10 +90,12 @@ function getPositionMenu(){
 function getVideo($string){
 	$link_goc = 'https://www.youtube.com/embed/';
 	$LK1 = explode("=", $string);
-	$ls1 = $LK1[1];
-	$LK2 = explode("&", $ls1);
-	$ls2 = $link_goc . $LK2[0];
-	return $ls2;
+	if(count($LK1) > 1) {
+		$ls1 = $LK1[1];
+		$LK2 = explode("&", $ls1);
+		$ls2 = $link_goc . $LK2[0];
+		return $ls2;
+	}
 }
 
 function findObjectById($id, $array){
@@ -113,7 +115,7 @@ function getMenuItems($data, $itemcate, $newscate, $listitem){
 		$dataItem = findObjectById($value->id, $listitem);
 		if($dataItem->type == 1){
 			$temp = findObjectById($dataItem->target, $itemcate);
-			$res.= '<li class="dd-item" data-id="'.$value->id.'"><div class="dd-handle">'.$temp->name.' <span class="label-menu">Danh mục sản phẩm</span></div><i class="fa fa-times" onclick="removeItem(this)"></i>';
+			if($temp != false) $res.= '<li class="dd-item" data-id="'.$value->id.'"><div class="dd-handle">'.$temp->name.' <span class="label-menu">Danh mục sản phẩm</span></div><i class="fa fa-times" onclick="removeItem(this)"></i>';
 			if(isset($value->children)){
 				$res .= '<ol class="dd-list">';
 				$res .= getMenuItems($value->children, $itemcate, $newscate, $listitem);
@@ -122,7 +124,7 @@ function getMenuItems($data, $itemcate, $newscate, $listitem){
 			$res.= '</li>';
 		} else if ($dataItem->type == 2){
 			$temp = findObjectById($dataItem->target, $newscate);
-			$res.= '<li class="dd-item" data-id="'.$value->id.'"><div class="dd-handle">'.$temp->name.' <span class="label-menu">Danh mục bài viết</span></div><i class="fa fa-times" onclick="removeItem(this)"></i>';
+			if($temp != false) $res.= '<li class="dd-item" data-id="'.$value->id.'"><div class="dd-handle">'.$temp->name.' <span class="label-menu">Danh mục bài viết</span></div><i class="fa fa-times" onclick="removeItem(this)"></i>';
 			if(isset($value->children)){
 				$res .= '<ol class="dd-list">';
 				$res .= getMenuItems($value->children, $itemcate, $newscate, $listitem);
@@ -148,7 +150,7 @@ function getMenuFront($data, $itemcate, $newscate, $listitem){
 		$dataItem = findObjectById($value->id, $listitem);
 		if($dataItem->type == 1){
 			$temp = findObjectById($dataItem->target, $itemcate);
-			$res.= '<li><a href="/itemcategory/'.$temp->subject.'">'.$temp->name.'</a>';
+			if($temp != false) $res.= '<li><a href="/itemcategory/'.$temp->subject.'">'.$temp->name.'</a>';
 			if(isset($value->children)){
 				$res .= '<ul>';
 				$res .= getMenuFront($value->children, $itemcate, $newscate, $listitem);
@@ -157,7 +159,7 @@ function getMenuFront($data, $itemcate, $newscate, $listitem){
 			$res.= '</li>';
 		} else if ($dataItem->type == 2){
 			$temp = findObjectById($dataItem->target, $newscate);
-			$res.= '<li><a href="/newscategory/'.$temp->subject.'">'.$temp->name.'</a>';
+			if($temp != false) $res.= '<li><a href="/newscategory/'.$temp->subject.'">'.$temp->name.'</a>';
 			if(isset($value->children)){
 				$res .= '<ul>';
 				$res .= getMenuFront($value->children, $itemcate, $newscate, $listitem);

@@ -49,8 +49,25 @@ class BannerController extends Controller
 	}
 
 	public function delete($id){
+		$res = $this->deleteItem($id);
+		if($res) return redirect()->route('banner')->with('alert', '- Xóa thành công!');
+		return redirect()->route('banner')->with('alert', '- Xóa thất bại!');
+	}
+
+	public function deleteItem($id){
 		$res = Banner::find($id)->delete();
-		return redirect()->route('banner')->with('alert', '- Xóa thành công!');
+		return $res;
+	}
+
+	public function deleteAll(Request $request){
+
+		$count = 0;
+
+		foreach (json_decode($request->value) as $key => $value) {
+			if($this->deleteItem($value)) $count++;
+		}
+
+		return redirect()->route('banner')->with('alert', '- Đã xóa '.$count.' banner!');
 	}
 
 	public function edit($id){

@@ -21,6 +21,8 @@ ul, ol{
 /*Menu*/
 #menu-main{
   background: #f1f1f1;
+  position: relative;
+  z-index: 99;
 }
 #menu-main .content-menu{
   display: flex;

@@ -149,7 +149,7 @@
 					<div class="collapse" id="products">
 						<ul class="nav flex-column sub-menu">
 							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('itemcategory')); ?>">Danh mục</a></li>
-							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Danh sách</a></li>
+							<li class="nav-item"> <a class="nav-link" href="<?php echo e(route('items')); ?>">Sản phẩm</a></li>
 						</ul>
 					</div>
 				</li>

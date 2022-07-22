@@ -50,7 +50,7 @@
 				@csrf
 				<div class="row">
 					<div class="col-sm-3">
-						<h4>Nội dung danh mục</h4>
+						<h4>Nội dung</h4>
 						<p class="text-muted">
 							Chọn ảnh đại diện
 							<br> Lưu ý:

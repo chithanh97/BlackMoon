@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\HomeController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\BannerController;
@@ -34,6 +35,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/itemcategory/edit/{id}', [ItemCategoryController::class, 'edit'])->name('itemcategory.edit');
 	Route::post('/itemcategory/edit/{id}', [ItemCategoryController::class, 'update'])->name('itemcategory.update');
 	Route::get('/itemcategory/delete/{id}', [ItemCategoryController::class, 'delete'])->name('itemcategory.delete');
+	Route::get('/itemcategory/deleteall', [ItemCategoryController::class, 'deleteAll'])->name('itemcategory.deleteall');
 
 	//newscategory
 	Route::get('/newscategory', [NewsCategoryController::class, 'index'])->name('newscategory');
@@ -42,6 +44,16 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/newscategory/edit/{id}', [NewsCategoryController::class, 'edit'])->name('newscategory.edit');
 	Route::post('/newscategory/edit/{id}', [NewsCategoryController::class, 'update'])->name('newscategory.update');
 	Route::get('/newscategory/delete/{id}', [NewsCategoryController::class, 'delete'])->name('newscategory.delete');
+	Route::get('/newscategory/deleteall', [NewsCategoryController::class, 'deleteAll'])->name('newscategory.deleteall');
+
+	//items
+	Route::get('/items', [ItemsController::class, 'index'])->name('items');
+	Route::get('/items/add', [ItemsController::class, 'store'])->name('items.add');
+	Route::post('/items/add', [ItemsController::class, 'create'])->name('items.create');
+	Route::get('/items/edit/{id}', [ItemsController::class, 'edit'])->name('items.edit');
+	Route::post('/items/edit/{id}', [ItemsController::class, 'update'])->name('items.update');
+	Route::get('/items/delete/{id}', [ItemsController::class, 'delete'])->name('items.delete');
+	Route::get('/items/deleteall', [ItemsController::class, 'deleteAll'])->name('items.deleteall');
 
 	//news
 	Route::get('/news', [NewsController::class, 'index'])->name('news');
@@ -50,6 +62,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/news/edit/{id}', [NewsController::class, 'edit'])->name('news.edit');
 	Route::post('/news/edit/{id}', [NewsController::class, 'update'])->name('news.update');
 	Route::get('/news/delete/{id}', [NewsController::class, 'delete'])->name('news.delete');
+	Route::get('/news/deleteall', [NewsController::class, 'deleteAll'])->name('news.deleteall');
 
 	//slide
 	Route::get('/slide', [SlideController::class, 'index'])->name('slide');
@@ -58,6 +71,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/slide/edit/{id}', [SlideController::class, 'edit'])->name('slide.edit');
 	Route::post('/slide/edit/{id}', [SlideController::class, 'update'])->name('slide.update');
 	Route::get('/slide/delete/{id}', [SlideController::class, 'delete'])->name('slide.delete');
+	Route::get('/slide/deleteall', [SlideController::class, 'deleteAll'])->name('slide.deleteall');
 
 	//banner
 	Route::get('/banner', [BannerController::class, 'index'])->name('banner');
@@ -66,6 +80,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/banner/edit/{id}', [BannerController::class, 'edit'])->name('banner.edit');
 	Route::post('/banner/edit/{id}', [BannerController::class, 'update'])->name('banner.update');
 	Route::get('/banner/delete/{id}', [BannerController::class, 'delete'])->name('banner.delete');
+	Route::get('/banner/deleteall', [BannerController::class, 'deleteAll'])->name('banner.deleteall');
 
 	//video
 	Route::get('/video', [VideoController::class, 'index'])->name('video');
@@ -74,6 +89,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('video.edit');
 	Route::post('/video/edit/{id}', [VideoController::class, 'update'])->name('video.update');
 	Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('video.delete');
+	Route::get('/video/deleteall', [VideoController::class, 'deleteAll'])->name('video.deleteall');
 
 	//map
 	Route::get('/map', [MapController::class, 'index'])->name('map');
@@ -82,6 +98,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/map/edit/{id}', [MapController::class, 'edit'])->name('map.edit');
 	Route::post('/map/edit/{id}', [MapController::class, 'update'])->name('map.update');
 	Route::get('/map/delete/{id}', [MapController::class, 'delete'])->name('map.delete');
+	Route::get('/map/deleteall', [MapController::class, 'deleteAll'])->name('map.deleteall');
 
 	//fanpage
 	Route::get('/fanpage', [FanpageController::class, 'index'])->name('fanpage');
@@ -90,6 +107,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/fanpage/edit/{id}', [FanpageController::class, 'edit'])->name('fanpage.edit');
 	Route::post('/fanpage/edit/{id}', [FanpageController::class, 'update'])->name('fanpage.update');
 	Route::get('/fanpage/delete/{id}', [FanpageController::class, 'delete'])->name('fanpage.delete');
+	Route::get('/fanpage/deleteall', [FanpageController::class, 'deleteAll'])->name('fanpage.deleteall');
 
 	//social
 	Route::get('/social', [SocialController::class, 'index'])->name('social');
@@ -98,6 +116,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/social/edit/{id}', [SocialController::class, 'edit'])->name('social.edit');
 	Route::post('/social/edit/{id}', [SocialController::class, 'update'])->name('social.update');
 	Route::get('/social/delete/{id}', [SocialController::class, 'delete'])->name('social.delete');
+	Route::get('/social/deleteall', [SocialController::class, 'deleteAll'])->name('social.deleteall');
 
 	//language
 	Route::get('/language', [LanguageController::class, 'index'])->name('language');
@@ -106,6 +125,7 @@ Route::middleware('auth:admin')->group(function (){
 	Route::get('/language/edit/{id}', [LanguageController::class, 'edit'])->name('language.edit');
 	Route::post('/language/edit/{id}', [LanguageController::class, 'update'])->name('language.update');
 	Route::get('/language/delete/{id}', [LanguageController::class, 'delete'])->name('language.delete');
+	Route::get('/language/deleteall', [LanguageController::class, 'deleteAll'])->name('language.deleteall');
 
 	//Menu
 	Route::get('/menu', [MenuController::class, 'index'])->name('menu');

@@ -10,6 +10,11 @@
 		@endforeach
 	</div>
 </section>
+<section class="product">
+	<div class="list--item__product">
+
+	</div>
+</section>
 @endsection
 @push('scripts')
 <script>
