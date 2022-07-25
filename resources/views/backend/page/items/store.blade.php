@@ -227,90 +227,23 @@
 			var d = new Date();
 			array_tmp = ['IMGS_OTHER_'+(d.getTime()), url];
 			imgs_array.push(array_tmp);
-			if(imgs_array.length > 0){
-				myJsonString = JSON.stringify(imgs_array);
-			}else{
-				myJsonString = '';
-			}
-			$('#all_image_child').val(myJsonString);
 
-		}else if(field_id == 'fieldID'){
+		} else {
 			myJsonString = jQuery('#all_image_child').val();
-			imgs_array = [];
-			is_edit = false;
-			if(myJsonString !== ''){
-				imgs_array = JSON.parse(myJsonString);
-				for (i = 0; i < imgs_array.length; i++) {
-					if(imgs_array[i][0] == 'IMG_CHILD_MAIN'){
-						imgs_array[i][1] = url;
-						is_edit = true;
-						break;
-					}
+			imgs_array = JSON.parse(myJsonString);
+			imgs_array.forEach(function(val, key){
+				if(val[0] == field_id){
+					imgs_array[key][1] = url;
 				}
-			}
-			if(is_edit === false){
-				array_tmp = ['IMG_CHILD_MAIN', url];
-				imgs_array.push(array_tmp);
-			}
-			if(imgs_array.length > 0){
-				myJsonString = JSON.stringify(imgs_array);
-			}else{
-				myJsonString = '';
-			}
-			$('#all_image_child').val(myJsonString);
+			});
 
-			jQuery('#'+field_id).closest('.input-group').find('img').attr('src', '/storage/uploads/default/default.png' + url);
-
-		}else if(field_id.substring(0, 11) == 'IMGS_OTHER_'){
-			myJsonString = jQuery('#all_image_child').val();
-			imgs_array = [];
-			if(myJsonString !== ''){
-				imgs_array = JSON.parse(myJsonString);
-				for (i = 0; i < imgs_array.length; i++) {
-					if(imgs_array[i][0] == field_id){
-						imgs_array[i][1] = url;
-						break;
-					}
-				}
-			}
-			if(imgs_array.length > 0){
-				myJsonString = JSON.stringify(imgs_array);
-			}else{
-				myJsonString = '';
-			}
-			$('#all_image_child').val(myJsonString);
-
-		}else if(field_id.substring(0, 12) == 'image_child_'){
-			myJsonString = jQuery('#all_image_child').val();
-			var stt = field_id.substring(12, field_id.length);
-			imgs_array = [];
-			is_edit = false;
-			if(myJsonString !== ''){
-				imgs_array = JSON.parse(myJsonString);
-				for (i = 0; i < imgs_array.length; i++) {
-					if(imgs_array[i][0] == 'IMG_CHILD_'+stt){
-						imgs_array[i][1] = url;
-						is_edit = true;
-						break;
-					}
-				}
-			}
-			if(is_edit === false){
-				array_tmp = ['IMG_CHILD_'+stt, url];
-				imgs_array.push(array_tmp);
-			}
-			if(imgs_array.length > 0){
-				myJsonString = JSON.stringify(imgs_array);
-			}else{
-				myJsonString = '';
-			}
-			$('#all_image_child').val(myJsonString);
-
-			jQuery('#'+field_id).closest('.input-group').find('img').attr('src', '/storage/uploads/default/default.png' + url);
-
-		}else{
-			jQuery('#'+field_id).closest('.input-group').find('img').attr('src', '/storage/uploads/default/default.png' + url);
 		}
+		if(imgs_array.length > 0){
+			myJsonString = JSON.stringify(imgs_array);
+		}else{
+			myJsonString = '';
+		}
+		$('#all_image_child').val(myJsonString);
 
 		load_all_image();
 	}
@@ -321,7 +254,7 @@
 		$('#sortable_grid li').remove();
 		let index = 1;
 		value.forEach(function(v){
-			let html = '<li id="'+v[0]+'" class="ui-sortable-handle"><div class="inner"><div class=""><div class="img-thumbnail"><img class="img-responsive" src="'+v[1]+'"></div><div class="cmd"><div class=""><a href="/storage/filemanager/dialog.php?field_id=image_child_add_tmp&amp;fldr=product" class="iframe-btn btn btn-info">Đổi</a></div><div class=""><a href="javascript:;" onclick="delete_img_product_thumbnail(\''+v[0]+'\')" class="btn btn-danger">Xóa</a></div></div></div><div class="lst-btn-change"><button type="button" class="btn btn-default" onclick="changeLeft(this)"><i class="fa fa-chevron-left"></i></button><button type="button" class="btn btn-default" onclick="changeRight(this)"><i class="fa fa-chevron-right"></i></button></div></div></li>';
+			let html = '<li id="'+v[0]+'" class="ui-sortable-handle"><div class="inner"><div class=""><div class="img-thumbnail"><img class="img-responsive" src="'+v[1]+'"></div><div class="cmd"><div class=""><a href="/storage/filemanager/dialog.php?field_id='+v[0]+'&amp;fldr=product" class="iframe-btn btn btn-info">Đổi</a></div><div class=""><a href="javascript:;" onclick="delete_img_product_thumbnail(\''+v[0]+'\')" class="btn btn-danger">Xóa</a></div></div></div><div class="lst-btn-change"><button type="button" class="btn btn-default" onclick="changeLeft(this)"><i class="fa fa-chevron-left"></i></button><button type="button" class="btn btn-default" onclick="changeRight(this)"><i class="fa fa-chevron-right"></i></button></div></div></li>';
 
 			$('#sortable_grid').append(html);
 			index++;
