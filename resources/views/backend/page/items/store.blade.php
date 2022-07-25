@@ -203,6 +203,7 @@
 </div>
 @endsection
 @push('scripts')
+<script src="{{asset('assets/backend/js/sortable.js')}}"></script>
 <script>
 	$('select#parent').select2({
 		placeholder: '-- Chọn --'
@@ -317,19 +318,73 @@
 	function load_all_image(){
 
 		let value = JSON.parse($('#all_image_child').val());
+		$('#sortable_grid li').remove();
+		let index = 1;
+		value.forEach(function(v){
+			let html = '<li id="'+v[0]+'" class="ui-sortable-handle"><div class="inner"><div class=""><div class="img-thumbnail"><img class="img-responsive" src="'+v[1]+'"></div><div class="cmd"><div class=""><a href="/storage/filemanager/dialog.php?field_id=image_child_add_tmp&amp;fldr=product" class="iframe-btn btn btn-info">Đổi</a></div><div class=""><a href="javascript:;" onclick="delete_img_product_thumbnail(\''+v[0]+'\')" class="btn btn-danger">Xóa</a></div></div></div><div class="lst-btn-change"><button type="button" class="btn btn-default" onclick="changeLeft(this)"><i class="fa fa-chevron-left"></i></button><button type="button" class="btn btn-default" onclick="changeRight(this)"><i class="fa fa-chevron-right"></i></button></div></div></li>';
 
+			$('#sortable_grid').append(html);
+			index++;
+		});
 
-		value.forEach(function(){
-		console.log(value[0]);
-
-		// var html = '<li data-src="'+value[1]+'" data-type="value[0]" class="col-xs-12 col-sm-3 ui-sortable-handle"><div class="inner"><div class="pull-left"><div class="img-thumbnail"><img class="img-responsive" src="/uploads/product/157830650_739603673367010_7990902885103541581_o.jpg"></div><div class="cmd"><div class="col-xs-6"><a href="/storage/filemanager/dialog.php?field_id=image_child_add_tmp&amp;relative_url=1&amp;fldr=product" class="iframe-btn btn btn-info">Đổi</a><input id="IMGS_OTHER_1658475935162" type="hidden" value=""></div><div class="col-xs-6"><a href="javascript:;" onclick="delete_img_product_thumbnail('IMGS_OTHER_1658475935162')" class="btn btn-danger">Xóa</a></div></div></div><div class="pull-right" style="width: calc(100% - 122px); padding-left: 3px; height: 100%;"><button type="button" class="btn btn-default" onclick="" style="width: 100%; margin-bottom: 3px" disabled=""><i class="fa fa-chevron-left hidden-xs"></i><i class="fa fa-chevron-up hidden-sm hidden-md hidden-lg"></i></button><button type="button" class="btn btn-default" onclick="" style="width: 100%" disabled=""><i class="fa fa-chevron-right hidden-xs"></i><i class="fa fa-chevron-down hidden-sm hidden-md hidden-lg"></i></button></div></div></li>';
+		$('.iframe-btn').fancybox({
+			'width'   : 1024,
+			'height'  : 570,
+			'type'    : 'iframe',
+			'autoScale'   : false
 		});
 
 	}
 
-	function delete_img_product_thumbnail(field_id){
-		console.log('abc');
+	function delete_img_product_thumbnail(id){
+		let value = '/storage/uploads/default/default.png';
+		$('#'+id).find('img').attr('src', value);
 	}
+
+	function changeLeft(el){
+		let value = JSON.parse($('#all_image_child').val());
+		let k = $(el).parents('li').attr('id');
+		value.forEach(function(val, key){
+			if(key > 0 && val[0] == k){
+				let temp = val;
+				value[key] = value[key-1];
+				value[key-1] = temp;
+			}
+		});
+		$('#all_image_child').val(JSON.stringify(value));
+		load_all_image();
+	}
+
+	function changeData(){
+		let arr = [];
+		$('#sortable_grid li').each(function(index, el){
+			arr.push([$(el).attr('id'), $(el).find('img').attr('src')]);
+		});
+		$('#all_image_child').val(JSON.stringify(arr));
+	}
+
+	function changeRight(el){
+		let value = JSON.parse($('#all_image_child').val());
+		let k = $(el).parents('li').attr('id');
+		value.forEach(function(val, key){
+			if(key < value.length - 1 && val[0] == k){
+				let temp = val;
+				value[key] = value[key+1];
+				value[key+1] = temp;
+			}
+		});
+		// console.log(value.length);
+		$('#all_image_child').val(JSON.stringify(value));
+		load_all_image();
+	}
+
+	new Sortable(sortable_grid, {
+		swapThreshold: 0.43,
+		animation: 150,
+		onEnd: function(){
+			changeData();
+		}
+	});
 </script>
 @endpush
 @push('styles')
@@ -388,6 +443,75 @@
 		width: 100%;
 		color: #6c7293;
 		font-weight: 500;
+	}
+	.sortable-grid li{
+		width: 100%;
+	}
+	#sortable_grid{
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-bottom: 0;
+	}
+	#sortable_grid li{
+		width: 50%;
+		cursor: pointer;
+	}
+	#sortable_grid li .inner{
+		padding: 5px;
+	}
+	#sortable_grid li img{
+		width: 100%;
+	}
+	.sortable-grid#sortable_grid > li .inner{
+		height: auto;
+	}
+	.sortable-grid#sortable_grid > li .inner > div{
+		width: 100%;
+	}
+	.img-thumbnail{
+		padding: 0;
+		position: relative;
+		padding-bottom: 56.25%;
+		border-radius: 0;
+		margin-bottom: 5px;
+	}
+	.img-thumbnail img{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.inner .cmd{
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.inner .cmd > div{
+		width: 45%;
+	}
+	.inner .cmd > div a{
+		justify-content: center;
+	}
+	.lst-btn-change{
+		display: flex;
+		margin-top: 5px;
+		justify-content: space-between;
+	}
+	.lst-btn-change button{
+		border: 1px solid #6c7293;
+		width: 45%;
+		color: #6c7293;
+		transition: .3s;
+	}
+	.lst-btn-change button:hover{
+		color: #fff;
+		border: 1px solid #fff;
+		transition: .3s;
+	}
+	.lst-btn-change i{
+		margin-right: 0;
 	}
 </style>
 @endpush
