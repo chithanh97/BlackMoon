@@ -68,7 +68,7 @@
 									</td>
 									<td><?php echo e($value->id); ?></td>
 									<td>
-										<img class="thumbnail" src="<?php echo e($value->image == '' ? '/storage/uploads/default/default.png' : $value->image); ?>" alt="">
+										<img class="thumbnail" src="<?php echo e($value->image == '' ? getImageDefault() : $value->image); ?>" alt="">
 									</td>
 									<td><?php echo e($value->name); ?></td>
 									<td>

@@ -24,8 +24,8 @@ return new class extends Migration
     		$table->text('image_child')->nullable();
     		$table->text('link')->nullable();
     		$table->text('price')->nullable();
-    		$table->text('sale_price')->nullable();
-    		$table->text('sale_percent')->nullable();
+    		$table->text('sell_price')->nullable();
+    		$table->text('sell_percent')->nullable();
     		$table->integer('sort')->nullable();
     		$table->integer('hot')->nullable();
     		$table->integer('status');

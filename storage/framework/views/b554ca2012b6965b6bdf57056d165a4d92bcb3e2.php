@@ -198,9 +198,6 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('scripts'); ?>
 <script>
-	$('select#parent').select2({
-		placeholder: '-- Chọn --'
-	});
 	checkKeyword();
 </script>
 <?php $__env->stopPush(); ?>

@@ -61,7 +61,7 @@
 						<div class="input-group">
 							<div id="img_preview_main" class="wrap-img-product-thumbnail">
 								<div class="img-thumbnail img-product-thumbnail pull-left">
-									<img class="img-responsive" src="{{old('image') == '' ? '/storage/uploads/default/default.png' : old('image')}}" style="width: 120px; height: 120px;" />
+									<img class="img-responsive" src="{{old('image') == '' ? getImageDefault() : old('image')}}" style="width: 120px; height: 120px;" />
 								</div>
 								<div class="pull-left">
 									<div style="margin: 0 10px 10px;">
@@ -77,7 +77,7 @@
 								</div>
 							</div>
 
-							<input id="fieldID" type="hidden" name="image" value="{{old('image') == '' ? '/storage/uploads/default/default.png' : old('image')}}" class="form-control thumbnail">
+							<input id="fieldID" type="hidden" name="image" value="{{old('image') == '' ? getImageDefault() : old('image')}}" class="form-control thumbnail">
 						</div>
 					</div>
 					<div class="col-sm-9">

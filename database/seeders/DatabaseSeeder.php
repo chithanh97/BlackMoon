@@ -24,11 +24,12 @@ class DatabaseSeeder extends Seeder
 				'password' => bcrypt('admin123'),
 			]
 		]);
+
 		DB::table('config')->insert([
 			[
 				'name' => 'BlackMoon',
-				'logo' => '',
-				'favicon' => '',
+				'logo' => getImageDefault(),
+				'favicon' => getImageDefault(),
 				'domain' => '',
 				'monney' => '',
 				'title' => '',
@@ -46,6 +47,37 @@ class DatabaseSeeder extends Seeder
 				'address' => '',
 				'headcode' => '',
 				'bodycode' => '',
+			]
+		]);
+
+		DB::table('menus')->insert([
+			[
+				'name' => 'Menu main',
+				'content' => '[{"id":1},{"id":2}]',
+				'location' => 1,
+				'status' => 1,
+				'lang' => 1,
+			]
+		]);
+
+		DB::table('menuitems')->insert([
+			[
+				'name' => 'Trang chủ',
+				'slug' => '/',
+				'type' => 3,
+				'target' => 3,
+				'menu_id' => 1,
+				'created_at' => now(),
+				'updated_at' => now(),
+			],
+			[
+				'name' => 'Sản phẩm',
+				'slug' => '/san-pham/',
+				'type' => 3,
+				'target' => 3,
+				'menu_id' => 1,
+				'created_at' => now(),
+				'updated_at' => now(),
 			]
 		]);
 	}

@@ -179,4 +179,7 @@ function getMenuFront($data, $itemcate, $newscate, $listitem){
 	return $res;
 }
 
+function getImageDefault(){
+	return '/storage/uploads/default/default.png';
+}
 ?>

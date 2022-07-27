@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 
 {
-	protected $table = 'news';
+	protected $table = 'items';
 
 	protected $fillable = [
 		'id',

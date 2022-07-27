@@ -38,7 +38,7 @@ class NewsController extends Controller
 
 		$name = $request->name;
 		$parent = $request->parent == '' ? 0 : implode(',', $request->parent);
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$detail = $request->detail;
 		$detail_short = $request->detail_short;
 		$title = $request->title;
@@ -117,7 +117,7 @@ class NewsController extends Controller
 
 		$name = $request->name;
 		$parent = $request->parent == '' ? 0 : $request->parent;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$detail = $request->detail;
 		$detail_short = $request->detail_short;
 		$title = $request->title;

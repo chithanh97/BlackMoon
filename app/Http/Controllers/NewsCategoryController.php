@@ -37,7 +37,7 @@ class NewsCategoryController extends Controller
 
 		$name = $request->name;
 		$parent = $request->parent == '' ? 0 : $request->parent;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$detail = $request->detail;
 		$title = $request->title;
 		$description = $request->description;
@@ -114,7 +114,7 @@ class NewsCategoryController extends Controller
 
 		$name = $request->name;
 		$parent = $request->parent == '' ? 0 : $request->parent;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$detail = $request->detail;
 		$title = $request->title;
 		$description = $request->description;

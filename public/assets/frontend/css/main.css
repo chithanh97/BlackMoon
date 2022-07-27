@@ -40,9 +40,13 @@ ul, ol{
   display: flex;
   align-items: center;
 }
+#menu-main .item-menu li{
+  position: relative;
+}
 #menu-main .item-menu li a{
   padding: 7px 15px;
   display: block;
+  width: max-content;
 }
 #menu-main .item-menu li:hover > ul{
   display: block;
@@ -50,7 +54,11 @@ ul, ol{
 #menu-main .item-menu li ul{
   position: absolute;
   background: #66dbcd;
-  left: auto;
+}
+#menu-main .item-menu li ul li ul{
+  width: 100%;
+  left: 100%;
+  top: 0;
 }
 #menu-main .item-menu li ul li a{
   display: block;

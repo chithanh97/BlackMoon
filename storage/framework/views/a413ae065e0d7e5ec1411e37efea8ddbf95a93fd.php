@@ -10,6 +10,11 @@
 		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 	</div>
 </section>
+<section class="product">
+	<div class="list--item__product">
+
+	</div>
+</section>
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('scripts'); ?>
 <script>

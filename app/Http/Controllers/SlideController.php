@@ -30,7 +30,7 @@ class SlideController extends Controller
 		], $messages);
 
 		$name = $request->name;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$link = $request->link;
 
 		$reponse = Slide::create([
@@ -84,7 +84,7 @@ class SlideController extends Controller
 		], $messages);
 
 		$name = $request->name;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$link = $request->link;
 
 		$cate = Slide::findOrFail($id);

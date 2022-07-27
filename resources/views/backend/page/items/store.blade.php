@@ -45,8 +45,8 @@
 							<br> + Dung lượng tối đa 500kb
 						</p>
 						<div id="wrap_all_image">
-							<input type="hidden" id="all_image_child">
-							<input id="image_child_add_tmp" type="hidden" value="" />
+							<input type="hidden" id="all_image_child" name="all_image_child">
+							<input id="image_child_add_tmp" name="image_child_add_tmp" type="hidden" value="" />
 							<ul id="sortable_grid" class="list-inline sortable-grid ui-sortable">
 							</ul>
 							<ul class="list-inline sortable-grid clearfix">
@@ -86,19 +86,19 @@
 									<label class="control-label">
 										Giá sản phẩm
 									</label>
-									<input type="text" name="price" class="form-control get-subject" data-table='news' value="{{old('price')}}" />
+									<input type="text" name="price" class="form-control" data-table='news' value="{{old('price')}}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">
 										Giá giảm
 									</label>
-									<input type="text" name="sell-price" class="form-control get-subject" data-table='news' value="{{old('sell_price')}}" />
+									<input type="text" name="sell_price" class="form-control" data-table='news' value="{{old('sell_price')}}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">
 										Giá giảm % (* ưu tiên nếu có 2 giá giảm)
 									</label>
-									<input type="text" name="sell_percent" class="form-control get-subject" data-table='news' value="{{old('sell_percent')}}" />
+									<input type="text" name="sell_percent" class="form-control" data-table='news' value="{{old('sell_percent')}}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">Mô tả</label>
@@ -216,6 +216,7 @@
 		array_tmp = [],
 		i = 0,
 		is_edit = false;
+
 		var url=jQuery('#'+field_id).val();
 
 		if(field_id == 'image_child_add_tmp'){
@@ -231,13 +232,13 @@
 		} else {
 			myJsonString = jQuery('#all_image_child').val();
 			imgs_array = JSON.parse(myJsonString);
-			imgs_array.forEach(function(val, key){
-				if(val[0] == field_id){
-					imgs_array[key][1] = url;
+			imgs_array.forEach(function(v, k){
+				if(v[0] == field_id){
+					imgs_array[k][1] = url;
 				}
 			});
-
 		}
+
 		if(imgs_array.length > 0){
 			myJsonString = JSON.stringify(imgs_array);
 		}else{
@@ -251,13 +252,12 @@
 	function load_all_image(){
 
 		let value = JSON.parse($('#all_image_child').val());
+		console.log(typeof value);
 		$('#sortable_grid li').remove();
-		let index = 1;
 		value.forEach(function(v){
-			let html = '<li id="'+v[0]+'" class="ui-sortable-handle"><div class="inner"><div class=""><div class="img-thumbnail"><img class="img-responsive" src="'+v[1]+'"></div><div class="cmd"><div class=""><a href="/storage/filemanager/dialog.php?field_id='+v[0]+'&amp;fldr=product" class="iframe-btn btn btn-info">Đổi</a></div><div class=""><a href="javascript:;" onclick="delete_img_product_thumbnail(\''+v[0]+'\')" class="btn btn-danger">Xóa</a></div></div></div><div class="lst-btn-change"><button type="button" class="btn btn-default" onclick="changeLeft(this)"><i class="fa fa-chevron-left"></i></button><button type="button" class="btn btn-default" onclick="changeRight(this)"><i class="fa fa-chevron-right"></i></button></div></div></li>';
+			let html = '<li data-id="'+v[0]+'" class="ui-sortable-handle"><div class="inner"><div class=""><div class="img-thumbnail"><img class="img-responsive" src="'+v[1]+'"></div><div class="cmd"><div class=""><a href="/storage/filemanager/dialog.php?field_id='+v[0]+'&amp;fldr=product" class="iframe-btn btn btn-info">Đổi</a><input type="hidden" id="'+v[0]+'" value=""></div><div class=""><a href="javascript:;" onclick="delete_img_product_thumbnail(this)" class="btn btn-danger">Xóa</a></div></div></div><div class="lst-btn-change"><button type="button" class="btn btn-default" onclick="changeLeft(this)"><i class="fa fa-chevron-left"></i></button><button type="button" class="btn btn-default" onclick="changeRight(this)"><i class="fa fa-chevron-right"></i></button></div></div></li>';
 
 			$('#sortable_grid').append(html);
-			index++;
 		});
 
 		$('.iframe-btn').fancybox({
@@ -269,14 +269,23 @@
 
 	}
 
-	function delete_img_product_thumbnail(id){
-		let value = '/storage/uploads/default/default.png';
-		$('#'+id).find('img').attr('src', value);
+	function delete_img_product_thumbnail(el){
+		let image = '{{getImageDefault()}}';
+		let parent = $(el).parents('li');
+		let value = JSON.parse($('#all_image_child').val());
+
+		parent.find('img').attr('src', image);
+		value.forEach(function(v, k){
+			if(parent.data('id') == v[0]){
+				value[k][1] = image;
+			}
+		});
+		$('#all_image_child').val(JSON.stringify(value));
 	}
 
 	function changeLeft(el){
 		let value = JSON.parse($('#all_image_child').val());
-		let k = $(el).parents('li').attr('id');
+		let k = $(el).parents('li').data('id');
 		value.forEach(function(val, key){
 			if(key > 0 && val[0] == k){
 				let temp = val;
@@ -291,14 +300,14 @@
 	function changeData(){
 		let arr = [];
 		$('#sortable_grid li').each(function(index, el){
-			arr.push([$(el).attr('id'), $(el).find('img').attr('src')]);
+			arr.push([$(el).data('id'), $(el).find('img').attr('src')]);
 		});
 		$('#all_image_child').val(JSON.stringify(arr));
 	}
 
 	function changeRight(el){
 		let value = JSON.parse($('#all_image_child').val());
-		let k = $(el).parents('li').attr('id');
+		let k = $(el).parents('li').data('id');
 		value.forEach(function(val, key){
 			if(key < value.length - 1 && val[0] == k){
 				let temp = val;

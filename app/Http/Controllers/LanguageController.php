@@ -30,7 +30,7 @@ class LanguageController extends Controller
 		], $messages);
 
 		$name = $request->name;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$reponse = Language::create([
 			'name'   => $name,
 			'status' => 1,
@@ -64,7 +64,7 @@ class LanguageController extends Controller
 		], $messages);
 
 		$name = $request->name;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 
 		$cate = Language::findOrFail($id);
 

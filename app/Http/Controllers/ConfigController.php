@@ -38,8 +38,8 @@ class ConfigController extends Controller
 		$headcode = $request->headcode;
 		$certificate = $request->certificate;
 		$bodycode = $request->bodycode;
-		$logo = $request->logo == '' ? '/storage/uploads/default/default.png' : $request->logo;
-		$favicon = $request->favicon == '' ? '/storage/uploads/default/default.png' : $request->favicon;
+		$logo = $request->logo == '' ? getImageDefault() : $request->logo;
+		$favicon = $request->favicon == '' ? getImageDefault() : $request->favicon;
 
 		$item = Config::latest('id')->first();
 		$cate = Config::findOrFail($item->id);

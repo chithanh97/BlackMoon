@@ -38,23 +38,48 @@ class ItemsController extends Controller
 
 		$name = $request->name;
 		$parent = $request->parent == '' ? 0 : implode(',', $request->parent);
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->all_image_child;
 		$detail = $request->detail;
 		$detail_short = $request->detail_short;
 		$title = $request->title;
+		$price = $request->price;
+		$sell_price = $request->sell_price;
+		$sell_percent = $request->sell_percent;
 		$description = $request->description;
 		$keyword = $request->keyword;
 		$link = $request->link;
 		$subject = $request->subject;
 		$sort = $request->sort == '' ? 0 : $request->sort;
 
+		if($image != ''){
+			$tempImage = json_decode($image);
+			foreach ($tempImage as $key => $value) {
+				if($value[1] == getImageDefault()){
+					unset($tempImage[$key]);
+				}
+				// echo '<pre>';
+				// print_r($value);
+				// echo '</pre>';
+			}
+			if($tempImage == ''){
+				$tempImage = ['IMGS_OTHER_11223344', getImageDefault()];
+			}
+		} else {
+			$tempImage = ['IMGS_OTHER_11223344', getImageDefault()];
+		}
+
+		$tempImage = array_values($tempImage);
+
 		$reponse = Items::create([
 			'name'   => $name,
 			'subject'   => $subject,
 			'parent' => $parent,
-			'image' => $image,
+			'image' => json_encode($tempImage),
 			'status' => 1,
 			'detail' => $detail,
+			'price' => $price,
+			'sell_price' => $sell_price,
+			'sell_percent' => $sell_percent,
 			'detail_short' => $detail_short,
 			'title' => $title,
 			'description' => $description,
@@ -112,10 +137,13 @@ class ItemsController extends Controller
 		], $messages);
 
 		$name = $request->name;
-		$parent = $request->parent == '' ? 0 : $request->parent;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$parent = $request->parent == '' ? 0 : implode(',', $request->parent);
+		$image = $request->all_image_child;
 		$detail = $request->detail;
 		$detail_short = $request->detail_short;
+		$price = $request->price;
+		$sell_price = $request->sell_price;
+		$sell_percent = $request->sell_percent;
 		$title = $request->title;
 		$description = $request->description;
 		$keyword = $request->keyword;
@@ -123,14 +151,30 @@ class ItemsController extends Controller
 		$subject = $request->subject;
 		$sort = $request->sort == '' ? 0 : $request->sort;
 
+		if($image != ''){
+			$tempImage = json_decode($image);
+			foreach ($tempImage as $key => $value) {
+				if($value[1] == getImageDefault()){
+					print_r($value);
+					unset($tempImage[$key]);
+				}
+			}
+			if($tempImage == ''){
+				$tempImage = ['IMGS_OTHER_11223344', getImageDefault()];
+			}
+		} else {
+			$tempImage = ['IMGS_OTHER_11223344', getImageDefault()];
+		}
+
+		$tempImage = array_values($tempImage);
+
 		$cate = Items::findOrFail($id);
 
 		$reponse = $cate->update([
 			'name'   => $name,
 			'subject'   => $subject,
 			'parent' => $parent,
-			'image' => $image,
-			'image_child' => $image_child,
+			'image' => $tempImage,
 			'status' => 1,
 			'detail' => $detail,
 			'detail_short' => $detail_short,

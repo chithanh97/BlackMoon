@@ -91,6 +91,7 @@
 					</div>
 				</div>
 				<br/>
+				@endif
 				<div class="panel-group" id="menu-default">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -99,6 +100,10 @@
 						<div class="panel-collapse collapse in" id="default-list">
 							<div class="panel-body">
 								<div class="item-list-body">
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" id="home" value="Trang chủ" data-url="/">
+										<label for="home">Trang chủ</label>
+									</div>
 									<div class="form-check">
 										<input type="checkbox" class="form-check-input" id="product" value="Sản phẩm" data-url="/san-pham/">
 										<label for="product">Sản phẩm</label>
@@ -120,7 +125,6 @@
 					</div>
 				</div>
 				<br/>
-				@endif
 				<div class="panel-group" id="menu-links">
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -174,7 +178,7 @@
 					<ol class="dd-list">
 						<?php
 						if($item->content != null) echo getMenuItems(json_decode($item->content), $itemcategory, $newscategory, $listitem);
-						 ?>
+						?>
 					</ol>
 				</div>
 				<div class="form-group save-btn">

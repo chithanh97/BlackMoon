@@ -33,7 +33,7 @@ class SocialController extends Controller
 
 		$name = $request->name;
 		$link = $request->link;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$sort = $request->sort == '' ? 0 : $request->sort;
 		$reponse = Social::create([
 			'name'   => $name,
@@ -90,7 +90,7 @@ class SocialController extends Controller
 
 		$name = $request->name;
 		$link = $request->link;
-		$image = $request->image == '' ? '/storage/uploads/default/default.png' : $request->image;
+		$image = $request->image == '' ? getImageDefault() : $request->image;
 		$sort = $request->sort == '' ? 0 : $request->sort;
 
 		$cate = Social::findOrFail($id);

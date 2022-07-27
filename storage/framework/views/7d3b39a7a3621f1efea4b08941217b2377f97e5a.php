@@ -50,7 +50,7 @@
 				<?php echo csrf_field(); ?>
 				<div class="row">
 					<div class="col-sm-3">
-						<h4>Nội dung danh mục</h4>
+						<h4>Nội dung</h4>
 						<p class="text-muted">
 							Chọn ảnh đại diện
 							<br> Lưu ý:
@@ -61,7 +61,7 @@
 						<div class="input-group">
 							<div id="img_preview_main" class="wrap-img-product-thumbnail">
 								<div class="img-thumbnail img-product-thumbnail pull-left">
-									<img class="img-responsive" src="<?php echo e(old('image') == '' ? '/storage/uploads/default/default.png' : old('image')); ?>" style="width: 120px; height: 120px;" />
+									<img class="img-responsive" src="<?php echo e(old('image') == '' ? getImageDefault() : old('image')); ?>" style="width: 120px; height: 120px;" />
 								</div>
 								<div class="pull-left">
 									<div style="margin: 0 10px 10px;">
@@ -77,7 +77,7 @@
 								</div>
 							</div>
 
-							<input id="fieldID" type="hidden" name="image" value="<?php echo e(old('image') == '' ? '/storage/uploads/default/default.png' : old('image')); ?>" class="form-control thumbnail">
+							<input id="fieldID" type="hidden" name="image" value="<?php echo e(old('image') == '' ? getImageDefault() : old('image')); ?>" class="form-control thumbnail">
 						</div>
 					</div>
 					<div class="col-sm-9">

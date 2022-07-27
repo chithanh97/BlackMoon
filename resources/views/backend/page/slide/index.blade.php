@@ -64,7 +64,7 @@
 									</td>
 									<td>{{ $value->id }}</td>
 									<td>
-										<img class="thumbnail" src="{{ $value->image == '' ? '/storage/uploads/default/default.png' : $value->image }}" alt="">
+										<img class="thumbnail" src="{{ $value->image == '' ? getImageDefault() : $value->image }}" alt="">
 									</td>
 									<td>{{ $value->name }}</td>
 									<td>

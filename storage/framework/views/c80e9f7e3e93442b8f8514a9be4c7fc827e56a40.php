@@ -67,7 +67,14 @@
 									</td>
 									<td><?php echo e($value->id); ?></td>
 									<td>
-										<img class="thumbnail" src="<?php echo e($value->image == '' ? '/storage/uploads/default/default.png' : $value->image); ?>" alt="">
+										<?php
+										$t = '';
+										foreach(json_decode($value->image) as $prop) {
+											$t = $prop;
+											break;
+										}
+										?>
+										<img class="thumbnail" src="<?php echo e($value->image == '' ? getImageDefault() : $t[1]); ?>" alt="">
 									</td>
 									<td><?php echo e($value->name); ?></td>
 									<td>
