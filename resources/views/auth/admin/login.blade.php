@@ -27,7 +27,7 @@
 					<span class="login100-form-title p-t-20 p-b-45">
 						John Doe
 					</span>
-
+					<?php print_r(Session::get('success')) ?>
 					@if(Session::get('success'))
 					<div class="alert alert-success full-width">
 						{{Session::get('success')}}

@@ -17,8 +17,12 @@ class CheckLoginAdmin
      * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $guard = null)
     {
+    	if (Auth::guard($guard)->check()) {
+    		return redirect('/home');
+    	}
+
     	return $next($request);
     }
   }

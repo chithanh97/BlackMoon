@@ -40,8 +40,6 @@
 	<meta name="geo.position" content="10.806105;106.63668" />
 	<meta name="ICBM" content="10.806105, 106.63668" />
 
-	<!-- <link rel="stylesheet" type="text/css" href="{{asset('assets/backend/plugin/bootstrap/css/bootstrap.min.css')}}"> -->
-
 	<!-- Login css -->
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets/backend/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
@@ -63,8 +61,6 @@
 	<link rel="stylesheet" href="{{asset('assets/backend/css/owl.theme.default.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/backend/plugin/select2/select2.min.css')}}">
 	<link rel="stylesheet" href="{{asset('assets/backend/css/style.css')}}">
-	<!-- <link rel="stylesheet" href="{{asset('assets/backend/plugin/tinymce/js/tinymce/skins/ui/oxide/content.min.css')}}"> -->
-	<!-- <link rel="stylesheet" href="{{asset('assets/backend/plugin/tinymce/js/tinymce/skins/ui/tinymce-5-dark/skin.min.css')}}"> -->
 
 	@stack('styles')
 
@@ -74,8 +70,7 @@
 		<!-- partial:partials/_sidebar.html -->
 		<nav class="sidebar sidebar-offcanvas" id="sidebar">
 			<div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-				<a class="sidebar-brand brand-logo" href="index.html"><img src="assets/images/logo.svg" alt="logo" /></a>
-				<a class="sidebar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+				<a class="sidebar-brand brand-logo" href="/"><img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="logo" /></a>
 			</div>
 			<ul class="nav">
 				<li class="nav-item profile">
