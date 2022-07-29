@@ -19,10 +19,16 @@ class CheckLoginAdmin
      */
     public function handle(Request $request, Closure $next, $guard = null)
     {
-    	if (Auth::guard($guard)->check()) {
-    		return redirect('/home');
+    	if (Auth::check()) {
+    		return redirect('/admin/dashboard');
+    	} else {
+    		return redirect('/admin/login');
     	}
-
+    	// if (Auth::guard($guard)->check()) {
+    	// 	return redirect('/admin/dashboard');
+    	// }
+    	// echo $guard.'cccccccccc';
+    	// exit();
     	return $next($request);
     }
   }

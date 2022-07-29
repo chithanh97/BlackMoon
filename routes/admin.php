@@ -20,8 +20,9 @@ use App\Http\Controllers\MenuController;
 
 Route::middleware('admin.login')->match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 
-Route::middleware(['auth:admin', 'CheckLoginAdmin'])->group(function (){
+Route::middleware(['auth:admin'])->group(function (){
 	Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+	Route::get('/dashboard', [HomeController::class, 'index'])->name('home.dashboard');
 	Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 	//config
