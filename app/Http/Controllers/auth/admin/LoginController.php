@@ -13,6 +13,10 @@ class LoginController extends Controller
 	{
 
 		if ($request->getMethod() == 'GET') {
+			if(Auth::guard('admin')->check()){
+				return redirect()->route('dashboard');
+				echo Auth::guard('admin')->id();
+			}
 			return view('auth.admin.login');
 		}
 
@@ -25,7 +29,7 @@ class LoginController extends Controller
 	}
 
 	public function logOut(){
-		Auth::logout();
+		Auth::guard('admin')->logout();
 		return redirect('admin/login');
 	}
 }
