@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  @extends('frontend.layout.header')
+  @include('frontend.layout.header')
   <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/plugin/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend//css/main.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/owl.carousel.min.css')}}">
@@ -28,7 +28,7 @@
       @yield('content')
     </main>
     <footer id="main-footer">
-      @extends('frontend.layout.footer')
+      @include('frontend.layout.footer')
     </footer>
   </div>
   <script src="{{asset('assets/frontend/js/jquery-1.10.2.min.js')}}"></script>

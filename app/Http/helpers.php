@@ -48,12 +48,12 @@ function getMenuParent($array, $parent = -1, $not = -1, $select = -1, $str = '|-
 	$reponse = '';
 	$selectx = explode(',', $select);
 	foreach ($array as $key => $value) {
-		if($parent == $value->parent && $value->id != $not){
+		if($parent == $value->parent && $value->code != $not){
 			// $selected ='';
-			$selected = array_search($value->id, $selectx) > -1 ? 'selected' : '';
-			$temp = '<option '.$selected.' value="'.$value->id.'">'.$str.' '.$value->name.'</option>';
+			$selected = array_search($value->code, $selectx) > -1 ? 'selected' : '';
+			$temp = '<option '.$selected.' value="'.$value->code.'">'.$str.' '.$value->name.'</option>';
 			$reponse .= $temp;
-			$reponse .= getMenuParent($array, $value->id, $not, $select, '|--'.$str);
+			$reponse .= getMenuParent($array, $value->code, $not, $select, '|--'.$str);
 		}
 	}
 	return $reponse;
@@ -63,7 +63,7 @@ function getParentCate($arr, $parent){
 	$res = 'Việt Nam';
 	if($parent == 0) return $res;
 	foreach ($arr as $key => $value) {
-		if($value->id == $parent){
+		if($value->code == $parent){
 			$res = $value->name;
 			return $res;
 		}
@@ -181,5 +181,14 @@ function getMenuFront($data, $itemcate, $newscate, $listitem){
 
 function getImageDefault(){
 	return '/storage/uploads/default/default.png';
+}
+
+function getFirstImage($string){
+	$t = '';
+	foreach(json_decode($string) as $prop) {
+		$t = $prop;
+		break;
+	}
+	return $t[1];
 }
 ?>

@@ -4,19 +4,19 @@ use App\Http\Controllers\auth\admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\backend\HomeController;
-use App\Http\Controllers\ConfigController;
-use App\Http\Controllers\ItemCategoryController;
-use App\Http\Controllers\NewsCategoryController;
-use App\Http\Controllers\ItemsController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\SlideController;
-use App\Http\Controllers\BannerController;
-use App\Http\Controllers\VideoController;
-use App\Http\Controllers\MapController;
-use App\Http\Controllers\FanpageController;
-use App\Http\Controllers\SocialController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\backend\ConfigController;
+use App\Http\Controllers\backend\ItemCategoryController;
+use App\Http\Controllers\backend\NewsCategoryController;
+use App\Http\Controllers\backend\ItemsController;
+use App\Http\Controllers\backend\NewsController;
+use App\Http\Controllers\backend\SlideController;
+use App\Http\Controllers\backend\BannerController;
+use App\Http\Controllers\backend\VideoController;
+use App\Http\Controllers\backend\MapController;
+use App\Http\Controllers\backend\FanpageController;
+use App\Http\Controllers\backend\SocialController;
+use App\Http\Controllers\backend\LanguageController;
+use App\Http\Controllers\backend\MenuController;
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 

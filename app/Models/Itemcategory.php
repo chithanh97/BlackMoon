@@ -11,6 +11,7 @@ class ItemCategory extends Model
 
 	protected $fillable = [
 		'id',
+		'code',
 		'name',
 		'email',
 		'password',

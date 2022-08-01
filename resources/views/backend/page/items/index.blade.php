@@ -67,14 +67,7 @@
 									</td>
 									<td>{{ $value->id }}</td>
 									<td>
-										<?php
-										$t = '';
-										foreach(json_decode($value->image) as $prop) {
-											$t = $prop;
-											break;
-										}
-										?>
-										<img class="thumbnail" src="{{ $value->image == '' ? getImageDefault() : $t[1] }}" alt="">
+										<img class="thumbnail" src="{{ $value->image == '' ? getImageDefault() : getFirstImage($value->image) }}" alt="">
 									</td>
 									<td>{{ $value->name }}</td>
 									<td>

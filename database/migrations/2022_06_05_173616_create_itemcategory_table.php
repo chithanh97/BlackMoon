@@ -15,6 +15,7 @@ return new class extends Migration
     {
     	Schema::create('itemcategory', function (Blueprint $table) {
     		$table->increments('id');
+    		$table->text('code');
     		$table->text('name');
     		$table->text('subject');
     		$table->text('parent');
