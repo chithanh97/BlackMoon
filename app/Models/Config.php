@@ -15,7 +15,7 @@ class Config extends Model
 		'logo',
 		'favicon',
 		'domain',
-		'monney',
+		'money',
 		'title',
 		'description',
 		'keyword',

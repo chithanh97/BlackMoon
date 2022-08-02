@@ -9,6 +9,8 @@ use App\Models\Menuitems;
 use App\Models\Itemcategory;
 use App\Models\Newscategory;
 use App\Models\Config;
+use App\Models\Fanpage;
+use App\Models\Map;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,8 +36,10 @@ class AppServiceProvider extends ServiceProvider
     		$itemcategory = Itemcategory::where('status', 1)->get();
     		$newscategory = Newscategory::where('status', 1)->get();
     		$listitem = Menuitems::where('menu_id', $menu->id)->get();
+    		$fanpage = Fanpage::first();
+    		$map = Map::first();
     		$config = Config::orderBy('id', 'DESC')->first();
-    		$view->with(compact('menu', 'itemcategory', 'newscategory', 'listitem', 'config'));
+    		$view->with(compact('menu', 'itemcategory', 'newscategory', 'listitem', 'config', 'fanpage', 'map'));
     	});
     }
   }

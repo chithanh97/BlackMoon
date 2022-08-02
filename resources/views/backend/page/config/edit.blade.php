@@ -70,7 +70,7 @@
 							<label class="control-label">
 								Tiền tệ
 							</label>
-							<input type="text" name="monney" class="form-control" value="{{ old('monney') == '' ? $item->monney : old('monney') }}" />
+							<input type="text" name="money" class="form-control" value="{{ old('money') == '' ? $item->money : old('money') }}" />
 						</div>
 						<div class="form-group">
 							<label class="control-label">

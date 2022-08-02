@@ -23,17 +23,18 @@
 				<div class="row">
 					@foreach($listItem[$i->code] as $j)
 					<div class="item col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<a href="/items/{{ $j->subject }}.html">
-							<div class="item__img">
-								<img src="{{ getFirstImage($j->image) }}" alt="{{ $j->name }}">
-							</div>
-							<span class="item__detail">
-								<h4>{{ $j->name }}</h4>
-								<div>
-									{{ $j->detail_short }}
+						<div class="item__content">
+							<a href="/items/{{ $j->subject }}.html">
+								<div class="item__img">
+									<img src="{{ getFirstImage($j->image) }}" alt="{{ $j->name }}">
 								</div>
-							</span>
-						</a>
+							</a>
+							<div class="item__detail">
+								<h4 class="item__name"><a href="/items/{{ $j->subject }}.html">{{ $j->name }}</a></h4>
+								<?=getPrice($j) ?>
+								<button class="btn-buy button-buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Mua ngay</button>
+							</div>
+						</div>
 					</div>
 					@endforeach
 				</div>
@@ -57,17 +58,19 @@
 				<div class="row">
 					@foreach($listNews[$i->code] as $j)
 					<div class="news col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<a href="/news/{{ $j->subject }}.html">
-							<div class="news__img">
-								<img src="{{ $j->image }}" alt="{{ $j->name }}">
-							</div>
-							<span class="news__detail">
-								<h4>{{ $j->name }}</h4>
-								<div>
-									{{ $j->detail_short }}
+						<div class="news__content">
+							<a href="/news/{{ $j->subject }}.html">
+								<div class="news__img">
+									<img src="{{ $j->image }}" alt="{{ $j->name }}">
 								</div>
-							</span>
-						</a>
+								<div class="news__detail">
+									<h4 class="news__name">{{ $j->name }}</h4>
+									<div class="news__">
+										{{ $j->detail_short }}
+									</div>
+								</div>
+							</a>
+						</div>
 					</div>
 					@endforeach
 				</div>

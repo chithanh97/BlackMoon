@@ -85,13 +85,13 @@
 									<label class="control-label">
 										Giá sản phẩm
 									</label>
-									<input type="text" name="price" class="form-control" data-table='news' value="{{old('price') == '' ? $item->price : old('price') }}" />
+									<input type="text" name="price" class="form-control money" data-table='news' value="{{old('price') == '' ? $item->price : old('price') }}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">
 										Giá giảm
 									</label>
-									<input type="text" name="sell_price" class="form-control" data-table='news' value="{{old('sell_price') == '' ? $item->sell_price : old('sell_price') }}" />
+									<input type="text" name="sell_price" class="form-control money" data-table='news' value="{{old('sell_price') == '' ? $item->sell_price : old('sell_price') }}" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">

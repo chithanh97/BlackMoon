@@ -24,7 +24,7 @@ function vn_str_filter ($str){
 		$str = preg_replace("/($uni)/i", $nonUnicode, $str);
 	}
 
-	return str_replace(' ','-',$str);
+	return strtolower(str_replace(' ','-',$str));
 }
 
 function checkSubject($subject, $table, $id = -1){
@@ -32,18 +32,16 @@ function checkSubject($subject, $table, $id = -1){
 	return count($temp) == 0 ? false : true;
 }
 
-// function getMenuParent($array, $parent = -1, $not = -1, $select = -1, $str = '|--'){
-// 	$reponse = '';
-// 	foreach ($array as $key => $value) {
-// 		if($parent == $value->parent && $value->id != $not){
-// 				$selected = $select == $value->id ? 'selected' : '';
-// 				$temp = '<option '.$selected.' value="'.$value->id.'">'.$str.' '.$value->name.'</option>';
-// 				$reponse .= $temp;
-// 				$reponse .= getMenuParent($array, $value->id, $not, $select, '|--'.$str);
-// 		}
-// 	}
-// 	return $reponse;
-// }
+function getMoney(){
+	$t = '';
+	$temp = DB::table('config')->get();
+	foreach ($temp as $key => $value) {
+		$t = $value;
+		break;
+	}
+	return $t->money;
+}
+
 function getMenuParent($array, $parent = -1, $not = -1, $select = -1, $str = '|--'){
 	$reponse = '';
 	$selectx = explode(',', $select);
@@ -190,5 +188,24 @@ function getFirstImage($string){
 		break;
 	}
 	return $t[1];
+}
+
+function getSellPercent($item){
+	if(!is_numeric($item->sell_percent) || !is_numeric($item->price)){
+		return "Liên hệ";
+	}
+	return number_format($item->price - ($item->price * $item->sell_percent /100), 0, '.', ' ').' '.getMoney();
+}
+
+function getPrice($item){
+	if($item->price == null){
+		return '<div class="price"><p class="main-price">Liên hệ</p></div>';
+	} else if($item->price != null && $item->sell_price == null && $item->sell_percent == null) {
+		return '<div class="price"><p class="money main-price">'.number_format($item->price, 0, '.', ' ').' '.getMoney().'</p></div>';
+	} else if($item->price != null && $item->sell_percent != null) {
+		return '<div class="price money"><p class="main-price">'.getSellPercent($item).'</p><p class="percent-price">-'.$item->sell_percent.'% </p></div>';
+	} else {
+		return '<div class="price money"><p class="main-price">'.number_format($item->sell_price, 0, '.', ' ').' '.getMoney().'</p><p class="old-price">'.number_format($item->price, 0, '.', ' ').' '.getMoney().'</p></div>';
+	}
 }
 ?>

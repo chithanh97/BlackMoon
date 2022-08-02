@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\ItemCategoryController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\auth\user\LoginController;
 
 /*
@@ -14,9 +17,14 @@ use App\Http\Controllers\auth\user\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/', [FrontController::class, 'home'])->name('home');
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('login');
+
+Route::get('/newscategory/{subject}', [NewsCategoryController::class, 'show'])->name('front.newscategory');
+Route::get('/itemcategory/{subject}', [ItemCategoryController::class, 'show'])->name('front.itemscategory');
+
+Route::get('/news/{subject}.html', [NewsController::class, 'show'])->name('front.news');
 
 Route::get('/xoa', function() {
 	Artisan::call('cache:clear');

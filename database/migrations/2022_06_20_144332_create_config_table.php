@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('logo')->nullable();
             $table->text('favicon')->nullable();
             $table->text('domain')->nullable();
-            $table->text('monney')->nullable();
+            $table->text('money')->nullable();
             $table->text('title')->nullable();
             $table->text('description')->nullable();
             $table->text('keyword')->nullable();
