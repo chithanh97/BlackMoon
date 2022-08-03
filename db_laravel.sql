@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 02, 2022 lúc 07:03 PM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 8.1.1
+-- Host: 127.0.0.1
+-- Generation Time: Aug 03, 2022 at 01:18 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `db_laravel`
+-- Database: `db_laravel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admins`
+-- Table structure for table `admins`
 --
 
 CREATE TABLE `admins` (
@@ -38,7 +38,7 @@ CREATE TABLE `admins` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `admins`
+-- Dumping data for table `admins`
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `admins` (`id`, `name`, `email`, `password`, `remember_token`, `crea
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `banner`
+-- Table structure for table `banner`
 --
 
 CREATE TABLE `banner` (
@@ -65,7 +65,7 @@ CREATE TABLE `banner` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `config`
+-- Table structure for table `config`
 --
 
 CREATE TABLE `config` (
@@ -95,7 +95,7 @@ CREATE TABLE `config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `config`
+-- Dumping data for table `config`
 --
 
 INSERT INTO `config` (`id`, `name`, `logo`, `favicon`, `domain`, `money`, `title`, `description`, `keyword`, `ua`, `pixcel`, `ga`, `mailserver`, `passserver`, `certificate`, `phone`, `hotline`, `email`, `address`, `headcode`, `bodycode`, `created_at`, `updated_at`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `config` (`id`, `name`, `logo`, `favicon`, `domain`, `money`, `title
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -120,7 +120,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `fanpage`
+-- Table structure for table `fanpage`
 --
 
 CREATE TABLE `fanpage` (
@@ -135,7 +135,7 @@ CREATE TABLE `fanpage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `fanpage`
+-- Dumping data for table `fanpage`
 --
 
 INSERT INTO `fanpage` (`id`, `name`, `detail`, `status`, `sort`, `lang`, `created_at`, `updated_at`) VALUES
@@ -144,7 +144,7 @@ INSERT INTO `fanpage` (`id`, `name`, `detail`, `status`, `sort`, `lang`, `create
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `itemcategory`
+-- Table structure for table `itemcategory`
 --
 
 CREATE TABLE `itemcategory` (
@@ -169,7 +169,7 @@ CREATE TABLE `itemcategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `itemcategory`
+-- Dumping data for table `itemcategory`
 --
 
 INSERT INTO `itemcategory` (`id`, `code`, `name`, `subject`, `parent`, `detail`, `detail_short`, `image`, `link`, `sort`, `hot`, `status`, `title`, `description`, `keyword`, `lang`, `created_at`, `updated_at`) VALUES
@@ -178,7 +178,7 @@ INSERT INTO `itemcategory` (`id`, `code`, `name`, `subject`, `parent`, `detail`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `items`
+-- Table structure for table `items`
 --
 
 CREATE TABLE `items` (
@@ -206,19 +206,19 @@ CREATE TABLE `items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `items`
+-- Dumping data for table `items`
 --
 
 INSERT INTO `items` (`id`, `name`, `subject`, `parent`, `detail`, `detail_short`, `image`, `image_child`, `link`, `price`, `sell_price`, `sell_percent`, `sort`, `hot`, `status`, `title`, `description`, `keyword`, `lang`, `created_at`, `updated_at`) VALUES
 (1, 'Giày 1', 'Giay-1', 'NEWS63025108', '<p><strong>Lorem Ipsum</strong><span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>\r\n<p><span><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659339770189\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"],[\"IMGS_OTHER_1659339773195\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"]]', NULL, NULL, '100000', '80000', NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 00:43:28', '2022-08-01 00:43:28'),
 (2, 'Giày 2', 'Giay-2', 'NEWS63025108', '<p><strong>Lorem Ipsum</strong><span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>\r\n<p><span><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659339866372\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"],[\"IMGS_OTHER_1659339869481\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"]]', NULL, NULL, '100000', '80000', '10', 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 00:44:31', '2022-08-01 01:47:54'),
 (5, 'Giày 3', 'Giay-3', 'NEWS63025108', '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659343490465\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"]]', NULL, NULL, '100000', '20000', NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 01:44:54', '2022-08-01 01:45:10'),
-(6, 'Giày 4', 'Giay-4', 'NEWS63025108', '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659343555514\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"]]', NULL, NULL, '100000', NULL, NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 01:46:04', '2022-08-01 01:46:04');
+(6, 'Giày 4', 'Giay-4', 'NEWS63025108', '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659343555514\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"],[\"IMGS_OTHER_1659521096095\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"],[\"IMGS_OTHER_1659521098901\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"]]', NULL, NULL, '1000000', NULL, NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 01:46:04', '2022-08-03 03:14:51');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `language`
+-- Table structure for table `language`
 --
 
 CREATE TABLE `language` (
@@ -233,7 +233,7 @@ CREATE TABLE `language` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `map`
+-- Table structure for table `map`
 --
 
 CREATE TABLE `map` (
@@ -248,7 +248,7 @@ CREATE TABLE `map` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `map`
+-- Dumping data for table `map`
 --
 
 INSERT INTO `map` (`id`, `name`, `detail`, `status`, `sort`, `lang`, `created_at`, `updated_at`) VALUES
@@ -257,7 +257,7 @@ INSERT INTO `map` (`id`, `name`, `detail`, `status`, `sort`, `lang`, `created_at
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `menuitems`
+-- Table structure for table `menuitems`
 --
 
 CREATE TABLE `menuitems` (
@@ -273,7 +273,7 @@ CREATE TABLE `menuitems` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `menuitems`
+-- Dumping data for table `menuitems`
 --
 
 INSERT INTO `menuitems` (`id`, `title`, `name`, `slug`, `type`, `target`, `menu_id`, `created_at`, `updated_at`) VALUES
@@ -287,7 +287,7 @@ INSERT INTO `menuitems` (`id`, `title`, `name`, `slug`, `type`, `target`, `menu_
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `menus`
+-- Table structure for table `menus`
 --
 
 CREATE TABLE `menus` (
@@ -302,7 +302,7 @@ CREATE TABLE `menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `menus`
+-- Dumping data for table `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `location`, `content`, `status`, `lang`, `created_at`, `updated_at`) VALUES
@@ -311,7 +311,7 @@ INSERT INTO `menus` (`id`, `name`, `location`, `content`, `status`, `lang`, `cre
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -321,7 +321,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -350,7 +350,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE `news` (
@@ -374,7 +374,7 @@ CREATE TABLE `news` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `news`
+-- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `name`, `subject`, `parent`, `detail`, `detail_short`, `image`, `link`, `sort`, `hot`, `status`, `title`, `description`, `keyword`, `lang`, `created_at`, `updated_at`) VALUES
@@ -385,7 +385,7 @@ INSERT INTO `news` (`id`, `name`, `subject`, `parent`, `detail`, `detail_short`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `newscategory`
+-- Table structure for table `newscategory`
 --
 
 CREATE TABLE `newscategory` (
@@ -410,7 +410,7 @@ CREATE TABLE `newscategory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `newscategory`
+-- Dumping data for table `newscategory`
 --
 
 INSERT INTO `newscategory` (`id`, `code`, `name`, `subject`, `parent`, `detail`, `detail_short`, `image`, `link`, `sort`, `hot`, `status`, `title`, `description`, `keyword`, `lang`, `created_at`, `updated_at`) VALUES
@@ -420,7 +420,7 @@ INSERT INTO `newscategory` (`id`, `code`, `name`, `subject`, `parent`, `detail`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `password_resets`
+-- Table structure for table `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -432,7 +432,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -450,7 +450,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sessions`
+-- Table structure for table `sessions`
 --
 
 CREATE TABLE `sessions` (
@@ -465,7 +465,7 @@ CREATE TABLE `sessions` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `slide`
+-- Table structure for table `slide`
 --
 
 CREATE TABLE `slide` (
@@ -480,7 +480,7 @@ CREATE TABLE `slide` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `slide`
+-- Dumping data for table `slide`
 --
 
 INSERT INTO `slide` (`id`, `name`, `image`, `link`, `status`, `lang`, `created_at`, `updated_at`) VALUES
@@ -491,7 +491,7 @@ INSERT INTO `slide` (`id`, `name`, `image`, `link`, `status`, `lang`, `created_a
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `social`
+-- Table structure for table `social`
 --
 
 CREATE TABLE `social` (
@@ -509,7 +509,7 @@ CREATE TABLE `social` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `store`
+-- Table structure for table `store`
 --
 
 CREATE TABLE `store` (
@@ -521,7 +521,7 @@ CREATE TABLE `store` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -536,7 +536,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -545,7 +545,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `video`
+-- Table structure for table `video`
 --
 
 CREATE TABLE `video` (
@@ -561,103 +561,103 @@ CREATE TABLE `video` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admins`
+-- Indexes for table `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `admins_email_unique` (`email`);
 
 --
--- Chỉ mục cho bảng `banner`
+-- Indexes for table `banner`
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `config`
+-- Indexes for table `config`
 --
 ALTER TABLE `config`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Chỉ mục cho bảng `fanpage`
+-- Indexes for table `fanpage`
 --
 ALTER TABLE `fanpage`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `itemcategory`
+-- Indexes for table `itemcategory`
 --
 ALTER TABLE `itemcategory`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `items`
+-- Indexes for table `items`
 --
 ALTER TABLE `items`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `language`
+-- Indexes for table `language`
 --
 ALTER TABLE `language`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `map`
+-- Indexes for table `map`
 --
 ALTER TABLE `map`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `menuitems`
+-- Indexes for table `menuitems`
 --
 ALTER TABLE `menuitems`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `menus`
+-- Indexes for table `menus`
 --
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `newscategory`
+-- Indexes for table `newscategory`
 --
 ALTER TABLE `newscategory`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `password_resets`
+-- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Chỉ mục cho bảng `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -665,7 +665,7 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Chỉ mục cho bảng `sessions`
+-- Indexes for table `sessions`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`id`),
@@ -673,156 +673,156 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
--- Chỉ mục cho bảng `slide`
+-- Indexes for table `slide`
 --
 ALTER TABLE `slide`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `social`
+-- Indexes for table `social`
 --
 ALTER TABLE `social`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `store`
+-- Indexes for table `store`
 --
 ALTER TABLE `store`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Chỉ mục cho bảng `video`
+-- Indexes for table `video`
 --
 ALTER TABLE `video`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `admins`
+-- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `banner`
+-- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `config`
+-- AUTO_INCREMENT for table `config`
 --
 ALTER TABLE `config`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `fanpage`
+-- AUTO_INCREMENT for table `fanpage`
 --
 ALTER TABLE `fanpage`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `itemcategory`
+-- AUTO_INCREMENT for table `itemcategory`
 --
 ALTER TABLE `itemcategory`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `items`
+-- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `language`
+-- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `map`
+-- AUTO_INCREMENT for table `map`
 --
 ALTER TABLE `map`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `menuitems`
+-- AUTO_INCREMENT for table `menuitems`
 --
 ALTER TABLE `menuitems`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `menus`
+-- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT cho bảng `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `newscategory`
+-- AUTO_INCREMENT for table `newscategory`
 --
 ALTER TABLE `newscategory`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `slide`
+-- AUTO_INCREMENT for table `slide`
 --
 ALTER TABLE `slide`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `social`
+-- AUTO_INCREMENT for table `social`
 --
 ALTER TABLE `social`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `store`
+-- AUTO_INCREMENT for table `store`
 --
 ALTER TABLE `store`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `video`
+-- AUTO_INCREMENT for table `video`
 --
 ALTER TABLE `video`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
