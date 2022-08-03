@@ -28,6 +28,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="navigation">
+			{{ $listItems->links("pagination::bootstrap-4") }}
+		</div>
 	</div>
 </div>
 @endsection

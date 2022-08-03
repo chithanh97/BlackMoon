@@ -5,6 +5,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\auth\user\LoginController;
 
 /*
@@ -25,6 +26,7 @@ Route::get('/newscategory/{subject}', [NewsCategoryController::class, 'show'])->
 Route::get('/itemcategory/{subject}', [ItemCategoryController::class, 'show'])->name('front.itemscategory');
 
 Route::get('/news/{subject}.html', [NewsController::class, 'show'])->name('front.news');
+Route::get('/items/{subject}.html', [ItemsController::class, 'show'])->name('front.items');
 
 Route::get('/xoa', function() {
 	Artisan::call('cache:clear');

@@ -77,7 +77,7 @@ class ItemsController extends Controller
 			'image' => json_encode($tempImage),
 			'status' => 1,
 			'detail' => $detail,
-			'price' => $price,
+			'price' => str_replace(',', '', $price),
 			'sell_price' => $sell_price,
 			'sell_percent' => $sell_percent,
 			'detail_short' => $detail_short,
@@ -179,7 +179,7 @@ class ItemsController extends Controller
 			'detail' => $detail,
 			'detail_short' => $detail_short,
 			'title' => $title,
-			'price' => $price,
+			'price' => str_replace(',', '', $price),
 			'sell_price' => $sell_price,
 			'sell_percent' => $sell_percent,
 			'description' => $description,
@@ -195,7 +195,12 @@ class ItemsController extends Controller
 		return redirect()->route('items.edit', $id);
 	}
 
-	function show($item){
-
+	function show($subject){
+		$item = Items::where('status', 1)->where('subject', $subject)->first();
+		if(isset($item) > 0) {
+			return view('frontend.page.item', compact('item'));
+		} else {
+			return view('error');
+		}
 	}
 }

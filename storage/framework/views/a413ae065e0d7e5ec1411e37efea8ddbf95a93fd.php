@@ -23,18 +23,18 @@
 				<div class="row">
 					<?php $__currentLoopData = $listItem[$i->code]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $j): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<div class="item col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<a href="/items/<?php echo e($j->subject); ?>.html">
-							<div class="item__img">
-								<img src="<?php echo e(getFirstImage($j->image)); ?>" alt="<?php echo e($j->name); ?>">
-							</div>
-							<span class="item__detail">
-								<h4><?php echo e($j->name); ?></h4>
-								<div>
-									<?php echo e($j->detail_short); ?>
-
+						<div class="item__content">
+							<a href="/items/<?php echo e($j->subject); ?>.html">
+								<div class="item__img">
+									<img src="<?php echo e(getFirstImage($j->image)); ?>" alt="<?php echo e($j->name); ?>">
 								</div>
-							</span>
-						</a>
+							</a>
+							<div class="item__detail">
+								<h4 class="item__name"><a href="/items/<?php echo e($j->subject); ?>.html"><?php echo e($j->name); ?></a></h4>
+								<?=getPrice($j) ?>
+								<button class="btn-buy button-buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Mua ngay</button>
+							</div>
+						</div>
 					</div>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				</div>
@@ -58,18 +58,20 @@
 				<div class="row">
 					<?php $__currentLoopData = $listNews[$i->code]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $j): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 					<div class="news col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<a href="/news/<?php echo e($j->subject); ?>.html">
-							<div class="news__img">
-								<img src="<?php echo e($j->image); ?>" alt="<?php echo e($j->name); ?>">
-							</div>
-							<span class="news__detail">
-								<h4><?php echo e($j->name); ?></h4>
-								<div>
-									<?php echo e($j->detail_short); ?>
-
+						<div class="news__content">
+							<a href="/news/<?php echo e($j->subject); ?>.html">
+								<div class="news__img">
+									<img src="<?php echo e($j->image); ?>" alt="<?php echo e($j->name); ?>">
 								</div>
-							</span>
-						</a>
+								<div class="news__detail">
+									<h4 class="news__name"><?php echo e($j->name); ?></h4>
+									<div class="news__">
+										<?php echo e($j->detail_short); ?>
+
+									</div>
+								</div>
+							</a>
+						</div>
 					</div>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				</div>

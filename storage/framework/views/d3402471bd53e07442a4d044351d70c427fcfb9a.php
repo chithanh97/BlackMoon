@@ -41,7 +41,7 @@
 	<meta name="ICBM" content="10.806105, 106.63668" />
 
 	<!-- Login css -->
-	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/fonts/font-awesome-4.7.0/css/font-awesome.min.css')); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/frontend/fonts/font-awesome-4.7.0/css/font-awesome.min.css')); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/vendor/animate/animate.css')); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo e(asset('assets/backend/vendor/css-hamburgers/hamburgers.min.css')); ?>">
@@ -444,6 +444,7 @@
 	<script src="<?php echo e(asset('assets/backend/js/owl.carousel.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/jquery.cookie.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/js/dashboard.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/backend/js/number.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/backend/plugin/select2/select2.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('storage/filemanager/js/tinymce/js/tinymce/tinymce.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('storage/filemanager/js/tinymce/js/tinymce/tinymce.config.js')); ?>"></script>

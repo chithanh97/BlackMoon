@@ -153,6 +153,10 @@ class NewsController extends Controller
 
 	function show($subject){
 		$news = News::where('subject', $subject)->where('status', 1)->first();
-		return view('frontend.page.news', compact('news'));
+		if(isset($news) > 0) {
+			return view('frontend.page.news', compact('news'));
+		} else {
+			return view('error');
+		}
 	}
 }

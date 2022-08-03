@@ -151,8 +151,12 @@ class ItemCategoryController extends Controller
 
 	function show($subject){
 		$category = Itemcategory::where('subject', $subject)->first();
-		$listItems = Items::where('parent', 'like', "%".$category->code."%")->where('status', 1)->get();
-		return view('frontend.page.itemcategory', compact('listItems', 'category'));
+		if(isset($category) > 0) {
+			$listItems = Items::where('parent', 'like', "%".$category->code."%")->where('status', 1)->orderby('id','DESC')->paginate(12)->withQueryString();
+			return view('frontend.page.itemcategory', compact('listItems', 'category'));
+		} else {
+			return view('error');
+		}
 	}
 
 }

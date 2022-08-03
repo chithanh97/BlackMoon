@@ -9,8 +9,8 @@
 			</div>
 			<div class="content">
 				<div class="row">
-				@foreach($listNews as $value)
-				<div class="news col-lg-4 col-md-4 col-sm-6 col-xs-12">
+					@foreach($listNews as $value)
+					<div class="news col-lg-4 col-md-4 col-sm-6 col-xs-12">
 						<div class="news__content">
 							<a href="/news/{{ $value->subject }}.html">
 								<div class="news__img">
@@ -25,9 +25,12 @@
 							</a>
 						</div>
 					</div>
-				@endforeach
+					@endforeach
+				</div>
 			</div>
-			</div>
+		</div>
+		<div class="navigation">
+			{{ $listNews->links("pagination::bootstrap-4") }}
 		</div>
 	</div>
 </div>

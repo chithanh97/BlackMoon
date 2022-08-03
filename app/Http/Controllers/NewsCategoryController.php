@@ -147,7 +147,11 @@ class NewsCategoryController extends Controller
 
 	function show($subject){
 		$category = Newscategory::where('subject', $subject)->first();
-		$listNews = News::where('parent', 'like', "%".$category->code."%")->where('status', 1)->get();
-		return view('frontend.page.newscategory', compact('listNews', 'category'));
+		if(isset($category) > 0) {
+			$listNews = News::where('parent', 'like', "%".$category->code."%")->where('status', 1)->orderby('id','DESC')->paginate(12)->withQueryString();
+			return view('frontend.page.newscategory', compact('listNews', 'category'));
+		} else {
+			return view('error');
+		}
 	}
 }
