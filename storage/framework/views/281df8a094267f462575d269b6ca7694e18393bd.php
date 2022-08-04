@@ -1,4 +1,4 @@
-<title><?php echo $__env->yieldContent('title'); ?></title>
+	<title><?php echo $__env->yieldContent('title'); ?></title>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<link rel="shortcut icon" type="image/x-icon" href="" />
@@ -35,5 +35,4 @@
 	<meta name="geo.placename" content="Ho Chi Minh City" />
 	<meta name="geo.position" content="10.806105;106.63668" />
 	<meta name="ICBM" content="10.806105, 106.63668" />
-
 <?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/frontend/layout/header.blade.php ENDPATH**/ ?>

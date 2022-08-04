@@ -83,18 +83,4 @@
 	</div>
 </section>
 <?php $__env->stopSection(); ?>
-<?php $__env->startPush('scripts'); ?>
-<script>
-	$('.list--item__slide').owlCarousel({
-		loop: true,
-		margin: 10,
-		nav: false,
-		items: 1,
-		autoplay: true,
-		lazyLoad: true,
-		autoplaySpeed: 1000,
-		autoplayHoverPause: true
-	})
-</script>
-<?php $__env->stopPush(); ?>
 <?php echo $__env->make('frontend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/frontend/page/home.blade.php ENDPATH**/ ?>

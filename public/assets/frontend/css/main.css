@@ -15,7 +15,9 @@ ul, ol{
   padding: 0;
   margin: 0;
 }
-
+.hidden{
+  display: none!important;
+}
 
 /*Menu*/
 #menu-main{
@@ -255,11 +257,15 @@ ul, ol{
   border-bottom: 1.5px solid #ccc;
   margin-bottom: 30px;
 }
-.content--footer p{
-  color: #ccc
+#main-footer .content--footer p{
+  color: #ccc;
+  margin-bottom: 5px;
 }
 .content--footer p span{
   font-weight: bold;
+}
+#main-footer p{
+  margin-bottom: 0
 }
 
 /*panigation*/

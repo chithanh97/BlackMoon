@@ -82,17 +82,3 @@
 	</div>
 </section>
 @endsection
-@push('scripts')
-<script>
-	$('.list--item__slide').owlCarousel({
-		loop: true,
-		margin: 10,
-		nav: false,
-		items: 1,
-		autoplay: true,
-		lazyLoad: true,
-		autoplaySpeed: 1000,
-		autoplayHoverPause: true
-	})
-</script>
-@endpush
