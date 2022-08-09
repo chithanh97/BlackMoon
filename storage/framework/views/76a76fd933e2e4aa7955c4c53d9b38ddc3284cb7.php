@@ -94,7 +94,7 @@
 										Danh mục
 									</label>
 									<select name="parent[]" id="parent" class="form-control" multiple>
-										<option value='0'>-- Chọn --</option>
+										<option value='0' <?=(explode(',', $item->parent)[0] == 0) ? 'selected' : '' ?>>-- Chọn --</option>
 										<?php echo getMenuParent($parent, 0, -1, $item->parent) ?>
 									</select>
 								</div>

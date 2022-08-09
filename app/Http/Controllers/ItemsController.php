@@ -197,8 +197,9 @@ class ItemsController extends Controller
 
 	function show($subject){
 		$item = Items::where('status', 1)->where('subject', $subject)->first();
+		$listItems = Items::where('id','<>', $item->id)->where('parent', 'like', "%".explode(',', $item->parent)[0]."%")->take(10)->get();
 		if(isset($item) > 0) {
-			return view('frontend.page.item', compact('item'));
+			return view('frontend.page.item', compact('item', 'listItems'));
 		} else {
 			return view('error');
 		}

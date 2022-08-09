@@ -41,7 +41,7 @@
 	<script src="<?php echo e(asset('assets/frontend/js/bootstrap.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/frontend/js/owl.carousel.min.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/frontend/plugin/fancybox/jquery.fancybox.min.js')); ?>"></script>
-	<script src="<?php echo e(asset('assets/frontend/js/elevatezoom.js')); ?>"></script>
+	<script src="<?php echo e(asset('assets/frontend/js/elevatezoomPlus.js')); ?>"></script>
 	<script src="<?php echo e(asset('assets/frontend/js/main.js')); ?>"></script>
 	<?php echo $__env->yieldPushContent('scripts'); ?>
 </body>

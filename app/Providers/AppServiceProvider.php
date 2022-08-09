@@ -11,6 +11,7 @@ use App\Models\Newscategory;
 use App\Models\Config;
 use App\Models\Fanpage;
 use App\Models\Map;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,13 +34,14 @@ class AppServiceProvider extends ServiceProvider
     {
     	view()->composer('frontend.index', function($view){
     		$menu = Menu::orderBy('id', 'DESC')->where(['location' => 1, 'status' => 1])->first();
+    		$config = Config::orderBy('id', 'DESC')->first();
     		$itemcategory = Itemcategory::where('status', 1)->get();
     		$newscategory = Newscategory::where('status', 1)->get();
     		$listitem = Menuitems::where('menu_id', $menu->id)->get();
     		$fanpage = Fanpage::first();
     		$map = Map::first();
-    		$config = Config::orderBy('id', 'DESC')->first();
     		$view->with(compact('menu', 'itemcategory', 'newscategory', 'listitem', 'config', 'fanpage', 'map'));
     	});
+
     }
   }

@@ -109,7 +109,7 @@
 										<label for="product">Sản phẩm</label>
 									</div>
 									<div class="form-check">
-										<input type="checkbox" class="form-check-input" id="contact" value="Liên hệ" data-url="/lien-he/">
+										<input type="checkbox" class="form-check-input" id="contact" value="Liên hệ" data-url="/lien-he.html">
 										<label for="contact">Liên hệ</label>
 									</div>
 								</div>

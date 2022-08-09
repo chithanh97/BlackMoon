@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\auth\user\LoginController;
 
 /*
@@ -27,6 +28,8 @@ Route::get('/itemcategory/{subject}', [ItemCategoryController::class, 'show'])->
 
 Route::get('/news/{subject}.html', [NewsController::class, 'show'])->name('front.news');
 Route::get('/items/{subject}.html', [ItemsController::class, 'show'])->name('front.items');
+Route::get('/lien-he.html', [ContactController::class, 'show'])->name('front.contact');
+Route::post('/lien-he.html', [ContactController::class, 'save'])->name('front.contact.save');
 
 Route::get('/xoa', function() {
 	Artisan::call('cache:clear');
