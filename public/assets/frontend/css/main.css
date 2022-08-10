@@ -70,6 +70,23 @@ ul, ol{
 #menu-main .item-menu li ul li:last-child{
   border-bottom: 0;
 }
+.show-cart{
+  font-size: 20px;
+  position: relative;
+}
+.count-cart{
+  position: absolute;
+  background: rgba(255,255,255,0.85);
+  min-width: 20px;
+  display: flex;;
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  top: 0;
+  right: 0px;
+  font-weight: bold;
+}
 
 /*item*/
 .item{
@@ -398,6 +415,7 @@ ul, ol{
 .list-thumbs{
   margin: 15px 0;
   border: 1px solid #000;
+  border-right: 0;
 }
 .item-content{
   margin-top: 30px;
@@ -494,4 +512,43 @@ input[type=number]
 }
 #myTab{
   margin-bottom: 30px;
+}
+
+/*cart*/
+.empty-data{
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+.cartpage table img{
+  max-width: 100px;
+  width: 100%;
+}
+.cartpage table{
+  width: 100%;
+}
+.cartpage table td{
+  vertical-align: middle;
+}
+.cartpage table td:first-child{
+  text-align: center;
+}
+.cartpage table td:first-child i{
+  color: #fff;
+  background: #ed1d24;
+  padding: 7px;
+  border-radius: 5px;
+}
+.cartpage .quantity{
+  width: 55%;
+}
+#update-quantity .btn-update-quantity{
+  margin-left: 5px;
+  cursor: pointer;
+  margin-right: -5px;
+}
+#update-quantity{
+  display: flex;
 }

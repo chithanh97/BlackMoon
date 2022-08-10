@@ -12,6 +12,7 @@ use App\Models\Config;
 use App\Models\Fanpage;
 use App\Models\Map;
 use View;
+use Cart;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,7 +41,8 @@ class AppServiceProvider extends ServiceProvider
     		$listitem = Menuitems::where('menu_id', $menu->id)->get();
     		$fanpage = Fanpage::first();
     		$map = Map::first();
-    		$view->with(compact('menu', 'itemcategory', 'newscategory', 'listitem', 'config', 'fanpage', 'map'));
+    		$countCart = Cart::count();
+    		$view->with(compact('menu', 'itemcategory', 'newscategory', 'listitem', 'config', 'fanpage', 'map', 'countCart'));
     	});
 
     }

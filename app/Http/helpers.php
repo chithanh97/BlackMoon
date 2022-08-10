@@ -194,18 +194,18 @@ function getSellPercent($item){
 	if(!is_numeric($item->sell_percent) || !is_numeric($item->price)){
 		return "Liên hệ";
 	}
-	return number_format($item->price - ($item->price * $item->sell_percent /100), 0, '.', ' ').' '.getMoney();
+	return number_format($item->price - ($item->price * $item->sell_percent /100), 0, '.', ' ').getMoney();
 }
 
 function getPrice($item){
 	if($item->price == null){
 		return '<div class="price"><p class="main-price">Liên hệ</p></div>';
 	} else if($item->price != null && $item->sell_price == null && $item->sell_percent == null) {
-		return '<div class="price"><p class="money main-price">'.number_format($item->price, 0, '.', ' ').' '.getMoney().'</p></div>';
+		return '<div class="price"><p class="money main-price">'.number_format($item->price, 0, '.', ' ').getMoney().'</p></div>';
 	} else if($item->price != null && $item->sell_percent != null) {
 		return '<div class="price money"><p class="main-price">'.getSellPercent($item).'</p><p class="percent-price">-'.$item->sell_percent.'% </p></div>';
 	} else {
-		return '<div class="price money"><p class="main-price">'.number_format($item->sell_price, 0, '.', ' ').' '.getMoney().'</p><p class="old-price">'.number_format($item->price, 0, '.', ' ').' '.getMoney().'</p></div>';
+		return '<div class="price money"><p class="main-price">'.number_format($item->sell_price, 0, '.', ' ').getMoney().'</p><p class="old-price">'.number_format($item->price, 0, '.', ' ').getMoney().'</p></div>';
 	}
 }
 

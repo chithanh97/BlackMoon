@@ -1,11 +1,11 @@
 
-<?php $__env->startSection('title', $category->name); ?>
+<?php $__env->startSection('title', isset($category) ? $category->name : 'Sản phẩm'); ?>
 <?php $__env->startSection('content'); ?>
 <div class="newscategory">
 	<div class="container">
 		<div class="list--news">
 			<div class="title">
-				<h1><?php echo e($category->name); ?></h1>
+				<h1><?php echo e(isset($category) ? $category->name : 'Sản phẩm'); ?></h1>
 			</div>
 			<div class="content">
 				<div class="row">
@@ -20,7 +20,7 @@
 							<div class="item__detail">
 								<h4 class="item__name"><a href="/items/<?php echo e($value->subject); ?>.html"><?php echo e($value->name); ?></a></h4>
 								<?=getPrice($value) ?>
-								<button class="btn-buy button-buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Mua ngay</button>
+								<button data-id="<?php echo e($value->id); ?>" class="btn-buy button-buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Mua ngay</button>
 							</div>
 						</div>
 					</div>

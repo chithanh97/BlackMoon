@@ -159,4 +159,9 @@ class ItemCategoryController extends Controller
 		}
 	}
 
+	function showAll(){
+		$listItems = Items::where('status', 1)->orderby('id','DESC')->paginate(12)->withQueryString();
+		return view('frontend.page.itemcategory', compact('listItems'));
+	}
+
 }

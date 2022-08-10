@@ -36,10 +36,10 @@
 					</div>
 					<div class="add-cart">
 						<div class="quantity">
-							<input type="number" min="1" max="9" step="1" value="1">
+							<input id="qty" name="qty" type="number" min="1" max="100" step="1" value="1">
 						</div>
-						<button name="addtocart" class="btn btn-primary"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Thêm vào giỏ</button>
-						<button name="buynow" class="btn btn-info"><i class="fa fa-list-alt" aria-hidden="true"></i> Mua ngay</button>
+						<button data-id="<?php echo e($item->id); ?>" name="addtocart" class="btn btn-primary addtocart"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Thêm vào giỏ</button>
+						<button data-id="<?php echo e($item->id); ?>" name="buynow" class="btn btn-info button-buy"><i class="fa fa-list-alt" aria-hidden="true"></i> Mua ngay</button>
 					</div>
 					<div class="share-link">
 						<ul class="social-sharing list-unstyled">
@@ -120,39 +120,30 @@
 		$('.fancybox').addClass('hidden');
 		$('#'+id).removeClass('hidden');
 	});
-	jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
-	jQuery('.quantity').each(function() {
-		var spinner = jQuery(this),
-		input = spinner.find('input[type="number"]'),
-		btnUp = spinner.find('.quantity-up'),
-		btnDown = spinner.find('.quantity-down'),
-		min = input.attr('min'),
-		max = input.attr('max');
-
-		btnUp.click(function() {
-			var oldValue = parseFloat(input.val());
-			if (oldValue >= max) {
-				var newVal = oldValue;
-			} else {
-				var newVal = oldValue + 1;
+	$('.addtocart').click(function(){
+		let id = $(this).data('id');
+		let qty = $('#qty').val();
+		$.ajax({
+			url: '/add-cart/',
+			type: 'POST',
+			data: {
+				'id' : id,
+				'qty' : qty,
+			},
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
-			spinner.find("input").val(newVal);
-			spinner.find("input").trigger("change");
-		});
-
-		btnDown.click(function() {
-			var oldValue = parseFloat(input.val());
-			if (oldValue <= min) {
-				var newVal = oldValue;
+		}).done((res) => {
+			if(res > $('.count-cart').text()){
+				alert('Thêm vào giỏ hàng thành công!');
+				$('.count-cart').text(res);
 			} else {
-				var newVal = oldValue - 1;
+				alert('Có lỗi trong quá trình thêm vào!');
 			}
-			spinner.find("input").val(newVal);
-			spinner.find("input").trigger("change");
-		});
-
+		})
 	});
 </script>
+
 <?php $__env->stopPush(); ?>
 <?php $__env->startPush('styles'); ?>
 <style>

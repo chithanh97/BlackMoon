@@ -1,11 +1,11 @@
 @extends('frontend.index')
-@section('title', $category->name)
+@section('title', isset($category) ? $category->name : 'Sản phẩm')
 @section('content')
 <div class="newscategory">
 	<div class="container">
 		<div class="list--news">
 			<div class="title">
-				<h1>{{ $category->name }}</h1>
+				<h1>{{ isset($category) ? $category->name : 'Sản phẩm' }}</h1>
 			</div>
 			<div class="content">
 				<div class="row">
@@ -20,7 +20,7 @@
 							<div class="item__detail">
 								<h4 class="item__name"><a href="/items/{{ $value->subject }}.html">{{ $value->name }}</a></h4>
 								<?=getPrice($value) ?>
-								<button class="btn-buy button-buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Mua ngay</button>
+								<button data-id="{{ $value->id }}" class="btn-buy button-buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Mua ngay</button>
 							</div>
 						</div>
 					</div>

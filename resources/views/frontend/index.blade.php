@@ -23,6 +23,12 @@
 					</div>
 					<ul class="item-menu">
 						<?php if($menu->content != null) echo getMenuFront(json_decode($menu->content), $itemcategory, $newscategory, $listitem) ?>
+						<li>
+							<a href="{{ route('cart.show') }}" class="show-cart">
+								<span class="count-cart">{{ $countCart }}</span>
+								<i class="fa fa-shopping-cart"></i>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
