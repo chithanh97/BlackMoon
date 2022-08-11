@@ -413,7 +413,7 @@ ul, ol{
   padding: 5px;
 }
 .list-thumbs{
-  margin: 15px 0;
+  margin: 7px 0 15px 0;
   border: 1px solid #000;
   border-right: 0;
 }
@@ -528,6 +528,7 @@ input[type=number]
 }
 .cartpage table{
   width: 100%;
+  margin-bottom: 30px;
 }
 .cartpage table td{
   vertical-align: middle;
@@ -548,7 +549,51 @@ input[type=number]
   margin-left: 5px;
   cursor: pointer;
   margin-right: -5px;
+  justify-content: space-between;
 }
 #update-quantity{
   display: flex;
+}
+.cartpage table tfoot p{
+  margin-bottom: 0;
+  font-weight: bold;
+}
+.cartpage table thead{
+  font-weight: bold;
+}
+.cartpage table button{
+  cursor: pointer;
+}
+.cartpage table td:first-child button{
+  padding: 0;
+}
+.thanhtoan{
+  text-align: right;
+  margin-bottom: 30px;
+}
+.thanhtoan a{
+  color: blue;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.show-cart.animation-cart{
+  animation: cart .5s;
+}
+
+
+
+
+
+/*animetion cart*/
+@keyframes cart{
+  0%,100%{
+    transform: scale(1) rotate(0);
+  }
+  25%, 75%{
+    transform: scale(1.5) rotate(30deg);
+  }
+  50%{
+    transform: scale(1.5) rotate(-30deg);
+  }
+
 }

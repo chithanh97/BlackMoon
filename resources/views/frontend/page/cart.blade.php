@@ -22,14 +22,18 @@
 						@foreach(Cart::content() as $value)
 						<tr>
 							<td>
-								<a title="Xóa" href="{{ route('cart.delete', $value->rowId) }}"><i class="fa fa-trash"></i></a>
+								<button data-id="{{ $value->rowId }}" title="Xóa" class="btn btn-delete"><i class="fa fa-trash"></i></button>
 							</td>
 							<td>
 								<a href="{{ route('front.items', $value->options->subject) }}" title="Xem sản phấm">
 									<img src="{{ $value->options->image }}" alt="{{ $value->name }}">
 								</a>
 							</td>
-							<td>{{ $value->name }}</td>
+							<td>
+								<a href="{{ route('front.items', $value->options->subject) }}" title="Xem sản phấm">
+									{{ $value->name }}
+								</a>
+							</td>
 							<td>
 								<div id="update-quantity">
 									<div class="quantity">
@@ -46,7 +50,7 @@
 					<tfoot>
 						<tr>
 							<td>
-								<a title="Xóa giỏ hàng" href="{{ route('cart.delete.all') }}"><i class="fa fa-trash"></i></a>
+								<button title="Xóa giỏ hàng" class="btn btn-delete-all"><i class="fa fa-trash"></i></button>
 							</td>
 							<td colspan="4">
 								<p>
@@ -59,6 +63,7 @@
 						</tr>
 					</tfoot>
 				</table>
+				<div class="thanhtoan"><a href="{{ route('cart.pay') }}">Thanh toán <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
 				@else
 				<div class="empty-data">
 					Không có sản phẩm nào trong giỏ hàng
@@ -69,3 +74,61 @@
 	</div>
 </div>
 @endsection
+@push('scripts')
+<script>
+	$('.btn-update-quantity').click(function(){
+		let id = $(this).data('id');
+		let qty = $(this).parent().find('input').val();
+		// console.log(qty);
+		$.ajax({
+			url: '/update-cart/',
+			type: 'POST',
+			data: {
+				'id': id,
+				'qty': qty
+			},
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		}).done((res) => {
+			location.reload();
+		});
+	});
+
+	$('.btn-delete').click(function(){
+		let id = $(this).data('id');
+		if(confirm("Bạn chắc chắn muốn xóa?")) {
+			$.ajax({
+				url: '/delete-cart/',
+				type: 'POST',
+				data: {
+					'id': id,
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			}).done((res) => {
+				location.reload();
+			});
+		}
+	});
+
+	$('.btn-delete-all').click(function(){
+		let id = $(this).data('id');
+		if(confirm("Bạn chắc chắn muốn xóa?")) {
+			$.ajax({
+				url: '/delete-cart-all/',
+				type: 'POST',
+				data: {
+					'id': id,
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			}).done((res) => {
+				location.reload();
+			});
+		}
+	});
+</script>
+@endpush

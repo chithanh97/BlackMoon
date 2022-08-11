@@ -41,18 +41,16 @@ class CartController extends Controller
 		echo Cart::count();
 	}
 
-	public function deleteCart($rowId)
+	public function deleteCart(Request $request)
 	{
-		Cart::remove($rowId);
-
-		return redirect()->back();
+		Cart::remove($request->id);
 	}
 
-	public function updateQuantity(Request $request, $rowId)
+	public function updateQuantity(Request $request)
 	{
-		Cart::update($rowId, $request->input('update_qty'));
+		Cart::update($request->id, $request->qty);
 
-		return redirect()->back();
+		echo Cart::count();
 	}
 
 	public function deleteAllCart(){
@@ -62,5 +60,9 @@ class CartController extends Controller
 
 	public function showCart(){
 		return view('frontend.page.cart');
+	}
+
+	public function payCart(){
+		return view('frontend.page.paycart');
 	}
 }

@@ -22,14 +22,19 @@
 						<?php $__currentLoopData = Cart::content(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 						<tr>
 							<td>
-								<a title="Xóa" href="<?php echo e(route('cart.delete', $value->rowId)); ?>"><i class="fa fa-trash"></i></a>
+								<button data-id="<?php echo e($value->rowId); ?>" title="Xóa" class="btn btn-delete"><i class="fa fa-trash"></i></button>
 							</td>
 							<td>
 								<a href="<?php echo e(route('front.items', $value->options->subject)); ?>" title="Xem sản phấm">
 									<img src="<?php echo e($value->options->image); ?>" alt="<?php echo e($value->name); ?>">
 								</a>
 							</td>
-							<td><?php echo e($value->name); ?></td>
+							<td>
+								<a href="<?php echo e(route('front.items', $value->options->subject)); ?>" title="Xem sản phấm">
+									<?php echo e($value->name); ?>
+
+								</a>
+							</td>
 							<td>
 								<div id="update-quantity">
 									<div class="quantity">
@@ -46,7 +51,7 @@
 					<tfoot>
 						<tr>
 							<td>
-								<a title="Xóa giỏ hàng" href="<?php echo e(route('cart.delete.all')); ?>"><i class="fa fa-trash"></i></a>
+								<button title="Xóa giỏ hàng" class="btn btn-delete-all"><i class="fa fa-trash"></i></button>
 							</td>
 							<td colspan="4">
 								<p>
@@ -59,6 +64,7 @@
 						</tr>
 					</tfoot>
 				</table>
+				<div class="thanhtoan"><a href="<?php echo e(route('cart.pay')); ?>">Thanh toán <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
 				<?php else: ?>
 				<div class="empty-data">
 					Không có sản phẩm nào trong giỏ hàng
@@ -69,4 +75,62 @@
 	</div>
 </div>
 <?php $__env->stopSection(); ?>
+<?php $__env->startPush('scripts'); ?>
+<script>
+	$('.btn-update-quantity').click(function(){
+		let id = $(this).data('id');
+		let qty = $(this).parent().find('input').val();
+		// console.log(qty);
+		$.ajax({
+			url: '/update-cart/',
+			type: 'POST',
+			data: {
+				'id': id,
+				'qty': qty
+			},
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			}
+		}).done((res) => {
+			location.reload();
+		});
+	});
+
+	$('.btn-delete').click(function(){
+		let id = $(this).data('id');
+		if(confirm("Bạn chắc chắn muốn xóa?")) {
+			$.ajax({
+				url: '/delete-cart/',
+				type: 'POST',
+				data: {
+					'id': id,
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			}).done((res) => {
+				location.reload();
+			});
+		}
+	});
+
+	$('.btn-delete-all').click(function(){
+		let id = $(this).data('id');
+		if(confirm("Bạn chắc chắn muốn xóa?")) {
+			$.ajax({
+				url: '/delete-cart-all/',
+				type: 'POST',
+				data: {
+					'id': id,
+				},
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			}).done((res) => {
+				location.reload();
+			});
+		}
+	});
+</script>
+<?php $__env->stopPush(); ?>
 <?php echo $__env->make('frontend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/frontend/page/cart.blade.php ENDPATH**/ ?>

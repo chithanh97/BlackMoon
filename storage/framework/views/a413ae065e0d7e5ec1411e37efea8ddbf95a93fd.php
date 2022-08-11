@@ -32,7 +32,7 @@
 							<div class="item__detail">
 								<h4 class="item__name"><a href="/items/<?php echo e($j->subject); ?>.html"><?php echo e($j->name); ?></a></h4>
 								<?=getPrice($j) ?>
-								<button data-id="<?php echo e($item->id); ?>" class="btn-buy button-buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Mua ngay</button>
+								<button data-id="<?php echo e($j->id); ?>" class="btn-buy button-buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Mua ngay</button>
 							</div>
 						</div>
 					</div>

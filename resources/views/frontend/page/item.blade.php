@@ -119,9 +119,11 @@
 		$('.fancybox').addClass('hidden');
 		$('#'+id).removeClass('hidden');
 	});
+
 	$('.addtocart').click(function(){
 		let id = $(this).data('id');
 		let qty = $('#qty').val();
+		$('.show-cart').removeClass('animation-cart');
 		$.ajax({
 			url: '/add-cart/',
 			type: 'POST',
@@ -133,13 +135,14 @@
 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
 		}).done((res) => {
-			if(res > $('.count-cart').text()){
-				alert('Thêm vào giỏ hàng thành công!');
+			if(parseInt(res) > parseInt($('.count-cart').text())){
 				$('.count-cart').text(res);
+				$('.show-cart').addClass('animation-cart');
+				setTimeout(()=>{$('.show-cart').removeClass('animation-cart');}, 500);
 			} else {
 				alert('Có lỗi trong quá trình thêm vào!');
 			}
-		})
+		});
 	});
 </script>
 

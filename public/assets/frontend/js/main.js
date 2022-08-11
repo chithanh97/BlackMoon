@@ -101,3 +101,33 @@ jQuery('.quantity').each(function() {
   });
 
 });
+
+function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY
+  };
+}
+
+$('.button-buy').click(function(){
+    let id = $(this).data('id');
+    $.ajax({
+      url: '/add-cart/',
+      type: 'POST',
+      data: {
+        'id' : id,
+        'qty' : 1,
+      },
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    }).done((res) => {
+      // console.log(res);
+      if(parseInt(res) > parseInt($('.count-cart').text())){
+        location.href = "/view-cart.html";
+      } else {
+        alert('Có lỗi trong quá trình mua hàng!');
+      }
+    });
+  });
