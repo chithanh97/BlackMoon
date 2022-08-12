@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 11, 2022 lúc 12:31 PM
+-- Thời gian đã tạo: Th8 12, 2022 lúc 12:24 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -100,6 +100,23 @@ CREATE TABLE `config` (
 
 INSERT INTO `config` (`id`, `name`, `logo`, `favicon`, `domain`, `money`, `title`, `description`, `keyword`, `ua`, `pixcel`, `ga`, `mailserver`, `passserver`, `certificate`, `phone`, `hotline`, `email`, `address`, `headcode`, `bodycode`, `created_at`, `updated_at`) VALUES
 (1, 'BlackMoon', 'http://127.0.0.1:8000/storage/uploads/logo/Laravel_logo_wordmark_logotype.png', 'http://127.0.0.1:8000/storage/uploads/logo/Laravel_logo_wordmark_logotype.png', NULL, 'đ', NULL, NULL, NULL, NULL, NULL, NULL, '', '1234567890', '1234567890', '1234567890', '1234567890', 'nganlong97@gmail.com', '1234567890', NULL, NULL, NULL, '2022-08-02 01:43:52');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1073,7 +1090,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2022_06_29_185307_create_store_table', 1),
 (19, '2022_07_10_033552_create_menus_table', 1),
 (20, '2022_07_10_033811_create_menuitems_table', 1),
-(21, '2022_07_22_044755_create_items_table', 1);
+(21, '2022_07_22_044755_create_items_table', 1),
+(22, '2022_08_09_082845_create_contact_table', 2),
+(23, '2022_08_12_084358_create_order_table', 2),
+(24, '2022_08_12_084420_create_order_item_table', 2);
 
 -- --------------------------------------------------------
 
@@ -1144,6 +1164,50 @@ CREATE TABLE `newscategory` (
 INSERT INTO `newscategory` (`id`, `code`, `name`, `subject`, `parent`, `detail`, `detail_short`, `image`, `link`, `sort`, `hot`, `status`, `title`, `description`, `keyword`, `lang`, `created_at`, `updated_at`) VALUES
 (1, 'NEWS74239643', 'Tin tức', 'tin-tuc', '0', NULL, NULL, '/storage/uploads/default/default.png', NULL, 0, 1, 1, NULL, NULL, NULL, 1, '2022-08-01 00:39:13', '2022-08-02 04:18:52'),
 (2, 'NEWS91959225', 'Tuyển dụng', 'Tuyen-dung', 'NEWS74239643', NULL, NULL, '/storage/uploads/default/default.png', NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 00:39:21', '2022-08-01 00:39:21');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order`
+--
+
+CREATE TABLE `order` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_code` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `province` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `district` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ward` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ship` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
+  `pay_method` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_item`
+--
+
+CREATE TABLE `order_item` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `id_item` int(11) NOT NULL,
+  `id_order` int(11) NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sell_price` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `percent_price` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -47483,6 +47547,12 @@ ALTER TABLE `config`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `district`
 --
 ALTER TABLE `district`
@@ -47554,6 +47624,18 @@ ALTER TABLE `news`
 -- Chỉ mục cho bảng `newscategory`
 --
 ALTER TABLE `newscategory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `order_item`
+--
+ALTER TABLE `order_item`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -47659,6 +47741,12 @@ ALTER TABLE `config`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT cho bảng `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `district`
 --
 ALTER TABLE `district`
@@ -47716,7 +47804,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `news`
@@ -47729,6 +47817,18 @@ ALTER TABLE `news`
 --
 ALTER TABLE `newscategory`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `order`
+--
+ALTER TABLE `order`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `order_item`
+--
+ALTER TABLE `order_item`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`

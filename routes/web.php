@@ -24,17 +24,23 @@ Route::get('/', [FrontController::class, 'home'])->name('home');
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('login');
 
+/*category*/
 Route::get('/newscategory/{subject}', [NewsCategoryController::class, 'show'])->name('front.newscategory');
 Route::get('/itemcategory/{subject}', [ItemCategoryController::class, 'show'])->name('front.itemscategory');
 Route::get('/san-pham/', [ItemCategoryController::class, 'showAll'])->name('front.itemscategory');
 
-Route::match(['get', 'post'], '/add-cart/', [CartController::class, 'saveCart'])->name('cart.add');
+/*cart*/
+Route::post('/add-cart/', [CartController::class, 'saveCart'])->name('cart.add');
 Route::post('/delete-cart/', [CartController::class, 'deleteCart'])->name('cart.delete');
 Route::post('/delete-cart-all/', [CartController::class, 'deleteAllCart'])->name('cart.delete.all');
 Route::post('/update-cart/', [CartController::class, 'updateQuantity'])->name('cart.update');
 Route::get('/view-cart.html', [CartController::class, 'showCart'])->name('cart.show');
 Route::get('/pay-cart.html', [CartController::class, 'payCart'])->name('cart.pay');
+Route::post('/order.html', [CartController::class, 'saveOrder'])->name('cart.order');
+Route::post('/district', [CartController::class, 'getDistrict'])->name('cart.district');
+Route::post('/ward', [CartController::class, 'getWard'])->name('cart.ward');
 
+/*item*/
 Route::get('/news/{subject}.html', [NewsController::class, 'show'])->name('front.news');
 Route::get('/items/{subject}.html', [ItemsController::class, 'show'])->name('front.items');
 Route::get('/lien-he.html', [ContactController::class, 'show'])->name('front.contact');
