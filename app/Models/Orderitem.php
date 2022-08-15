@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Orderitem extends Model
 
 {
-	protected $table = 'order';
+	protected $table = 'order_item';
 
 	protected $fillable = [
 		'id',
 		'id_item',
 		'id_order',
 		'name',
+		'qty',
 		'image',
 		'price',
 		'sell_price',

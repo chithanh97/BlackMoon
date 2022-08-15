@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    	view()->composer('frontend.index', function($view){
+    	view()->composer('*', function($view){
     		$menu = Menu::orderBy('id', 'DESC')->where(['location' => 1, 'status' => 1])->first();
     		$config = Config::orderBy('id', 'DESC')->first();
     		$itemcategory = Itemcategory::where('status', 1)->get();

@@ -18,10 +18,10 @@ return new class extends Migration
             $table->integer('id_item');
             $table->integer('id_order');
             $table->text('name');
+            $table->text('qty');
             $table->text('image');
             $table->text('price');
             $table->text('sell_price');
-            $table->text('percent_price');
             $table->timestamps();
         });
     }

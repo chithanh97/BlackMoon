@@ -17,6 +17,7 @@ use App\Http\Controllers\FanpageController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CartController;
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 
@@ -138,5 +139,12 @@ Route::middleware('admin.login')->group(function (){
 	Route::post('/menu/addmenunews', [MenuController::class, 'addMenuNews'])->name('menu.add.news');
 	Route::post('/menu/addmenulink', [MenuController::class, 'addMenuLink'])->name('menu.add.link');
 	Route::post('/menu/deleteitems', [MenuController::class, 'deleteMenuItem'])->name('menu.delete.items');
+
+	//Order
+	Route::get('/order', [CartController::class, 'index'])->name('order');
+	Route::get('/order/view/{id}', [CartController::class, 'view'])->name('order.view');
+	Route::get('/order/delete/{id}', [CartController::class, 'delete'])->name('order.delete');
+	Route::get('/order/deleteall', [CartController::class, 'deleteAll'])->name('order.deleteall');
+	Route::post('/order/changestatus', [CartController::class, 'changeStatus'])->name('order.changestatus');
 
 });

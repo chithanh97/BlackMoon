@@ -27,8 +27,8 @@
 						</div>
 						<div class="info--input">
 							<input name="name" type="text" class="form-control" placeholder="Họ tên (*)" value="<?php echo e(old('name')); ?>">
-							<input name="phone" type="text" class="form-control" placeholder="Số điện thoại (*)" value="<?php echo e(old('phone')); ?>">
-							<input name="email" type="text" class="form-control" placeholder="Email" value="<?php echo e(old('email')); ?>">
+							<input name="phone" type="tel" pattern="[0-9]{10}" class="form-control" placeholder="Số điện thoại (*)" value="<?php echo e(old('phone')); ?>">
+							<input name="email" type="email" class="form-control" placeholder="Email" value="<?php echo e(old('email')); ?>">
 							<input name="address" type="text" class="form-control" placeholder="Địa chỉ (*)" value="<?php echo e(old('address')); ?>">
 						</div>
 						<div class="info--select">
@@ -54,7 +54,7 @@
 							<h4>Hình thức thanh toán</h4>
 						</div>
 						<div class="ship-item active">
-							<input class="form-check-input" type="radio" value="1" name="pay--method" checked>
+							<input class="form-check-input pay--method" type="radio" value="1" name="pay_method" checked>
 							<img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="cod">
 							<div>
 								<p>COD</p>
@@ -62,7 +62,7 @@
 							</div>
 						</div>
 						<div class="ship-item">
-							<input class="form-check-input" type="radio" value="2" name="pay--method">
+							<input class="form-check-input pay--method" type="radio" value="2" name="pay_method">
 							<img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="momo">
 							<div>
 								<p>momo</p>

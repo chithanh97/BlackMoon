@@ -225,4 +225,22 @@ function getCurrentPageURL()
 	}
 	return $pageURL;
 }
+
+function getStatusOrder(){
+	return [
+		1 => 'Chờ xử lý',
+		2 => 'Chờ xuất hàng',
+		3 => 'Hoàn thành',
+		4 => 'Hủy đơn hàng',
+		5 => 'Hoàn trả đơn hàng',
+		6 => 'Đã tiếp nhận',
+	];
+}
+
+function getPayMethod(){
+	return [
+		1 => 'COD',
+		2 => 'MoMo',
+	];
+}
 ?>

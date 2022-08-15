@@ -9,7 +9,7 @@ use App\Models\Province;
 use App\Models\District;
 use App\Models\Ward;
 use App\Models\Order;
-use App\Models\Orderỉtem;
+use App\Models\Orderitem;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -19,7 +19,13 @@ use Session;
 
 class CartController extends Controller
 {
-	function saveCart(Request $request){
+
+	public function index(){
+		$list = Order::orderby('id','DESC')->paginate(10)->withQueryString();
+		return view('backend.page.order.index', compact('list'));
+	}
+
+	public function saveCart(Request $request){
 		$item = Items::find($request->id);
 		$price = $item->price;
 
@@ -38,6 +44,7 @@ class CartController extends Controller
 			'options' => [
 				'image' => getFirstImage($item->image),
 				'subject' => $item->subject,
+				'sell_price' => ($item->price - $price),
 			],
 		];
 
@@ -85,7 +92,36 @@ class CartController extends Controller
 			'address'   => 'required',
 		], $messages);
 
-		print_r($request->all());
+		$order = Order::create([
+			'order_code' => 'BM'.rand(100000, 999999),
+			'province' => $request->province,
+			'district' => $request->district,
+			'ward' => $request->ward,
+			'ship' => 0,
+			'name' => $request->name,
+			'phone' => $request->phone,
+			'email' => $request->email,
+			'address' => $request->address,
+			'note' => $request->note,
+			'total' => Cart::total(),
+			'status' => 1,
+			'pay_method' => $request->pay_method,
+		]);
+
+		foreach (Cart::content() as $key => $value) {
+			$temp = Orderitem::create([
+				'id_item' => $value->id,
+				'id_order' => $order->id,
+				'name' => $value->name,
+				'qty' => $value->qty,
+				'image' => $value->options->image,
+				'price' => $value->price,
+				'sell_price' => $value->options->sell_price == '' ? 0 : $value->options->sell_price,
+			]);
+			if($temp) Cart::remove($value->rowId);
+		}
+
+		return redirect()->route('cart.thanks', $order->order_code);
 	}
 
 	public function getDistrict(Request $request){
@@ -102,5 +138,28 @@ class CartController extends Controller
 		foreach ($listWard as $key => $value) {
 			echo '<option value="'.$value->id.'">'.$value->_name.'</option>';
 		}
+	}
+
+	public function thanks($idOrder){
+		$order = Order::where('order_code', $idOrder)->first();
+		return view('frontend.page.thanks', compact('order'));
+	}
+
+	public function changeStatus(Request $request){
+
+		$item = Order::findOrFail($request->id);
+
+		$response = $item->update([
+			'status' => $request->status,
+		]);
+
+		if($response) echo 'Thay đổi thành công!';
+		else echo 'Thay đổi thất bại!';
+	}
+
+	public function view($id){
+		$item = Order::findOrFail($id);
+		$listItem = Orderitem::where('id_order', $item->id)->get();
+		return view('backend.page.order.view', compact('item', 'listItem'));
 	}
 }

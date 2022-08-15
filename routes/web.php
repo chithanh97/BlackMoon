@@ -39,6 +39,7 @@ Route::get('/pay-cart.html', [CartController::class, 'payCart'])->name('cart.pay
 Route::post('/order.html', [CartController::class, 'saveOrder'])->name('cart.order');
 Route::post('/district', [CartController::class, 'getDistrict'])->name('cart.district');
 Route::post('/ward', [CartController::class, 'getWard'])->name('cart.ward');
+Route::get('/thank-you/{orderId}', [CartController::class, 'thanks'])->name('cart.thanks');
 
 /*item*/
 Route::get('/news/{subject}.html', [NewsController::class, 'show'])->name('front.news');
