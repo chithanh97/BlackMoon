@@ -1,31 +1,18 @@
 
 <?php $__env->startSection('title', 'Chi tiết đơn hàng'); ?>
-<?php $__env->startPush('styles'); ?>
-<style>
-	select option, select {
-		color: #fff!important;
-	}
-	.error-section .alert-danger{
-		margin: 0 -10px 15px -10px;
-	}
-	.error-section .alert-danger ul{
-		margin-bottom: 0;
-	}
-</style>
-<?php $__env->stopPush(); ?>
 <?php $__env->startSection('content'); ?>
 <div class="content bg-gray-lighter">
 	<div class="row items-push">
 		<div class="col-sm-7">
-			<h1 class="page-heading">Bài viết <small>Thêm mới Bài viết</small></h1>
+			<h1 class="page-heading">Đơn hàng <small>Chi tiết đơn hàng</small></h1>
 		</div>
 		<div class="col-sm-5 text-right hidden-xs">
 			<ol class="breadcrumb push-10-t">
 				<li><a href="<?php echo e(route('dashboard')); ?>">Quản trị</a>
 				</li>
-				<li><a href="<?php echo e(route('news')); ?>">Bài viết</a>
+				<li><a href="<?php echo e(route('order')); ?>">Đơn hàng</a>
 				</li>
-				<li>Thêm mới</li>
+				<li>Chi tiết đơn hàng</li>
 			</ol>
 		</div>
 	</div>
@@ -53,32 +40,23 @@
 							<h4>Thông tin vận chuyển</h4>
 						</div>
 						<div class="info--input">
-							<input name="name" type="text" class="form-control" placeholder="Họ tên (*)" value="<?php echo e(old('name')); ?>">
-							<input name="phone" type="tel" pattern="[0-9]{10}" class="form-control" placeholder="Số điện thoại (*)" value="<?php echo e(old('phone')); ?>">
-							<input name="email" type="email" class="form-control" placeholder="Email" value="<?php echo e(old('email')); ?>">
-							<input name="address" type="text" class="form-control" placeholder="Địa chỉ (*)" value="<?php echo e(old('address')); ?>">
+							<p><span>Họ tên:</span> <?php echo e($item->name); ?></p>
+							<p><span>Số điện thoại:</span> <?php echo e($item->phone); ?></p>
+							<p><span>Email:</span> <?php echo e($item->mail); ?></p>
+							<p><span>Địa chỉ:</span> <?php echo e($item->address); ?></p>
 						</div>
 						<div class="info--select">
-							<select class="form-control" name="province" id="province">
-								<option value="0">Chọn Tỉnh/Thành</option>
-
-							</select>
-							<select class="form-control" name="district" id="district">
-								<option value="0">Chọn Quận/Huyện</option>
-							</select>
-							<select class="form-control" name="ward" id="ward">
-								<option value="0">Chọn Phường/Xã</option>
-							</select>
+							<p><span>Tỉnh/Thành:</span> <?php echo e($province != '' ? $province->_name : '_____'); ?>, <span>Quận/Huyện:</span> <?php echo e($district != '' ? $district->_name : '_____'); ?>, <span>Phường/Xã:</span> <?php echo e($ward != '' ? $ward->_name : '_____'); ?></p>
 						</div>
 						<div class="info-textarea">
-							<textarea rows="5" name="note" class="form-control" placeholder="Ghi chú"><?php echo e(old('note')); ?></textarea>
+							<p><span>Ghi chú:</span> <?php echo e($item->note); ?></p>
 						</div>
 					</div>
 					<div class="ship">
 						<div class="title">
-							<h4>Hình thức thanh toán</h4>
+							<h4>Phương thức thanh toán</h4>
 						</div>
-						<div class="ship-item active">
+						<div class="ship-item <?php echo e($item->pay_method == 1 ? 'active' : ''); ?>">
 							<input class="form-check-input pay--method" type="radio" value="1" name="pay_method" checked>
 							<img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="cod">
 							<div>
@@ -86,7 +64,7 @@
 								<span>Thanh toán khi nhận hàng</span>
 							</div>
 						</div>
-						<div class="ship-item">
+						<div class="ship-item <?php echo e($item->pay_method == 2 ? 'active' : ''); ?>">
 							<input class="form-check-input pay--method" type="radio" value="2" name="pay_method">
 							<img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="momo">
 							<div>
@@ -102,20 +80,21 @@
 							<h4>Giỏ hàng</h4>
 						</div>
 						<div class="cart--view">
-							<?php $__currentLoopData = Cart::content(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+							<?php $__currentLoopData = $listItem; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $items): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 							<div class="cart--item">
 								<div class="cart--item__image">
-									<a href="<?php echo e(route('front.items', $item->options->subject)); ?>">
-										<img src="<?php echo e($item->options->image); ?>" alt="<?php echo e($item->name); ?>">
+									<a href="<?php echo e(route('front.items', $items->subject)); ?>">
+										<img src="<?php echo e($items->image); ?>" alt="<?php echo e($items->name); ?>">
 									</a>
 								</div>
 								<div class="cart--item__name">
-									<p><a href="<?php echo e(route('front.items', $item->options->subject)); ?>"><?php echo e($item->name); ?></a></p>
-									<span>x<?php echo e($item->qty); ?></span>
+									<p><a href="<?php echo e(route('front.items', $items->subject)); ?>"><?php echo e($items->name); ?></a></p>
+									<span>x<?php echo e($items->qty); ?></span>
 								</div>
 								<div class="cart--item__price">
-									<?php echo e(number_format($item->total, 0, '.', '.').getMoney()); ?>
+									<?php echo e(number_format($items->price, 0, '.', '.').getMoney()); ?>
 
+									<?php $sell += $items->sell_price ?>
 								</div>
 							</div>
 							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -126,7 +105,7 @@
 									Tạm tính:
 								</div>
 								<div class="cart--total__count">
-									<?php echo e(Cart::total().getMoney()); ?>
+									<?php echo e(number_format($item->total, 0, '.', '.').getMoney()); ?>
 
 								</div>
 							</div>
@@ -151,15 +130,14 @@
 									Tổng:
 								</div>
 								<div class="cart--total__count">
-									<?php echo e(Cart::total().getMoney()); ?>
+									<?php echo e(number_format($item->total, 0, '.', '.').getMoney()); ?>
 
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="checkout">
-						<a class="btn btn-danger" href="<?php echo e(route('cart.show')); ?>">Giỏ hàng</a>
-						<button name="checkout" type="submit" class="btn btn-checkout btn-primary">Thanh toán</button>
+						<button onclick="javascript:window.location.href = '<?php echo e(route('order')); ?>' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
 					</div>
 				</div>
 			</div>
@@ -167,12 +145,57 @@
 	</div>
 </div>
 <?php $__env->stopSection(); ?>
-<?php $__env->startPush('scripts'); ?>
-<script>
-	$('#parent').select2({
-		placeholder: '-- Chọn --'
-	});
-	checkKeyword();
-</script>
+<?php $__env->startPush('styles'); ?>
+<style>
+	select option, select {
+		color: #fff!important;
+	}
+	.error-section .alert-danger{
+		margin: 0 -10px 15px -10px;
+	}
+	.error-section .alert-danger ul{
+		margin-bottom: 0;
+	}
+	.block .row{
+		background: #191c24;
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	.block .row > div:first-child{
+		border-right: 1px solid;
+	}
+	.info{
+		margin-bottom: 30px;
+	}
+	.title h4{
+		font-size: 18px;
+		font-weight: bold;
+		margin-bottom: 25px;
+		position: relative;
+		width: max-content;
+	}
+	.title h4:before{
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		background: #406314;
+		bottom: -7px;
+	}
+	.info--input p,
+	.info--select p,
+	.info-textarea p{
+		color: #ddd;
+	}
+	.info--input span,
+	.info--select span,
+	.info-textarea span{
+		font-weight: bold;
+	}
+	.cart--box a{
+		color: #fff;
+		text-decoration: none;
+	}
+</style>
 <?php $__env->stopPush(); ?>
 <?php echo $__env->make('backend.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/backend/page/order/view.blade.php ENDPATH**/ ?>

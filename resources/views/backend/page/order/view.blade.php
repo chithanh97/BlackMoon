@@ -1,31 +1,18 @@
 @extends('backend.index')
 @section('title', 'Chi tiết đơn hàng')
-@push('styles')
-<style>
-	select option, select {
-		color: #fff!important;
-	}
-	.error-section .alert-danger{
-		margin: 0 -10px 15px -10px;
-	}
-	.error-section .alert-danger ul{
-		margin-bottom: 0;
-	}
-</style>
-@endpush
 @section('content')
 <div class="content bg-gray-lighter">
 	<div class="row items-push">
 		<div class="col-sm-7">
-			<h1 class="page-heading">Bài viết <small>Thêm mới Bài viết</small></h1>
+			<h1 class="page-heading">Đơn hàng <small>Chi tiết đơn hàng</small></h1>
 		</div>
 		<div class="col-sm-5 text-right hidden-xs">
 			<ol class="breadcrumb push-10-t">
 				<li><a href="{{ route('dashboard') }}">Quản trị</a>
 				</li>
-				<li><a href="{{ route('news') }}">Bài viết</a>
+				<li><a href="{{ route('order') }}">Đơn hàng</a>
 				</li>
-				<li>Thêm mới</li>
+				<li>Chi tiết đơn hàng</li>
 			</ol>
 		</div>
 	</div>
@@ -53,33 +40,23 @@
 							<h4>Thông tin vận chuyển</h4>
 						</div>
 						<div class="info--input">
-							<input name="name" type="text" class="form-control" placeholder="Họ tên (*)" value="{{ old('name') }}">
-
-							<input name="phone" type="tel" pattern="[0-9]{10}" class="form-control" placeholder="Số điện thoại (*)" value="{{ old('phone') }}">
-							<input name="email" type="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
-							<input name="address" type="text" class="form-control" placeholder="Địa chỉ (*)" value="{{ old('address') }}">
+							<p><span>Họ tên:</span> {{ $item->name }}</p>
+							<p><span>Số điện thoại:</span> {{ $item->phone }}</p>
+							<p><span>Email:</span> {{ $item->mail }}</p>
+							<p><span>Địa chỉ:</span> {{ $item->address }}</p>
 						</div>
 						<div class="info--select">
-							<select class="form-control" name="province" id="province">
-								<option value="0">Chọn Tỉnh/Thành</option>
-
-							</select>
-							<select class="form-control" name="district" id="district">
-								<option value="0">Chọn Quận/Huyện</option>
-							</select>
-							<select class="form-control" name="ward" id="ward">
-								<option value="0">Chọn Phường/Xã</option>
-							</select>
+							<p><span>Tỉnh/Thành:</span> {{ $province != '' ? $province->_name : '_____'  }}, <span>Quận/Huyện:</span> {{ $district != '' ? $district->_name : '_____'  }}, <span>Phường/Xã:</span> {{ $ward != '' ? $ward->_name : '_____'  }}</p>
 						</div>
 						<div class="info-textarea">
-							<textarea rows="5" name="note" class="form-control" placeholder="Ghi chú">{{ old('note') }}</textarea>
+							<p><span>Ghi chú:</span> {{ $item->note }}</p>
 						</div>
 					</div>
 					<div class="ship">
 						<div class="title">
-							<h4>Hình thức thanh toán</h4>
+							<h4>Phương thức thanh toán</h4>
 						</div>
-						<div class="ship-item active">
+						<div class="ship-item {{ $item->pay_method == 1 ? 'active' : '' }}">
 							<input class="form-check-input pay--method" type="radio" value="1" name="pay_method" checked>
 							<img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="cod">
 							<div>
@@ -87,7 +64,7 @@
 								<span>Thanh toán khi nhận hàng</span>
 							</div>
 						</div>
-						<div class="ship-item">
+						<div class="ship-item {{ $item->pay_method == 2 ? 'active' : '' }}">
 							<input class="form-check-input pay--method" type="radio" value="2" name="pay_method">
 							<img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="momo">
 							<div>
@@ -103,19 +80,20 @@
 							<h4>Giỏ hàng</h4>
 						</div>
 						<div class="cart--view">
-							@foreach( Cart::content() as $item)
+							@foreach( $listItem as $items)
 							<div class="cart--item">
 								<div class="cart--item__image">
-									<a href="{{ route('front.items', $item->options->subject) }}">
-										<img src="{{ $item->options->image}}" alt="{{ $item->name }}">
+									<a href="{{ route('front.items', $items->subject) }}">
+										<img src="{{ $items->image}}" alt="{{ $items->name }}">
 									</a>
 								</div>
 								<div class="cart--item__name">
-									<p><a href="{{ route('front.items', $item->options->subject) }}">{{ $item->name }}</a></p>
-									<span>x{{ $item->qty }}</span>
+									<p><a href="{{ route('front.items', $items->subject) }}">{{ $items->name }}</a></p>
+									<span>x{{ $items->qty }}</span>
 								</div>
 								<div class="cart--item__price">
-									{{ number_format($item->total, 0, '.', '.').getMoney() }}
+									{{ number_format($items->price, 0, '.', '.').getMoney() }}
+									<?php $sell += $items->sell_price ?>
 								</div>
 							</div>
 							@endforeach
@@ -126,7 +104,7 @@
 									Tạm tính:
 								</div>
 								<div class="cart--total__count">
-									{{ Cart::total().getMoney() }}
+									{{ number_format($item->total, 0, '.', '.').getMoney() }}
 								</div>
 							</div>
 							<div class="giamgia">
@@ -150,14 +128,13 @@
 									Tổng:
 								</div>
 								<div class="cart--total__count">
-									{{ Cart::total().getMoney() }}
+									{{ number_format($item->total, 0, '.', '.').getMoney() }}
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="checkout">
-						<a class="btn btn-danger" href="{{ route('cart.show') }}">Giỏ hàng</a>
-						<button name="checkout" type="submit" class="btn btn-checkout btn-primary">Thanh toán</button>
+						<button onclick="javascript:window.location.href = '{{ route('order') }}' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
 					</div>
 				</div>
 			</div>
@@ -165,11 +142,56 @@
 	</div>
 </div>
 @endsection
-@push('scripts')
-<script>
-	$('#parent').select2({
-		placeholder: '-- Chọn --'
-	});
-	checkKeyword();
-</script>
+@push('styles')
+<style>
+	select option, select {
+		color: #fff!important;
+	}
+	.error-section .alert-danger{
+		margin: 0 -10px 15px -10px;
+	}
+	.error-section .alert-danger ul{
+		margin-bottom: 0;
+	}
+	.block .row{
+		background: #191c24;
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+	.block .row > div:first-child{
+		border-right: 1px solid;
+	}
+	.info{
+		margin-bottom: 30px;
+	}
+	.title h4{
+		font-size: 18px;
+		font-weight: bold;
+		margin-bottom: 25px;
+		position: relative;
+		width: max-content;
+	}
+	.title h4:before{
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 2px;
+		background: #406314;
+		bottom: -7px;
+	}
+	.info--input p,
+	.info--select p,
+	.info-textarea p{
+		color: #ddd;
+	}
+	.info--input span,
+	.info--select span,
+	.info-textarea span{
+		font-weight: bold;
+	}
+	.cart--box a{
+		color: #fff;
+		text-decoration: none;
+	}
+</style>
 @endpush

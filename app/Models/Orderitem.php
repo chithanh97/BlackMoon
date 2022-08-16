@@ -16,6 +16,7 @@ class Orderitem extends Model
 		'name',
 		'qty',
 		'image',
+		'subject',
 		'price',
 		'sell_price',
 		'percent_price',

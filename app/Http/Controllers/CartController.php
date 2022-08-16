@@ -103,7 +103,7 @@ class CartController extends Controller
 			'email' => $request->email,
 			'address' => $request->address,
 			'note' => $request->note,
-			'total' => Cart::total(),
+			'total' => str_replace('.', '', Cart::total()),
 			'status' => 1,
 			'pay_method' => $request->pay_method,
 		]);
@@ -115,6 +115,7 @@ class CartController extends Controller
 				'name' => $value->name,
 				'qty' => $value->qty,
 				'image' => $value->options->image,
+				'subject' => $value->options->subject,
 				'price' => $value->price,
 				'sell_price' => $value->options->sell_price == '' ? 0 : $value->options->sell_price,
 			]);
@@ -157,9 +158,18 @@ class CartController extends Controller
 		else echo 'Thay đổi thất bại!';
 	}
 
-	public function view($id){
+	public function showOrder($id){
 		$item = Order::findOrFail($id);
 		$listItem = Orderitem::where('id_order', $item->id)->get();
-		return view('backend.page.order.view', compact('item', 'listItem'));
+		$province = '';
+		$district = '';
+		$ward = '';
+		$sell = 0;
+		if($item->province != 0 && $item->district != 0 && $item->ward != 0) {
+			$province = Province::findOrFail($item->province);
+			$district = District::findOrFail($item->district);
+			$ward = Ward::findOrFail($item->ward);
+		}
+		return view('backend.page.order.view', compact('item', 'listItem', 'province', 'district', 'ward', 'sell'));
 	}
 }

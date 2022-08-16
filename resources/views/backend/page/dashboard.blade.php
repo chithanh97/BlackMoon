@@ -10,17 +10,16 @@
 				<div class="row">
 					<div class="col-9">
 						<div class="d-flex align-items-center align-self-start">
-							<h3 class="mb-0">$12.34</h3>
-							<p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+							<h3 class="mb-0">{{ $data->order }}</h3>
 						</div>
 					</div>
 					<div class="col-3">
 						<div class="icon icon-box-success ">
-							<span class="mdi mdi-arrow-top-right icon-item"></span>
+							<span class="mdi mdi-cart icon-item"></span>
 						</div>
 					</div>
 				</div>
-				<h6 class="text-muted font-weight-normal">Potential growth</h6>
+				<a href="{{ route('order') }}"><h6 class="text-muted font-weight-normal">Đơn hàng</h6></a>
 			</div>
 		</div>
 	</div>
@@ -30,17 +29,16 @@
 				<div class="row">
 					<div class="col-9">
 						<div class="d-flex align-items-center align-self-start">
-							<h3 class="mb-0">$17.34</h3>
-							<p class="text-success ml-2 mb-0 font-weight-medium">+11%</p>
+							<h3 class="mb-0">{{ $data->countItem }}</h3>
 						</div>
 					</div>
 					<div class="col-3">
 						<div class="icon icon-box-success">
-							<span class="mdi mdi-arrow-top-right icon-item"></span>
+							<span class="mdi mdi-image-filter icon-item"></span>
 						</div>
 					</div>
 				</div>
-				<h6 class="text-muted font-weight-normal">Revenue current</h6>
+				<a href="{{ route('items') }}"><h6 class="text-muted font-weight-normal">Sản phẩm mới</h6></a>
 			</div>
 		</div>
 	</div>
@@ -50,17 +48,16 @@
 				<div class="row">
 					<div class="col-9">
 						<div class="d-flex align-items-center align-self-start">
-							<h3 class="mb-0">$12.34</h3>
-							<p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
+							<h3 class="mb-0">{{ $data->countNews }}</h3>
 						</div>
 					</div>
 					<div class="col-3">
 						<div class="icon icon-box-danger">
-							<span class="mdi mdi-arrow-bottom-left icon-item"></span>
+							<span class="mdi mdi-clipboard-text icon-item"></span>
 						</div>
 					</div>
 				</div>
-				<h6 class="text-muted font-weight-normal">Daily Income</h6>
+				<a href="{{ route('news') }}"><h6 class="text-muted font-weight-normal">Bài viết mới</h6></a>
 			</div>
 		</div>
 	</div>
@@ -70,17 +67,16 @@
 				<div class="row">
 					<div class="col-9">
 						<div class="d-flex align-items-center align-self-start">
-							<h3 class="mb-0">$31.53</h3>
-							<p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+							<h3 class="mb-0">{{ number_format($data->total, 0, '.', '.').getMoney() }}</h3>
 						</div>
 					</div>
 					<div class="col-3">
 						<div class="icon icon-box-success ">
-							<span class="mdi mdi-arrow-top-right icon-item"></span>
+							<span class="mdi mdi-cash-multiple icon-item"></span>
 						</div>
 					</div>
 				</div>
-				<h6 class="text-muted font-weight-normal">Expense current</h6>
+				<h6 class="text-muted font-weight-normal">Doanh thu</h6>
 			</div>
 		</div>
 	</div>
@@ -89,24 +85,22 @@
 	<div class="col-md-4 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="card-title">Transaction History</h4>
+				<h4 class="card-title">Phương thức thanh toán</h4>
 				<canvas id="transaction-history" class="transaction-chart"></canvas>
 				<div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
 					<div class="text-md-center text-xl-left">
-						<h6 class="mb-1">Transfer to Paypal</h6>
-						<p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+						<h6 class="mb-1">Thanh toán COD</h6>
 					</div>
 					<div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-						<h6 class="font-weight-bold mb-0">$236</h6>
+						<h6 class="font-weight-bold mb-0">{{ number_format($data->countCOD, 0, '.', '.').getMoney() }}</h6>
 					</div>
 				</div>
 				<div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
 					<div class="text-md-center text-xl-left">
-						<h6 class="mb-1">Tranfer to Stripe</h6>
-						<p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+						<h6 class="mb-1">Thanh toán MoMo</h6>
 					</div>
 					<div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-						<h6 class="font-weight-bold mb-0">$593</h6>
+						<h6 class="font-weight-bold mb-0">{{ number_format($data->countMoMo, 0, '.', '.').getMoney() }}</h6>
 					</div>
 				</div>
 			</div>
@@ -116,7 +110,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="d-flex flex-row justify-content-between">
-					<h4 class="card-title mb-1">Open Projects</h4>
+					<h4 class="card-title mb-1">Đơn hàng</h4>
 					<p class="text-muted mb-1">Your data status</p>
 				</div>
 				<div class="row">
@@ -338,3 +332,90 @@
 	</div>
 </div>
 @endsection
+@push('scripts')
+<script>
+	if ($("#transaction-history").length) {
+		var areaData = {
+			labels: ["COD", "MoMo"],
+			datasets: [{
+				data: [{{ $data->countCOD }}, {{ $data->countMoMo }}],
+				backgroundColor: [
+				"violet","#111111"
+				]
+			}
+			]
+		};
+		var areaOptions = {
+			responsive: true,
+			maintainAspectRatio: true,
+			segmentShowStroke: false,
+			cutoutPercentage: 70,
+			elements: {
+				arc: {
+					borderWidth: 0
+				}
+			},
+			legend: {
+				display: false
+			},
+			tooltips: {
+				enabled: true,
+				callbacks: {
+					title: function(tooltipItem, data) {
+						return data['labels'][tooltipItem[0]['index']];
+					},
+					label: function(tooltipItem, data) {
+						return data['datasets'][0]['data'][tooltipItem['index']].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")+'đ';
+					},
+					afterLabel: function(tooltipItem, data) {
+						var dataset = data['datasets'][0];
+						var percent = Math.round((dataset['data'][tooltipItem['index']] / dataset["_meta"][0]['total']) * 100)
+						return '(' + percent + '%)';
+					}
+				},
+			}
+		}
+		var transactionhistoryChartPlugins = {
+			beforeDraw: function(chart) {
+				var width = chart.chart.width,
+				height = chart.chart.height,
+				ctx = chart.chart.ctx;
+
+				ctx.restore();
+				var fontSize = 1;
+				ctx.font = fontSize + "rem sans-serif";
+				ctx.textAlign = 'left';
+				ctx.textBaseline = "middle";
+				ctx.fillStyle = "#ffffff";
+
+				var text = "{{ number_format($data->total, 0, '.', '.').getMoney() }}",
+				textX = Math.round((width - ctx.measureText(text).width) / 2),
+				textY = height / 2.4;
+
+				ctx.fillText(text, textX, textY);
+
+				ctx.restore();
+				var fontSize = 0.75;
+				ctx.font = fontSize + "rem sans-serif";
+				ctx.textAlign = 'left';
+				ctx.textBaseline = "middle";
+				ctx.fillStyle = "#6c7293";
+
+				var texts = "Doanh thu",
+				textsX = Math.round((width - ctx.measureText(text).width) / 2),
+				textsY = height / 1.7;
+
+				ctx.fillText(texts, textsX, textsY);
+				ctx.save();
+			}
+		}
+		var transactionhistoryChartCanvas = $("#transaction-history").get(0).getContext("2d");
+		var transactionhistoryChart = new Chart(transactionhistoryChartCanvas, {
+			type: 'doughnut',
+			data: areaData,
+			options: areaOptions,
+			plugins: transactionhistoryChartPlugins
+		});
+	}
+</script>
+@endpush

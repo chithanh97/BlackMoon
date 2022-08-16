@@ -53,16 +53,16 @@
 						<div class="title">
 							<h4>Hình thức thanh toán</h4>
 						</div>
-						<div class="ship-item active">
-							<input class="form-check-input pay--method" type="radio" value="1" name="pay_method" checked>
+						<div class="ship-item <?php echo e(old('pay_method') != '' ? (old('pay_method') == 1 ? 'active' : '') : 'active'); ?>">
+							<input class="form-check-input pay--method" type="radio" value="1" name="pay_method" <?php echo e(old('pay_method') != '' ? (old('pay_method') == 1 ? 'checked' : '') : 'checked'); ?>>
 							<img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="cod">
 							<div>
 								<p>COD</p>
 								<span>Thanh toán khi nhận hàng</span>
 							</div>
 						</div>
-						<div class="ship-item">
-							<input class="form-check-input pay--method" type="radio" value="2" name="pay_method">
+						<div class="ship-item <?php echo e(old('pay_method') != '' ? (old('pay_method') == 2 ? 'active' : '') : ''); ?>">
+							<input class="form-check-input pay--method" type="radio" value="2" name="pay_method" <?php echo e(old('pay_method') != '' ? (old('pay_method') == 2 ? 'checked' : '') : ''); ?>>
 							<img src="/storage/uploads/logo/Laravel_logo_wordmark_logotype.png" alt="momo">
 							<div>
 								<p>momo</p>

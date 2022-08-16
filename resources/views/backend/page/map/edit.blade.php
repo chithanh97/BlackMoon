@@ -77,7 +77,7 @@
 						<div class="form-group" style="margin-bottom: 0;">
 							<div class="btn-gr">
 								<button type="submit" name="btnSave" class="btn btn-sm btn-primary">Lưu</button>
-								<button onclick="javascript:window.location.href = '{{ route('video') }}' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
+								<button onclick="javascript:window.location.href = '{{ route('map') }}' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
 							</div>
 						</div>
 					</div>

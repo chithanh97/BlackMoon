@@ -3,7 +3,7 @@
 use App\Http\Controllers\auth\admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\BackController;
+use App\Http\Controllers\BackendController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\NewsCategoryController;
@@ -22,8 +22,8 @@ use App\Http\Controllers\CartController;
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 
 Route::middleware('admin.login')->group(function (){
-	Route::get('/', [BackController::class, 'index'])->name('dashboard');
-	Route::get('/dashboard', [BackController::class, 'index'])->name('home.dashboard');
+	Route::get('/', [BackendController::class, 'index'])->name('dashboard');
+	Route::get('/dashboard', [BackendController::class, 'index'])->name('home.dashboard');
 	Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 	//config
@@ -142,7 +142,7 @@ Route::middleware('admin.login')->group(function (){
 
 	//Order
 	Route::get('/order', [CartController::class, 'index'])->name('order');
-	Route::get('/order/view/{id}', [CartController::class, 'view'])->name('order.view');
+	Route::get('/order/view/{id}', [CartController::class, 'showOrder'])->name('order.view');
 	Route::get('/order/delete/{id}', [CartController::class, 'delete'])->name('order.delete');
 	Route::get('/order/deleteall', [CartController::class, 'deleteAll'])->name('order.deleteall');
 	Route::post('/order/changestatus', [CartController::class, 'changeStatus'])->name('order.changestatus');

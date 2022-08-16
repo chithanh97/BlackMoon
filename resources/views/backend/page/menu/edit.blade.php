@@ -183,6 +183,7 @@
 				</div>
 				<div class="form-group save-btn">
 					<button class="btn btn-primary">Lưu Menu</button>
+					<button onclick="javascript:window.location.href = '{{ route('menu') }}' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
 				</div>
 			</form>
 		</div>

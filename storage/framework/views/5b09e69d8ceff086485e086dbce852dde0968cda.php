@@ -86,13 +86,13 @@
 									<label class="control-label">
 										Giá sản phẩm
 									</label>
-									<input type="text" name="price" class="form-control" data-table='news' value="<?php echo e(old('price')); ?>" />
+									<input type="text" name="price" class="form-control money" data-table='news' value="<?php echo e(old('price')); ?>" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">
 										Giá giảm
 									</label>
-									<input type="text" name="sell_price" class="form-control" data-table='news' value="<?php echo e(old('sell_price')); ?>" />
+									<input type="text" name="sell_price" class="form-control money" data-table='news' value="<?php echo e(old('sell_price')); ?>" />
 								</div>
 								<div class="form-group">
 									<label class="control-label">
@@ -192,7 +192,7 @@
 						<div class="form-group" style="margin-bottom: 0;">
 							<div class="btn-gr">
 								<button type="submit" name="btnSave" class="btn btn-sm btn-primary">Lưu</button>
-								<button onclick="javascript:window.location.href = '<?php echo e(route('news')); ?>' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
+								<button onclick="javascript:window.location.href = '<?php echo e(route('items')); ?>' " type="button" name="goback" class="btn btn-sm btn-danger">Quay lại</button>
 							</div>
 						</div>
 					</div>
