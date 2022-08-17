@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 12, 2022 lúc 12:24 PM
+-- Thời gian đã tạo: Th8 17, 2022 lúc 12:26 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.0.19
 
@@ -958,7 +958,8 @@ INSERT INTO `items` (`id`, `name`, `subject`, `parent`, `detail`, `detail_short`
 (1, 'Giày 1', 'Giay-1', 'NEWS63025108', '<p><strong>Lorem Ipsum</strong><span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>\r\n<p><span><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659339770189\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"],[\"IMGS_OTHER_1659339773195\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"]]', NULL, NULL, '100000', '80000', NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 00:43:28', '2022-08-01 00:43:28'),
 (2, 'Giày 2', 'Giay-2', 'NEWS63025108', '<p><strong>Lorem Ipsum</strong><span> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>\r\n<p><span><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span></p>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659339866372\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"],[\"IMGS_OTHER_1659339869481\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"]]', NULL, NULL, '100000', '80000', '10', 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 00:44:31', '2022-08-01 01:47:54'),
 (5, 'Giày 3', 'Giay-3', 'NEWS63025108', '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659343490465\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"]]', NULL, NULL, '100000', '20000', NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 01:44:54', '2022-08-01 01:45:10'),
-(6, 'Giày 4', 'Giay-4', 'NEWS63025108', '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659343555514\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"],[\"IMGS_OTHER_1659521098901\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"],[\"IMGS_OTHER_1659600256062\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/34425_product_4_20200902095324_5f4efb14e37d5.png\"],[\"IMGS_OTHER_1659521096095\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/34425_product_6_20200902095321_5f4efb11f38d6.png\"]]', NULL, NULL, '1000000', NULL, NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 01:46:04', '2022-08-08 02:51:06');
+(6, 'Giày 4', 'Giay-4', 'NEWS63025108', '<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '[[\"IMGS_OTHER_1659343555514\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_3_img.webp\"],[\"IMGS_OTHER_1659521098901\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/instagram_2_img.webp\"],[\"IMGS_OTHER_1659600256062\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/34425_product_4_20200902095324_5f4efb14e37d5.png\"],[\"IMGS_OTHER_1659521096095\",\"http:\\/\\/127.0.0.1:8000\\/storage\\/uploads\\/product\\/34425_product_6_20200902095321_5f4efb11f38d6.png\"]]', NULL, NULL, '1000000', NULL, NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-01 01:46:04', '2022-08-08 02:51:06'),
+(7, 'xdcfvgbhnj', 'xdcfvgb', '0', NULL, NULL, '[\"IMGS_OTHER_11223344\",\"\\/storage\\/uploads\\/default\\/default.png\"]', NULL, NULL, '0', NULL, NULL, 0, NULL, 1, NULL, NULL, NULL, 1, '2022-08-16 03:02:29', '2022-08-16 03:02:29');
 
 -- --------------------------------------------------------
 
@@ -1190,6 +1191,17 @@ CREATE TABLE `order` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `order`
+--
+
+INSERT INTO `order` (`id`, `order_code`, `province`, `district`, `ward`, `ship`, `name`, `phone`, `email`, `address`, `note`, `total`, `status`, `pay_method`, `created_at`, `updated_at`) VALUES
+(18, 'BM437066', '0', '0', '0', '0', 'zxcvb', '0962154991', 'admin@gmail.com', 'scvbn m', NULL, '90000', 1, '1', '2022-08-15 20:26:06', '2022-08-15 20:26:06'),
+(19, 'BM425204', '0', '0', '0', '0', 'ẻty', '0962154991', 'admin@gmail.com', 'scvbn m', NULL, '1000000', 1, '1', '2022-08-15 20:36:51', '2022-08-15 20:36:51'),
+(20, 'BM127208', '0', '0', '0', '0', 'Tin tức', '0962154991', 'admin@gmail.com', 'scvbn m', NULL, '20000', 1, '2', '2022-08-16 02:31:33', '2022-08-16 02:31:33'),
+(21, 'BM733957', '0', '0', '0', '0', 'Tin tức', '0962154991', 'admin@gmail.com', 'scvbn m', NULL, '900000', 1, '2', '2022-08-16 02:32:06', '2022-08-16 02:32:06'),
+(22, 'BM635964', '0', '0', '0', '0', 'Tin tức', '0962154991', 'admin@gmail.com', 'dfghj', NULL, '20000', 1, '1', '2022-08-16 03:30:37', '2022-08-16 03:30:37');
+
 -- --------------------------------------------------------
 
 --
@@ -1201,13 +1213,25 @@ CREATE TABLE `order_item` (
   `id_item` int(11) NOT NULL,
   `id_order` int(11) NOT NULL,
   `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qty` int(11) DEFAULT NULL,
   `image` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `sell_price` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `percent_price` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `order_item`
+--
+
+INSERT INTO `order_item` (`id`, `id_item`, `id_order`, `name`, `qty`, `image`, `subject`, `price`, `sell_price`, `created_at`, `updated_at`) VALUES
+(5, 2, 18, 'Giày 2', 1, 'http://127.0.0.1:8000/storage/uploads/product/instagram_3_img.webp', 'Giay-2', '90000', '10000', '2022-08-15 20:26:06', '2022-08-15 20:26:06'),
+(6, 6, 19, 'Giày 4', 1, 'http://127.0.0.1:8000/storage/uploads/product/instagram_3_img.webp', 'Giay-4', '1000000', '0', '2022-08-15 20:36:51', '2022-08-15 20:36:51'),
+(7, 5, 20, 'Giày 3', 1, 'http://127.0.0.1:8000/storage/uploads/product/instagram_2_img.webp', 'Giay-3', '20000', '80000', '2022-08-16 02:31:33', '2022-08-16 02:31:33'),
+(8, 2, 21, 'Giày 2', 10, 'http://127.0.0.1:8000/storage/uploads/product/instagram_3_img.webp', 'Giay-2', '90000', '10000', '2022-08-16 02:32:06', '2022-08-16 02:32:06'),
+(9, 5, 22, 'Giày 3', 1, 'http://127.0.0.1:8000/storage/uploads/product/instagram_2_img.webp', 'Giay-3', '20000', '80000', '2022-08-16 03:30:37', '2022-08-16 03:30:37');
 
 -- --------------------------------------------------------
 
@@ -47774,7 +47798,7 @@ ALTER TABLE `itemcategory`
 -- AUTO_INCREMENT cho bảng `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `language`
@@ -47822,13 +47846,13 @@ ALTER TABLE `newscategory`
 -- AUTO_INCREMENT cho bảng `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT cho bảng `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`

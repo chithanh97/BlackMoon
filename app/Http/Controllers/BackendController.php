@@ -23,6 +23,7 @@ class BackendController extends Controller
 			'countNews' => News::where('created_at', '>', $start)->where('created_at', '<', $end)->count(),
 			'countCOD' => Order::where('created_at', '>', $start)->where('created_at', '<', $end)->where('pay_method', 1)->sum('total'),
 			'countMoMo' => Order::where('created_at', '>', $start)->where('created_at', '<', $end)->where('pay_method', 2)->sum('total'),
+			'litsOrder' => Order::where('created_at', '>', $start)->where('created_at', '<', $end)->take(7),
 		];
 		return view('backend.page.dashboard', compact('data'));
 	}
