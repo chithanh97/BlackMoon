@@ -143,8 +143,7 @@ Route::middleware('admin.login')->group(function (){
 	//Order
 	Route::get('/order', [CartController::class, 'index'])->name('order');
 	Route::get('/order/view/{id}', [CartController::class, 'showOrder'])->name('order.view');
-	Route::get('/order/delete/{id}', [CartController::class, 'delete'])->name('order.delete');
-	Route::get('/order/deleteall', [CartController::class, 'deleteAll'])->name('order.deleteall');
+	Route::get('/order/changeall', [CartController::class, 'changeAll'])->name('order.changeall');
 	Route::post('/order/changestatus', [CartController::class, 'changeStatus'])->name('order.changestatus');
 
 });

@@ -39,9 +39,6 @@
 						<table class="table pt-0 table-striped" id='tableData'>
 							<thead>
 								<tr>
-									<th scope="col" width="5%">
-										<input type="checkbox" name='delete-all' id="delete-all" class="form-check-input">
-									</th>
 									<th scope="col">Mã đơn hàng</th>
 									<th scope="col">Thông tin</th>
 									<th scope="col">Trạng thái</th>
@@ -52,9 +49,6 @@
 							<tbody>
 								@foreach ($list as $value)
 								<tr>
-									<td>
-										<input type="checkbox" name='delete-item' value="{{ $value->id }}" class="form-check-input delete-item">
-									</td>
 									<td>{{ $value->order_code }}</td>
 									<td>
 										<p>Khách hàng: {{ $value->name }}</p>
@@ -76,24 +70,10 @@
 										<a href="{{ route('order.view', $value->id) }}" class="btn-edit">
 											<i class="fa fa-eye"></i>
 										</a>
-										<a href="javascript:if(confirm('Bạn chắc chắn muốn xóa?')) window.location.href = '{{ route('order.delete', $value->id) }}' ;
-											" class="btn-delete">
-											<i class="fa fa-trash"></i>
-										</a>
 									</td>
 								</tr>
 								@endforeach
 							</tbody>
-							<tfoot>
-								<tr>
-									<td>
-										<a href="javascript:deleteAll();" class="btn-delete-all">
-											<i class="fa fa-trash"></i>
-										</a>
-									</td>
-									<td colspan="8"></td>
-								</tr>
-							</tfoot>
 						</table>
 						<div class="navigation">
 							{{ $list->links() }}
@@ -180,7 +160,7 @@
 	}
 	.btn-delete-all{
 		padding: 7px 10px;
-		background: #ed1d05;
+		background: #00d25b;
 		border-radius: 5px;
 	}
 	.btn-delete-all i{
@@ -194,24 +174,6 @@
 @endpush
 @push('scripts')
 <script>
-	$('#delete-all').change(() => {
-		$('.delete-item').prop('checked', $('#delete-all').prop('checked'));
-	});
-
-	function deleteAll(){
-		if(confirm('Bạn chắc chắn muốn xóa?')) {
-			let value = [];
-
-			$('.delete-item').each(function() {
-				if($(this).is(':checked')) {
-					value.push($(this).val());
-				}
-			});
-
-			window.location.href = '{{ route("order.deleteall") }}?value=' + JSON.stringify(value);
-		}
-	}
-
 	$('#status').change(function(e){
 		if(confirm('Bạn chắc chắn muốn thay đổi trạng thái đơn hàng?')) {
 			$.ajax({

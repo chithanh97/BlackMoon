@@ -243,4 +243,8 @@ function getPayMethod(){
 		2 => 'MoMo',
 	];
 }
+
+function formatNumberMoney($number){
+	return number_format($number, 0, '.', '.').getMoney();
+}
 ?>

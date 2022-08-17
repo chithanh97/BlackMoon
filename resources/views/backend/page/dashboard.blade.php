@@ -1,6 +1,15 @@
 @extends('backend.index')
 @section('title', 'Dashboard')
 @push('styles')
+<style>
+	.order-table{
+		margin-top: 15px;
+	}
+	.order-table p{
+		margin-bottom: 0;
+		color: #6c7293;
+	}
+</style>
 @endpush
 @section('content')
 <div class="row">
@@ -67,7 +76,7 @@
 				<div class="row">
 					<div class="col-9">
 						<div class="d-flex align-items-center align-self-start">
-							<h3 class="mb-0">{{ number_format($data->total, 0, '.', '.').getMoney() }}</h3>
+							<h3 class="mb-0">{{ formatNumberMoney($data->total) }}</h3>
 						</div>
 					</div>
 					<div class="col-3">
@@ -92,7 +101,7 @@
 						<h6 class="mb-1">Thanh toán COD</h6>
 					</div>
 					<div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-						<h6 class="font-weight-bold mb-0">{{ number_format($data->countCOD, 0, '.', '.').getMoney() }}</h6>
+						<h6 class="font-weight-bold mb-0">{{ formatNumberMoney($data->countCOD) }}</h6>
 					</div>
 				</div>
 				<div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
@@ -100,7 +109,7 @@
 						<h6 class="mb-1">Thanh toán MoMo</h6>
 					</div>
 					<div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-						<h6 class="font-weight-bold mb-0">{{ number_format($data->countMoMo, 0, '.', '.').getMoney() }}</h6>
+						<h6 class="font-weight-bold mb-0">{{ formatNumberMoney($data->countMoMo) }}</h6>
 					</div>
 				</div>
 			</div>
@@ -114,18 +123,39 @@
 				</div>
 				<div class="row">
 					<div class="col-12">
-						<table>
+						<table class="table-bordered order-table table">
 							<thead>
 								<tr>
 									<td>Mã đơn</td>
 									<td>Thông tin</td>
+									<td>Giá trị đơn</td>
 									<td>Trạng thái</td>
 									<td>Phương thức thanh toán</td>
 									<td>Tùy chọn</td>
 								</tr>
 							</thead>
 							<tbody>
-
+								@foreach( $data->litsOrder as $v)
+								<tr>
+									<td>{{ $v->order_code }}</td>
+									<td>
+										<p>Họ tên: {{ $v->name }}</p>
+										<p>Số điện thoại: {{ $v->phone }}</p>
+									</td>
+									<td>
+										{{ formatNumberMoney($v->total) }}
+									</td>
+									<td>
+										<label class="label label-success">{{ getStatusOrder()[$v->status] }}</label>
+									</td>
+									<td>
+										<label class="label label-info">{{ getPayMethod()[$v->pay_method] }}</label>
+									</td>
+									<td>
+										<a class="btn btn-primary" href="{{ route('order.view', $v->id) }}"><i class="fa fa-eye"></i></a>
+									</td>
+								</tr>
+								@endforeach
 							</tbody>
 						</table>
 					</div>
@@ -314,7 +344,7 @@
 				ctx.textBaseline = "middle";
 				ctx.fillStyle = "#ffffff";
 
-				var text = "{{ number_format($data->total, 0, '.', '.').getMoney() }}",
+				var text = "{{ formatNumberMoney($data->total) }}",
 				textX = Math.round((width - ctx.measureText(text).width) / 2),
 				textY = height / 2.4;
 
