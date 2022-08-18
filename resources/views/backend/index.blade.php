@@ -8,13 +8,13 @@
 	<meta http-equiv="Content-Language"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<base href="http://127.0.0.1:8000/" />
 	<meta name="language" content="vi" />
 	<meta name="description" content="" />
 	<meta name="robots" content="noodp,index,follow" />
 	<meta name="revisit-after" content="1 days" />
 	<meta name="copyright" content="Copyright © 2022-<?=date('Y')?> by BlackMoon" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<link rel="icon" type="image/x-icon" href="{{ $config->logo }}">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -77,53 +77,17 @@
 					<div class="profile-desc">
 						<div class="profile-pic">
 							<div class="count-indicator">
-								<img class="img-xs rounded-circle " src="assets/images/faces/face15.jpg" alt="">
+								<img class="img-xs rounded-circle " src="{{ $admin->image }}" alt="">
 								<span class="count bg-success"></span>
 							</div>
 							<div class="profile-name">
-								<h5 class="mb-0 font-weight-normal">Henry Klein</h5>
-								<span>Gold Member</span>
+								<h5 class="mb-0 font-weight-normal">{{ $admin->name }}</h5>
 							</div>
-						</div>
-						<a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
-						<div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-							<a href="#" class="dropdown-item preview-item">
-								<div class="preview-thumbnail">
-									<div class="preview-icon bg-dark rounded-circle">
-										<i class="mdi mdi-settings text-primary"></i>
-									</div>
-								</div>
-								<div class="preview-item-content">
-									<p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
-								</div>
-							</a>
-							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item preview-item">
-								<div class="preview-thumbnail">
-									<div class="preview-icon bg-dark rounded-circle">
-										<i class="mdi mdi-onepassword  text-info"></i>
-									</div>
-								</div>
-								<div class="preview-item-content">
-									<p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
-								</div>
-							</a>
-							<div class="dropdown-divider"></div>
-							<a href="#" class="dropdown-item preview-item">
-								<div class="preview-thumbnail">
-									<div class="preview-icon bg-dark rounded-circle">
-										<i class="mdi mdi-calendar-today text-success"></i>
-									</div>
-								</div>
-								<div class="preview-item-content">
-									<p class="preview-subject ellipsis mb-1 text-small">To-do list</p>
-								</div>
-							</a>
 						</div>
 					</div>
 				</li>
 				<li class="nav-item nav-category">
-					<span class="nav-link">Navigation</span>
+					<span class="nav-link"></span>
 				</li>
 				<li class="nav-item menu-items">
 					<a class="nav-link" href="{{ route('dashboard') }}">
@@ -136,7 +100,7 @@
 				<li class="nav-item menu-items">
 					<a class="nav-link" href="{{ route('order') }}">
 						<span class="menu-icon">
-							<i class="mdi mdi-speedometer"></i>
+							<i class="mdi mdi-cart"></i>
 						</span>
 						<span class="menu-title">Đơn hàng</span>
 					</a>
@@ -144,7 +108,7 @@
 				<li class="nav-item menu-items">
 					<a class="nav-link" data-toggle="collapse" href="#products" aria-expanded="false" aria-controls="products">
 						<span class="menu-icon">
-							<i class="mdi mdi-laptop"></i>
+							<i class="mdi mdi-image-filter"></i>
 						</span>
 						<span class="menu-title">Sản phẩm</span>
 						<i class="menu-arrow"></i>
@@ -159,7 +123,7 @@
 				<li class="nav-item menu-items">
 					<a class="nav-link" data-toggle="collapse" href="#news" aria-expanded="false" aria-controls="news">
 						<span class="menu-icon">
-							<i class="mdi mdi-laptop"></i>
+							<i class="mdi mdi mdi-clipboard-text"></i>
 						</span>
 						<span class="menu-title">Bài viết</span>
 						<i class="menu-arrow"></i>
@@ -174,7 +138,7 @@
 				<li class="nav-item menu-items">
 					<a class="nav-link" data-toggle="collapse" href="#option" aria-expanded="false" aria-controls="option">
 						<span class="menu-icon">
-							<i class="mdi mdi-laptop"></i>
+							<i class="mdi mdi-windows"></i>
 						</span>
 						<span class="menu-title">Tính năng</span>
 						<i class="menu-arrow"></i>
@@ -197,7 +161,7 @@
 				<li class="nav-item menu-items">
 					<a class="nav-link" href="{{ route('config.edit') }}">
 						<span class="menu-icon">
-							<i class="mdi mdi-playlist-play"></i>
+							<i class="mdi mdi-settings"></i>
 						</span>
 						<span class="menu-title">Cấu hình website</span>
 					</a>
@@ -205,7 +169,7 @@
 				<li class="nav-item menu-items">
 					<a class="nav-link" href="{{ route('language') }}">
 						<span class="menu-icon">
-							<i class="mdi mdi-playlist-play"></i>
+							<i class="mdi mdi-flag"></i>
 						</span>
 						<span class="menu-title">Ngôn ngữ</span>
 					</a>
@@ -213,7 +177,7 @@
 				<li class="nav-item menu-items">
 					<a class="nav-link iframe-btn" href="/storage/filemanager/dialog.php">
 						<span class="menu-icon">
-							<i class="mdi mdi-file-document"></i>
+							<i class="mdi mdi-file-image"></i>
 						</span>
 						<span class="menu-title">Media</span>
 					</a>
@@ -225,177 +189,34 @@
 			<!-- partial:partials/_navbar.html -->
 			<nav class="navbar p-0 fixed-top d-flex flex-row">
 				<div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-					<a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
 				</div>
 				<div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
 					<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
 						<span class="mdi mdi-menu"></span>
 					</button>
-					<ul class="navbar-nav w-100">
-						<li class="nav-item w-100">
-							<form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-								<input type="text" class="form-control" placeholder="Search products">
-							</form>
-						</li>
-					</ul>
 					<ul class="navbar-nav navbar-nav-right">
-						<li class="nav-item dropdown d-none d-lg-block">
-							<a class="nav-link btn btn-success create-new-button" id="createbuttonDropdown" data-toggle="dropdown" aria-expanded="false" href="#">+ Create New Project</a>
-							<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
-								<h6 class="p-3 mb-0">Projects</h6>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<div class="preview-icon bg-dark rounded-circle">
-											<i class="mdi mdi-file-outline text-primary"></i>
-										</div>
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject ellipsis mb-1">Software Development</p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<div class="preview-icon bg-dark rounded-circle">
-											<i class="mdi mdi-web text-info"></i>
-										</div>
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject ellipsis mb-1">UI Development</p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<div class="preview-icon bg-dark rounded-circle">
-											<i class="mdi mdi-layers text-danger"></i>
-										</div>
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject ellipsis mb-1">Software Testing</p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<p class="p-3 mb-0 text-center">See all projects</p>
-							</div>
-						</li>
-						<li class="nav-item nav-settings d-none d-lg-block">
-							<a class="nav-link" href="#">
-								<i class="mdi mdi-view-grid"></i>
-							</a>
-						</li>
-						<li class="nav-item dropdown border-left">
-							<a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-								<i class="mdi mdi-email"></i>
-								<span class="count bg-success"></span>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
-								<h6 class="p-3 mb-0">Messages</h6>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<img src="assets/images/faces/face4.jpg" alt="image" class="rounded-circle profile-pic">
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject ellipsis mb-1">Mark send you a message</p>
-										<p class="text-muted mb-0"> 1 Minutes ago </p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<img src="assets/images/faces/face2.jpg" alt="image" class="rounded-circle profile-pic">
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
-										<p class="text-muted mb-0"> 15 Minutes ago </p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<img src="assets/images/faces/face3.jpg" alt="image" class="rounded-circle profile-pic">
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject ellipsis mb-1">Profile picture updated</p>
-										<p class="text-muted mb-0"> 18 Minutes ago </p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<p class="p-3 mb-0 text-center">4 new messages</p>
-							</div>
-						</li>
-						<li class="nav-item dropdown border-left">
-							<a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-								<i class="mdi mdi-bell"></i>
-								<span class="count bg-danger"></span>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-								<h6 class="p-3 mb-0">Notifications</h6>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<div class="preview-icon bg-dark rounded-circle">
-											<i class="mdi mdi-calendar text-success"></i>
-										</div>
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject mb-1">Event today</p>
-										<p class="text-muted ellipsis mb-0"> Just a reminder that you have an event today </p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<div class="preview-icon bg-dark rounded-circle">
-											<i class="mdi mdi-settings text-danger"></i>
-										</div>
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject mb-1">Settings</p>
-										<p class="text-muted ellipsis mb-0"> Update dashboard </p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
-									<div class="preview-thumbnail">
-										<div class="preview-icon bg-dark rounded-circle">
-											<i class="mdi mdi-link-variant text-warning"></i>
-										</div>
-									</div>
-									<div class="preview-item-content">
-										<p class="preview-subject mb-1">Launch Admin</p>
-										<p class="text-muted ellipsis mb-0"> New admin wow! </p>
-									</div>
-								</a>
-								<div class="dropdown-divider"></div>
-								<p class="p-3 mb-0 text-center">See all notifications</p>
-							</div>
-						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link" id="profileDropdown" href="#" data-toggle="dropdown">
 								<div class="navbar-profile">
-									<img class="img-xs rounded-circle" src="assets/images/faces/face15.jpg" alt="">
-									<p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+									<img class="img-xs rounded-circle" src="{{ $admin->image }}" alt="">
+									<p class="mb-0 d-none d-sm-block navbar-profile-name">{{ $admin->name }}</p>
 									<i class="mdi mdi-menu-down d-none d-sm-block"></i>
 								</div>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="profileDropdown">
-								<h6 class="p-3 mb-0">Profile</h6>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item">
+								<a class="dropdown-item preview-item" href="{{ route('admin.changepass') }}">
 									<div class="preview-thumbnail">
 										<div class="preview-icon bg-dark rounded-circle">
-											<i class="mdi mdi-settings text-success"></i>
+											<i class="mdi mdi-account-key text-success"></i>
 										</div>
 									</div>
 									<div class="preview-item-content">
-										<p class="preview-subject mb-1">Settings</p>
+										<p class="preview-subject mb-1">Đổi mật khẩu</p>
 									</div>
 								</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item preview-item" href="/admin/logout">
+								<a class="dropdown-item preview-item" href="{{ route('admin.logout') }}">
 									<div class="preview-thumbnail">
 										<div class="preview-icon bg-dark rounded-circle">
 											<i class="mdi mdi-logout text-danger"></i>
@@ -405,8 +226,6 @@
 										<p class="preview-subject mb-1">Log out</p>
 									</div>
 								</a>
-								<div class="dropdown-divider"></div>
-								<p class="p-3 mb-0 text-center">Advanced settings</p>
 							</div>
 						</li>
 					</ul>

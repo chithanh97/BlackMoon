@@ -32,6 +32,7 @@ class Items extends Model
 		'description',
 		'keyword',
 		'lang',
+		'created_at'
 	];
 
 }

@@ -16,6 +16,14 @@ class BackendController extends Controller
 	public function index(){
 		$start = date('Y-m-01');
 		$end = date('Y-m-t');
+		$data_date = [];
+
+		for($i = 1; $i < date('t'); $i++){
+			array_push($data_date, Order::where('created_at', '>', date('Y-m-'.$i))->where('created_at', '<', date('Y-m-'.($i + 1)))->count());
+		}
+
+		array_push($data_date, Order::where('created_at', '>', date('Y-m-t'))->count());
+
 		$data = (object)[
 			'order' => Order::where('created_at', '>', $start)->where('created_at', '<', $end)->count(),
 			'total' => Order::where('created_at', '>', $start)->where('created_at', '<', $end)->sum('total'),
@@ -24,7 +32,12 @@ class BackendController extends Controller
 			'countCOD' => Order::where('created_at', '>', $start)->where('created_at', '<', $end)->where('pay_method', 1)->sum('total'),
 			'countMoMo' => Order::where('created_at', '>', $start)->where('created_at', '<', $end)->where('pay_method', 2)->sum('total'),
 			'litsOrder' => Order::where('created_at', '>', $start)->where('created_at', '<', $end)->orderby('id','DESC')->take(7)->get(),
+			'itemView' => Items::where('id', '>', 0)->orderby('view','DESC')->first(),
+			'itemBuy' => Items::where('id', '>', 0)->orderby('buy','DESC')->first(),
+			'itemNew' => Items::where('id', '>', 0)->orderby('id','DESC')->first(),
+			'listDataMonth' => $data_date,
 		];
+
 		return view('backend.page.dashboard', compact('data'));
 	}
 

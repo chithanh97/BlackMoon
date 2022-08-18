@@ -33,34 +33,6 @@
       bar.text.style.fontSize = '1.5rem';
       bar.animate(0.4);  // Number from 0.0 to 1.0
     }
-    if($('#audience-map').length) {
-      $('#audience-map').vectorMap({
-        map: 'world_mill_en',
-        backgroundColor: 'transparent',
-        panOnDrag: true,
-        focusOn: {
-          x: 0.5,
-          y: 0.5,
-          scale: 1,
-          animate: true
-        },
-        series: {
-          regions: [{
-            scale: ['#3d3c3c', '#f2f2f2'],
-            normalizeFunction: 'polynomial',
-            values: {
-
-              "BZ": 75.00,
-              "US": 56.25,
-              "AU": 15.45,
-              "GB": 25.00,
-              "RO": 10.25,
-              "GE": 33.25
-            }
-          }]
-        }
-      });
-    }
     if ($("#transaction-history-arabic").length) {
       var areaData = {
         labels: ["Paypal", "Stripe","Cash"],

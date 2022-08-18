@@ -28,6 +28,8 @@ return new class extends Migration
     		$table->text('sell_percent')->nullable();
     		$table->integer('sort')->nullable();
     		$table->integer('hot')->nullable();
+    		$table->integer('view')->nullable();
+    		$table->integer('buy')->nullable();
     		$table->integer('status');
     		$table->text('title')->nullable();
     		$table->text('description')->nullable();

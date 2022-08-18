@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Menu;
 use App\Models\Menuitems;
@@ -43,6 +44,11 @@ class AppServiceProvider extends ServiceProvider
     		$map = Map::first();
     		$countCart = Cart::count();
     		$view->with(compact('menu', 'itemcategory', 'newscategory', 'listitem', 'config', 'fanpage', 'map', 'countCart'));
+    	});
+
+    	view()->composer('backend.index', function($view){
+    		$admin = Auth::guard('admin')->user();
+    		$view->with(compact('admin'));
     	});
 
     }

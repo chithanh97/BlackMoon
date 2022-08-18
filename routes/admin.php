@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\auth\admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\auth\admin\LoginController;
+use App\Http\Controllers\auth\admin\ProfileController;
 use App\Http\Controllers\BackendController;
 use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\ItemCategoryController;
@@ -24,7 +25,9 @@ Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name
 Route::middleware('admin.login')->group(function (){
 	Route::get('/', [BackendController::class, 'index'])->name('dashboard');
 	Route::get('/dashboard', [BackendController::class, 'index'])->name('home.dashboard');
-	Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+	Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+	Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('admin.changepass');
+	Route::post('/change-password', [ProfileController::class, 'saveChangePassword'])->name('admin.savechangepass');
 
 	//config
 	Route::get('/config/edit', [ConfigController::class, 'edit'])->name('config.edit');

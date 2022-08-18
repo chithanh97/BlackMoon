@@ -4,7 +4,7 @@
 <div class="content bg-gray-lighter">
 	<div class="row items-push">
 		<div class="col-sm-7">
-			<h1 class="page-heading">sản phẩm <small>Thêm mới sản phẩm</small></h1>
+			<h1 class="page-heading">Sản phẩm <small>Thêm mới sản phẩm</small></h1>
 		</div>
 		<div class="col-sm-5 text-right hidden-xs">
 			<ol class="breadcrumb push-10-t">
