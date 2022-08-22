@@ -3,10 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 
 class Items extends Model
 
 {
+
+	use HasFactory, Searchable;
+
 	protected $table = 'items';
 
 	protected $fillable = [
@@ -27,6 +32,8 @@ class Items extends Model
 		'link',
 		'sort',
 		'hot',
+		'view',
+		'buy',
 		'status',
 		'title',
 		'description',

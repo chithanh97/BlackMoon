@@ -119,7 +119,10 @@ class CartController extends Controller
 				'price' => $value->price,
 				'sell_price' => $value->options->sell_price == '' ? 0 : $value->options->sell_price,
 			]);
-			if($temp) Cart::remove($value->rowId);
+			if($temp){
+				Cart::remove($value->rowId);
+				Items::find($value->id)->increment('buy', $value->qty);
+			}
 		}
 
 		return redirect()->route('cart.thanks', $order->order_code);

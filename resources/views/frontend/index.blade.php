@@ -24,6 +24,11 @@
 					<ul class="item-menu">
 						<?php if($menu->content != null) echo getMenuFront(json_decode($menu->content), $itemcategory, $newscategory, $listitem) ?>
 						<li>
+							<div class="btn-search" data-toggle="modal" data-target="#search">
+								<i class="fa fa-search"></i>
+							</div>
+						</li>
+						<li>
 							<a href="{{ route('cart.show') }}" class="show-cart">
 								<span class="count-cart">{{ $countCart }}</span>
 								<i class="fa fa-shopping-cart"></i>
@@ -36,6 +41,28 @@
 		<main id='main-content'>
 			@yield('content')
 		</main>
+		<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="searchLabel" aria-hidden="true">
+			<form action="{{ route('search') }}" method="POST">
+				@csrf
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="searchLabel">Tìm kiếm</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<input class="form-control" type="text" placeholder="Từ khóa..." name="key">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+							<button type="submit" class="btn btn-primary">Tìm kiếm</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
 		<footer id="main-footer">
 			@include('frontend.layout.footer')
 		</footer>

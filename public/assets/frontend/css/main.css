@@ -796,7 +796,10 @@ input[type=number]
   height: 100%;
   transition: .3s;
 }
-
+.btn-search{
+  margin: 0 10px;
+  cursor: pointer;
+}
 /*animetion cart*/
 @keyframes cart{
   0%,100%{

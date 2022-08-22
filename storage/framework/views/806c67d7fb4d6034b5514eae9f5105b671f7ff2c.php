@@ -24,6 +24,11 @@
 					<ul class="item-menu">
 						<?php if($menu->content != null) echo getMenuFront(json_decode($menu->content), $itemcategory, $newscategory, $listitem) ?>
 						<li>
+							<div class="btn-search" data-toggle="modal" data-target="#search">
+								<i class="fa fa-search"></i>
+							</div>
+						</li>
+						<li>
 							<a href="<?php echo e(route('cart.show')); ?>" class="show-cart">
 								<span class="count-cart"><?php echo e($countCart); ?></span>
 								<i class="fa fa-shopping-cart"></i>
@@ -36,6 +41,28 @@
 		<main id='main-content'>
 			<?php echo $__env->yieldContent('content'); ?>
 		</main>
+		<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="searchLabel" aria-hidden="true">
+			<form action="<?php echo e(route('search')); ?>" method="POST">
+				<?php echo csrf_field(); ?>
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="searchLabel">Tìm kiếm</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<input class="form-control" type="text" placeholder="Từ khóa..." name="key">
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+							<button type="submit" class="btn btn-primary">Tìm kiếm</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
 		<footer id="main-footer">
 			<?php echo $__env->make('frontend.layout.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 		</footer>

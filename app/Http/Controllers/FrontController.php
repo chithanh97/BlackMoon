@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 use App\Models\Slide;
 use App\Models\Itemcategory;
@@ -31,6 +32,13 @@ class FrontController extends Controller
 			$listNews[$value['code']] = News::where("status", 1)->where('parent', 'like', "%".$value->code."%")->take(3)->orderby('id','DESC')->get();
 		}
 		return view('frontend.page.home', compact('slide', 'itemCateHot', 'listItem', 'newsCateHot', 'listNews'));
+	}
+
+	function search(Request $request){
+
+		$listItems = Items::search($request->key)->where('status', 1)->paginate(12);
+
+		return view('frontend.page.search', compact('listItems'));
 	}
 }
 

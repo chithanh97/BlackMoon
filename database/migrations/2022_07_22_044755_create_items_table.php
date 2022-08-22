@@ -36,6 +36,7 @@ return new class extends Migration
     		$table->text('keyword')->nullable();
     		$table->integer('lang');
     		$table->timestamps();
+    		DB::statement('ALTER TABLE items ADD FULLTEXT `search` (`name`, `detail`)');
     	});
     }
 

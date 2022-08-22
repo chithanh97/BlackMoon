@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Session;
+
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
+
+use App\Http\Controllers\Controller;
+
 use App\Models\Items;
 use App\Models\Itemcategory;
-use Session;
-use Illuminate\Pagination\Paginator;
 
 class ItemsController extends Controller
 {
 	public function index()
 	{
-		$list = Items::orderby('id','DESC')->paginate(10)->withQueryString();
+		$list = Items::orderby('id','DESC')->paginate(12)->withQueryString();
 		$parent = Itemcategory::get();
 		return view('backend.page.items.index', compact('list', 'parent'));
 	}
@@ -85,6 +88,7 @@ class ItemsController extends Controller
 			'description' => $description,
 			'keyword' => $keyword,
 			'link' => $link,
+			'view' => 0,
 			'subject' => $subject,
 			'sort' => $sort,
 			'lang' => 1
@@ -197,6 +201,7 @@ class ItemsController extends Controller
 
 	function show($subject){
 		$item = Items::where('status', 1)->where('subject', $subject)->first();
+		$item->increment('view', 1);
 		$listItems = Items::where('id','<>', $item->id)->where('parent', 'like', "%".explode(',', $item->parent)[0]."%")->take(10)->get();
 		if(isset($item) > 0) {
 			return view('frontend.page.item', compact('item', 'listItems'));
