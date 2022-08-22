@@ -11,6 +11,7 @@
 	<meta name="revisit-after" content="1 days" />
 	<meta name="copyright" content="Copyright © 2022-<?=date('Y')?> by BlackMoon" />
 	<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+	<link rel="icon" type="image/x-icon" href="<?php echo e($config->logo); ?>">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 

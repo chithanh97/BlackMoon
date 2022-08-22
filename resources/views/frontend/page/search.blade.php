@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="list--news">
 			<div class="title">
-				<h1>Tìm kiếm</h1>
+				<h1>Kết quả tìm kiếm cho từ khóa "{{ $old }}"</h1>
 			</div>
 			<div class="content">
 				<div class="row">

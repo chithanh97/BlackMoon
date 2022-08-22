@@ -36,9 +36,11 @@ class FrontController extends Controller
 
 	function search(Request $request){
 
-		$listItems = Items::search($request->key)->where('status', 1)->paginate(12);
+		$old = $request->key;
 
-		return view('frontend.page.search', compact('listItems'));
+		$listItems = Items::search($old)->where('status', 1)->paginate(12);
+
+		return view('frontend.page.search', compact('listItems', 'old'));
 	}
 }
 
