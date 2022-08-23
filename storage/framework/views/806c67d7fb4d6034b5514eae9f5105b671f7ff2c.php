@@ -24,6 +24,12 @@
 					<ul class="item-menu">
 						<?php if($menu->content != null) echo getMenuFront(json_decode($menu->content), $itemcategory, $newscategory, $listitem) ?>
 						<li>
+							<a href="<?php echo e(route('login')); ?>" class="login">
+								<i class="fa fa-user"></i>
+								<span class="label-login">Đăng nhập</span>
+							</a>
+						</li>
+						<li>
 							<div class="btn-search" data-toggle="modal" data-target="#search">
 								<i class="fa fa-search"></i>
 							</div>

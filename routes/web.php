@@ -23,6 +23,8 @@ use App\Http\Controllers\auth\user\LoginController;
 Route::get('/', [FrontController::class, 'home'])->name('home');
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('login');
+Route::post('/register', [LoginController::class, 'register'])->name('register');
+
 Route::post('/search/', [FrontController::class, 'search'])->name('search');
 
 /*category*/

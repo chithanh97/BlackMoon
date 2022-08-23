@@ -1,5 +1,10 @@
 @extends('frontend.index')
 @section('title', $news->name)
+@section('description', $news->description)
+@section('o_title', $news->title)
+@section('image', $news->image)
+@section('type', 'article')
+@section('url', $_SERVER['SERVER_NAME'].'/'.$news->subject.'.html')
 @section('content')
 <div class="newsdetail">
 	<div class="container">

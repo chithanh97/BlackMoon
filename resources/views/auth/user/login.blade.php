@@ -1,29 +1,49 @@
 @extends('frontend.index')
-@section('title', 'Tìm kiếm')
+@section('title', 'Đăng nhập')
 @section('content')
 <div class="login-page">
+	<div class="error-section">
+		@if ($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+		@endif
+		@if (Session('register'))
+		<div class="alert alert-danger">
+			{{ session('register') }}
+		</div>
+		@endif
+	</div>
 	<div class="form-structor">
-		<div class="signup">
-			<h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+		<div class="signup {{ (old('register') != '' || $errors->first('register') != '' ) ? '' : 'slide-up'}}">
+			<h2 class="form-title" id="signup"><span>hoặc</span>Đăng ký</h2>
 			<div class="form-holder">
-				<form action="" method="POST">
-					<input type="text" class="input" placeholder="Name" />
-					<input type="email" class="input" placeholder="Email" />
-					<input type="password" class="input" placeholder="Password" />
+				<form class="form-register" action="{{ route('register') }}" method="POST">
+					@csrf
+					<input type="hidden" class="input" name="register" value="1" />
+					<input type="text" class="input" name="name" placeholder="Họ tên" value="{{ old('name') }}" />
+					<input type="email" class="input" name="email" placeholder="Email" value="{{ old('email') }}" />
+					<input type="password" class="input" name="password" placeholder="Mật khẩu" />
+					<input type="password" class="input" name="re_password" placeholder="Nhập lại mật khẩu"/>
 				</form>
 			</div>
-			<button class="submit-btn">Sign up</button>
+			<button class="submit-btn btn-register">Đăng ký</button>
 		</div>
-		<div class="login slide-up">
+		<div class="login {{ (old('register') != '' || $errors->first('register') != '' ) ? 'slide-up' : ''}}">
 			<div class="center">
-				<h2 class="form-title" id="login"><span>or</span>Log in</h2>
+				<h2 class="form-title" id="login"><span>Hoặc</span>Đăng nhập</h2>
 				<div class="form-holder">
-					<form action="" method="POST">
-						<input type="email" class="input" placeholder="Email" />
-						<input type="password" class="input" placeholder="Password" />
+					<form action="{{ route('login') }}" method="POST" class="form-login">
+						@csrf
+						<input type="email" class="input" placeholder="Email" name="l_email" value="{{ old('l_email') }}" />
+						<input type="password" class="input" placeholder="Mật khẩu" name="l_password"/>
 					</form>
 				</div>
-				<button class="submit-btn">Log in</button>
+				<button class="submit-btn btn-login">Đăng nhập</button>
 			</div>
 		</div>
 	</div>
@@ -58,7 +78,7 @@
 		top: 50%;
 		left: 50%;
 		-webkit-transform: translate(-50%, -50%);
-		width: 65%;
+		width: 75%;
 		z-index: 5;
 		-webkit-transition: all 0.3s ease;
 	}
@@ -85,6 +105,7 @@
 		color: #fff;
 		font-size: 1.7em;
 		text-align: center;
+		margin-bottom: 0;
 	}
 	.form-structor .signup .form-title span {
 		color: #ccc;
@@ -169,7 +190,7 @@
 		top: calc(50% - 10%);
 		left: 50%;
 		-webkit-transform: translate(-50%, -50%);
-		width: 65%;
+		width: 75%;
 		z-index: 5;
 		-webkit-transition: all 0.3s ease;
 	}
@@ -268,7 +289,8 @@
 		justify-content: center;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-
+		flex-direction: column;
+		padding: 15px 0;
 	}
 	.login-page:before{
 		content: '';
@@ -306,39 +328,73 @@
 		z-index: 4;
 		-webkit-transition: all 0.3s ease;
 	}
+	.form-structor .login .center .form-holder .input{
+		margin: 15px 0;
+		background: #000;
+		color: #fff;
+		border-radius: 12px;
+	}
+	.form-structor .signup .form-holder .input{
+		margin: 15px 0;
+		border-radius: 12px;
+	}
+	.form-structor .login .center .form-holder{
+		border: none;
+	}
+	.form-structor .login .center .form-holder .input::placeholder {
+		color: #fff;
+		opacity: 1;
+	}
 
+	.form-structor .login .center .form-holder .input:-ms-input-placeholder {
+		color: #fff;
+	}
 
+	.form-structor .login .center .form-holder .input::-ms-input-placeholder {
+		color: #fff;
+	}
+	.alert-danger li{
+		font-size: 12px;
+		font-style: italic;
+	}
+	.alert-danger{
+    background: #fff;
+    width: 350px;
+    border-radius: 15px;
+}
+.error-section{
+    z-index: 1;
+    position: relative;
+}
 </style>
 @endpush
 @push('scripts')
 <script>
-	console.clear();
-
-	const loginBtn = document.getElementById('login');
-	const signupBtn = document.getElementById('signup');
-
-	loginBtn.addEventListener('click', (e) => {
-		let parent = e.target.parentNode.parentNode;
-		Array.from(e.target.parentNode.parentNode.classList).find((element) => {
-			if(element !== "slide-up") {
-				parent.classList.add('slide-up')
-			}else{
-				signupBtn.parentNode.classList.add('slide-up')
-				parent.classList.remove('slide-up')
-			}
-		});
+	$('#login').click(() => {
+		changeSlideUp();
+		console.log('ccc');
+	});
+	$('#signup').click(() => {
+		changeSlideUp();
 	});
 
-	signupBtn.addEventListener('click', (e) => {
-		let parent = e.target.parentNode;
-		Array.from(e.target.parentNode.classList).find((element) => {
-			if(element !== "slide-up") {
-				parent.classList.add('slide-up')
-			}else{
-				loginBtn.parentNode.parentNode.classList.add('slide-up')
-				parent.classList.remove('slide-up')
-			}
-		});
+	function changeSlideUp(){
+		if($('.login').hasClass('slide-up')){
+			$('.login').removeClass('slide-up');
+			$('.signup').addClass('slide-up');
+		} else {
+			console.log('fff');
+			$('.login').addClass('slide-up');
+			$('.signup').removeClass('slide-up');
+		}
+	}
+
+	$('.btn-register').click(() => {
+		$('.form-register').submit();
+	});
+
+	$('.btn-login').click(() => {
+		$('.form-login').submit();
 	});
 </script>
 @endpush
