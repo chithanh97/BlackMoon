@@ -65,6 +65,7 @@ class NewsController extends Controller
 			'lang' => 1
 		]);
 		if($reponse){
+			changeSitemap();
 			return redirect()->route('news')->with('alert', '- Thêm thành công!');
 		}
 		return redirect()->back()->withInput();
@@ -72,6 +73,7 @@ class NewsController extends Controller
 
 	public function delete($id){
 		$res = $this->deleteItem($id);
+		changeSitemap();
 		if($res) return redirect()->route('news')->with('alert', '- Xóa thành công!');
 		return redirect()->route('news')->with('alert', '- Xóa thất bại!');
 	}
@@ -88,7 +90,7 @@ class NewsController extends Controller
 		foreach (json_decode($request->value) as $key => $value) {
 			if($this->deleteItem($value)) $count++;
 		}
-
+		changeSitemap();
 		return redirect()->route('news')->with('alert', '- Đã xóa '.$count.' bài viết!');
 	}
 
@@ -146,6 +148,7 @@ class NewsController extends Controller
 			'lang' => 1
 		]);
 		if($reponse){
+			changeSitemap();
 			return redirect()->route('news')->with('alert', '- Chỉnh sửa thành công!');
 		}
 		return redirect()->route('news.edit', $id);

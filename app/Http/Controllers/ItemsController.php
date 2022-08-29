@@ -94,6 +94,7 @@ class ItemsController extends Controller
 			'lang' => 1
 		]);
 		if($reponse){
+			changeSitemap();
 			return redirect()->route('items')->with('alert', '- Thêm thành công!');
 		}
 		return redirect()->back()->withInput();
@@ -101,6 +102,7 @@ class ItemsController extends Controller
 
 	public function delete($id){
 		$res = $this->deleteItem($id);
+		changeSitemap();
 		if($res) return redirect()->route('items')->with('alert', '- Xóa thành công!');
 		return redirect()->route('items')->with('alert', '- Xóa thất bại!');
 	}
@@ -117,7 +119,7 @@ class ItemsController extends Controller
 		foreach (json_decode($request->value) as $key => $value) {
 			if($this->deleteItem($value)) $count++;
 		}
-
+		changeSitemap();
 		return redirect()->route('items')->with('alert', '- Đã xóa '.$count.' bài viết!');
 	}
 
@@ -194,6 +196,7 @@ class ItemsController extends Controller
 			'lang' => 1
 		]);
 		if($reponse){
+			changeSitemap();
 			return redirect()->route('items')->with('alert', '- Chỉnh sửa thành công!');
 		}
 		return redirect()->route('items.edit', $id);

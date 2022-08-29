@@ -175,4 +175,13 @@ class CartController extends Controller
 		}
 		return view('backend.page.order.view', compact('item', 'listItem', 'province', 'district', 'ward', 'sell'));
 	}
+
+
+	function payMoMo(){
+		$endPoint = 'https://test-payment.momo.vn';
+		$partnerCode = "MOMOIQA420180417";
+		$partnerRefId = "Merchant123556666";
+
+		$signature = '';
+	}
 }

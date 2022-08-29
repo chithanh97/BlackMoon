@@ -247,4 +247,95 @@ function getPayMethod(){
 function formatNumberMoney($number){
 	return number_format($number, 0, '.', '.').getMoney();
 }
+
+function changeSitemap(){
+	$listNewsCate = DB::table('newscategory')->where('status', 1)->get();
+	$listNews = DB::table('news')->where('status', 1)->get();
+	$listItemsCate = DB::table('itemcategory')->where('status', 1)->get();
+	$listItems = DB::table('items')->where('status', 1)->get();
+
+	$domain = "http://127.0.0.1:8000";
+	ini_set("memory_limit", "-1");
+	set_time_limit(0);
+	ini_set('max_execution_time', 0);
+	ignore_user_abort(true);
+
+	if(!file_exists(public_path('/sitemap')))
+	{
+		mkdir(public_path('/sitemap', 0777, true));
+	}
+
+	Header('Content-type: text/xml');
+	$time = date('Y-m-d H:i:s');
+	$dom  = new \DOMDocument('1.0', 'UTF-8');
+	$root = $dom->createElement('urlset');
+	$dom->appendChild($root);
+	$root->setAttribute('xmlns', "http://www.sitemaps.org/schemas/sitemap/0.9");
+	$root->setAttribute('xmlns:xhtml', "http://www.w3.org/1999/xhtml");
+	$root->setAttribute('xmlns:image', "http://www.google.com/schemas/sitemap-image/1.1");
+	$root->setAttribute('xmlns:video', "http://www.google.com/schemas/sitemap-video/1.1");
+	$fileName = 'sitemap';
+	$result = $dom->createElement('url');
+	$root->appendChild($result);
+	$result->appendChild($dom->createElement('loc', $domain));
+	$result->appendChild($dom->createElement('priority', '1'));
+	$result->appendChild($dom->createElement('lastmod', $time));
+	$dom->save($fileName.'.xml');
+
+	foreach($listNewsCate as $item)
+	{
+		if(isset($item))
+		{
+			$item_ = '/newscategory/'.$item->subject;
+			$result = $dom->createElement('url');
+			$root->appendChild($result);
+			$result->appendChild($dom->createElement('loc', $domain. $item_));
+			$result->appendChild($dom->createElement('priority', '0.8'));
+			$result->appendChild($dom->createElement('lastmod', $item->created_at));
+			$dom->save($fileName.'.xml');
+		}
+	}
+
+	foreach($listItemsCate as $item)
+	{
+		if(isset($item))
+		{
+			$item_ = '/itemcategory/'.$item->subject;
+			$result = $dom->createElement('url');
+			$root->appendChild($result);
+			$result->appendChild($dom->createElement('loc', $domain. $item_));
+			$result->appendChild($dom->createElement('priority', '0.8'));
+			$result->appendChild($dom->createElement('lastmod', $item->created_at));
+			$dom->save($fileName.'.xml');
+		}
+	}
+
+	foreach($listNews as $item)
+	{
+		if(isset($item))
+		{
+			$item_ = '/news/'.$item->subject.'.html';
+			$result = $dom->createElement('url');
+			$root->appendChild($result);
+			$result->appendChild($dom->createElement('loc', $domain. $item_));
+			$result->appendChild($dom->createElement('priority', '0.5'));
+			$result->appendChild($dom->createElement('lastmod', $item->created_at));
+			$dom->save($fileName.'.xml');
+		}
+	}
+
+	foreach($listItems as $item)
+	{
+		if(isset($item))
+		{
+			$item_ = '/items/'.$item->subject.'.html';
+			$result = $dom->createElement('url');
+			$root->appendChild($result);
+			$result->appendChild($dom->createElement('loc', $domain. $item_));
+			$result->appendChild($dom->createElement('priority', '0.5'));
+			$result->appendChild($dom->createElement('lastmod', $item->created_at));
+			$dom->save($fileName.'.xml');
+		}
+	}
+}
 ?>
