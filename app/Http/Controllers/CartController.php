@@ -11,6 +11,8 @@ use App\Models\Ward;
 use App\Models\Order;
 use App\Models\Orderitem;
 
+use App\Http\Controllers\PayMomoController;
+
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 
@@ -108,6 +110,16 @@ class CartController extends Controller
 			'pay_method' => $request->pay_method,
 		]);
 
+		if($request->pay_method == 1) {
+			$this->createOrder($request, $order);
+			return redirect()->route('cart.thanks', $order->order_code);
+		} else if($request->pay_method == 2){
+			PayMomoController::payMoMo($order);
+		}
+	}
+
+	public function createOrder(Request $request, $order){
+
 		foreach (Cart::content() as $key => $value) {
 			$temp = Orderitem::create([
 				'id_item' => $value->id,
@@ -125,7 +137,7 @@ class CartController extends Controller
 			}
 		}
 
-		return redirect()->route('cart.thanks', $order->order_code);
+		return $order;
 	}
 
 	public function getDistrict(Request $request){
@@ -176,12 +188,4 @@ class CartController extends Controller
 		return view('backend.page.order.view', compact('item', 'listItem', 'province', 'district', 'ward', 'sell'));
 	}
 
-
-	function payMoMo(){
-		$endPoint = 'https://test-payment.momo.vn';
-		$partnerCode = "MOMOIQA420180417";
-		$partnerRefId = "Merchant123556666";
-
-		$signature = '';
-	}
 }

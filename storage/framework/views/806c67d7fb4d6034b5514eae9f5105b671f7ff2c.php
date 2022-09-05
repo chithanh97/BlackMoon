@@ -24,10 +24,19 @@
 					<ul class="item-menu">
 						<?php if($menu->content != null) echo getMenuFront(json_decode($menu->content), $itemcategory, $newscategory, $listitem) ?>
 						<li>
+							<?php if(Auth::check()): ?>
+							<a href="javascript:;"><?php echo e(Auth::user()->name); ?></a>
+							<ul>
+								<li><a href="<?php echo e(route('front.changeprofile')); ?>">Chỉnh sửa thông tin</a></li>
+								<li><a href="<?php echo e(route('front.changepass')); ?>">Đổi mật khẩu</a></li>
+								<li><a href="<?php echo e(route('front.logout')); ?>">Đăng xuất</a></li>
+							</ul>
+							<?php else: ?>
 							<a href="<?php echo e(route('login')); ?>" class="login">
 								<i class="fa fa-user"></i>
 								<span class="label-login">Đăng nhập</span>
 							</a>
+							<?php endif; ?>
 						</li>
 						<li>
 							<div class="btn-search" data-toggle="modal" data-target="#search">

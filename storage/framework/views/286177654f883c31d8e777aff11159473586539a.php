@@ -44,6 +44,7 @@
 						<input type="password" class="input" placeholder="Mật khẩu" name="l_password"/>
 					</form>
 				</div>
+				<a class="forgot--pass" href="<?php echo e(route('front.forgotpass')); ?>">Quên mật khẩu</a>
 				<button class="submit-btn btn-login">Đăng nhập</button>
 			</div>
 		</div>
@@ -52,6 +53,13 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('styles'); ?>
 <style>
+	.forgot--pass{
+		display: block;
+		text-align: right;
+		font-style: italic;
+		font-size: 14px;
+		text-decoration: underline;
+	}
 	.form-structor {
 		background-color: #222;
 		border-radius: 15px;
@@ -359,14 +367,14 @@
 		font-style: italic;
 	}
 	.alert-danger{
-    background: #fff;
-    width: 350px;
-    border-radius: 15px;
-}
-.error-section{
-    z-index: 1;
-    position: relative;
-}
+		background: #fff;
+		width: 350px;
+		border-radius: 15px;
+	}
+	.error-section{
+		z-index: 1;
+		position: relative;
+	}
 </style>
 <?php $__env->stopPush(); ?>
 <?php $__env->startPush('scripts'); ?>
