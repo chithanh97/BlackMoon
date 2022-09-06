@@ -1,0 +1,2 @@
+<h2>Email khôi phục tài khoản</h2>
+<p>Truy cập link đổi mật khẩu: <a href="<?php echo e(route('front.restorepass', $token)); ?>">tại đây</a></p><?php /**PATH C:\Users\ADMIN\Documents\GitHub\BlackMoon\resources\views/frontend/mailforgotpass.blade.php ENDPATH**/ ?>

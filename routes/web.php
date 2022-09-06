@@ -35,6 +35,8 @@ Route::get('/thong-tin', [ProfileController::class, 'changeProfile'])->name('fro
 Route::post('/thong-tin', [ProfileController::class, 'saveChangeProfile'])->name('front.savechangeprofile');
 Route::get('/quen-mat-khau', [ForgotPasswordController::class, 'index'])->name('front.forgotpass');
 Route::post('/quen-mat-khau', [ForgotPasswordController::class, 'forgotPass'])->name('front.renewpass');
+Route::get('/khoi-phuc-mat-khau/{token}', [ForgotPasswordController::class, 'restorePass'])->name('front.restorepass');
+Route::post('/luu-khoi-phuc-mat-khau', [ForgotPasswordController::class, 'saveRestorePass'])->name('front.saverestorepass');
 
 Route::post('/search/', [FrontController::class, 'search'])->name('search');
 

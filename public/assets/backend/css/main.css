@@ -772,7 +772,9 @@ select,input{
 .cartpage form{
   margin-bottom: 15px;
 }
-
+textarea.form-control{
+  height: auto!important;
+}
 
 
 

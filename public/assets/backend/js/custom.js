@@ -91,12 +91,15 @@ $('.get-subject').on('change paste keyup', function(){
 
   let val = $(this).val();
   $.ajax({
-    url : '/api/subject',
+    url : '/admin/subject',
     method : 'POST',
     data : {
       'table' : $(this).data('table'),
       'id' : $(this).data('id'),
       'value' : $(this).val(),
+    },
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   })
   .done((res) => {
@@ -117,12 +120,15 @@ $('#seo_keyword').on('change paste keyup', function(){
 });
 $('.changestatus').click(function() {
   $.ajax({
-    url: '/api/change-status',
+    url: '/admin/change-status',
     method: 'POST',
     data: {
       'table' : $(this).data('table'),
       'field' : $(this).data('field'),
       'id' : $(this).data('id'),
+    },
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   })
   .done((res)=>{

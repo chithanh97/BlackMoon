@@ -53,7 +53,7 @@
 							<input type="email" name="email" class="form-control" value="<?php echo e(old('email')); ?>" placeholder="">
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary pull-right" name="save" type="submit">Lưu</button>
+							<button class="btn btn-primary pull-right" name="save" type="submit">Khôi phục</button>
 						</div>
 					</form>
 				</div>

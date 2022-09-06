@@ -18,6 +18,3 @@ use App\Http\Controllers\Api\ApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('/subject', [ApiController::class, 'getSubject']);
-Route::post('/change-status', [ApiController::class, 'changeStatus']);

@@ -23054,7 +23054,7 @@ div.tagsinput {
     .sidebar .nav:not(.sub-menu) > .nav-item:hover:not(.nav-category):not(.account-dropdown) > .nav-link {
       background: #0f1015;
       color: color(white); }
-    .sidebar .nav .menu-items:nth-child(5n+1) .nav-link .menu-icon i {
+/*    .sidebar .nav .menu-items:nth-child(5n+1) .nav-link .menu-icon i {
       color: #0090e7; }
     .sidebar .nav .menu-items:nth-child(5n+2) .nav-link .menu-icon i {
       color: theme-color(success); }
@@ -23063,7 +23063,7 @@ div.tagsinput {
     .sidebar .nav .menu-items:nth-child(5n+4) .nav-link .menu-icon i {
       color: theme-color(warning); }
     .sidebar .nav .menu-items:nth-child(5n+5) .nav-link .menu-icon i {
-      color: theme-color(danger); }
+      color: theme-color(danger); }*/
 
 /* style for off-canvas menu*/
 @media screen and (max-width: 991px) {

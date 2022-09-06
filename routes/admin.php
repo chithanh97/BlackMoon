@@ -19,6 +19,7 @@ use App\Http\Controllers\SocialController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AjaxController;
 
 Route::match(['get', 'post'], '/login', [LoginController::class, 'login'])->name('admin.login');
 
@@ -148,5 +149,8 @@ Route::middleware('admin.login')->group(function (){
 	Route::get('/order/view/{id}', [CartController::class, 'showOrder'])->name('order.view');
 	Route::get('/order/changeall', [CartController::class, 'changeAll'])->name('order.changeall');
 	Route::post('/order/changestatus', [CartController::class, 'changeStatus'])->name('order.changestatus');
+
+	Route::post('/subject', [AjaxController::class, 'getSubject']);
+	Route::post('/change-status', [AjaxController::class, 'changeStatus']);
 
 });

@@ -65,4 +65,5 @@ class ProfileController extends Controller
 			return redirect()->back()->withInput()->with('alert', 'Đổi mật khẩu thất bại!');
 		}
 	}
+
 }
