@@ -775,7 +775,21 @@ select,input{
 textarea.form-control{
   height: auto!important;
 }
-
+.fillter-form{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.fillter-form .form-group{
+  width: 30%;
+  margin-right: 15px;
+  margin-bottom: 0;
+}
+.fillter-form .btn-fillter{
+  background: #7b46ce;
+  height: 100%;
+}
 
 
 

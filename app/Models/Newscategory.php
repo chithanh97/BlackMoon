@@ -3,10 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 
 class Newscategory extends Model
 
 {
+
+	use HasFactory, Searchable;
+
 	protected $table = 'newscategory';
 
 	protected $fillable = [

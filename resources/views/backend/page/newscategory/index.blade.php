@@ -43,6 +43,20 @@
 				</div>
 				<div class="white_card_body card">
 					<div class="QA_table table-responsive ">
+						<form action="{{ route('newscategory') }}" class="fillter-form">
+							<div class="form-group">
+								<select name="parent" id="" class="form-control">
+									<option value="0">-- Chọn --</option>
+									@foreach($parent as $item)
+									<option value="{{ $item->code }}">{{ $item->name }}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<input type="text" name="key" class="form-control" placeholder="Từ khóa lọc...">
+							</div>
+							<button class="btn btn-fillter" type="submit">Lọc</button>
+						</form>
 						<!-- table-responsive -->
 						<table class="table pt-0 table-striped" id='tableData'>
 							<thead>

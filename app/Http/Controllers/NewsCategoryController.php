@@ -11,8 +11,12 @@ use Illuminate\Pagination\Paginator;
 
 class NewsCategoryController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
+		$where = [];
+		if(isset($request->parent)){
+
+		}
 		$list = Newscategory::orderby('id','DESC')->paginate(10)->withQueryString();
 		$parent = Newscategory::get();
 		return view('backend.page.newscategory.index', compact('list', 'parent'));

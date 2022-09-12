@@ -42,4 +42,15 @@ class Items extends Model
 		'created_at'
 	];
 
+	public function toSearchableArray()
+	{
+
+		$record['name'] = $this->name;
+		$record['subject'] = $this->subject;
+		$record['detail'] = $this->detail;
+		$record['detail_short'] = $this->detail_short;
+
+		return $record;
+	}
+
 }
