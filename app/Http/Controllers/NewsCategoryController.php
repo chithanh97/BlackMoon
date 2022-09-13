@@ -14,12 +14,17 @@ class NewsCategoryController extends Controller
 	public function index(Request $request)
 	{
 		$where = [];
-		if(isset($request->parent)){
-
-		}
 		$list = Newscategory::orderby('id','DESC')->paginate(10)->withQueryString();
+		if($request->parent == 0) $request->parent = null;
+		if(isset($request->parent) && isset($request->key)){
+			$list = Newscategory::search($request->key)->where('code', $request->parent)->orderby('id','DESC')->paginate(10)->withQueryString();
+		} else if(isset($request->key)){
+			$list = Newscategory::search($request->key)->orderby('id','DESC')->paginate(10)->withQueryString();
+		} else if(isset($request->parent)) {
+			$list = Newscategory::where('code', $request->parent)->orderby('id','DESC')->paginate(10)->withQueryString();
+		}
 		$parent = Newscategory::get();
-		return view('backend.page.newscategory.index', compact('list', 'parent'));
+		return view('backend.page.newscategory.index', compact('list', 'parent', 'request'));
 	}
 
 	public function store(){

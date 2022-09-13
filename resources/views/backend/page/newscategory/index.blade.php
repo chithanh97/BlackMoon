@@ -48,12 +48,12 @@
 								<select name="parent" id="" class="form-control">
 									<option value="0">-- Chọn --</option>
 									@foreach($parent as $item)
-									<option value="{{ $item->code }}">{{ $item->name }}</option>
+									<option {{ $item->code == $request->parent ? 'selected' : ''}} value="{{ $item->code }}">{{ $item->name }}</option>
 									@endforeach
 								</select>
 							</div>
 							<div class="form-group">
-								<input type="text" name="key" class="form-control" placeholder="Từ khóa lọc...">
+								<input type="text" name="key" class="form-control" placeholder="Từ khóa lọc..." value="{{ $request->key }}">
 							</div>
 							<button class="btn btn-fillter" type="submit">Lọc</button>
 						</form>

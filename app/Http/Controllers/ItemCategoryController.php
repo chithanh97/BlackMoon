@@ -90,7 +90,7 @@ class ItemCategoryController extends Controller
 		foreach (json_decode($request->value) as $key => $value) {
 			if($this->deleteItem($value)) $count++;
 		}
-		changeSitemap()
+		changeSitemap();
 		return redirect()->route('itemcategory')->with('alert', '- Đã xóa '.$count.' danh mục!');
 	}
 

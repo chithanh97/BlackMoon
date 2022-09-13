@@ -48,12 +48,12 @@
 								<select name="parent" id="" class="form-control">
 									<option value="0">-- Chọn --</option>
 									<?php $__currentLoopData = $parent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-									<option value="<?php echo e($item->code); ?>"><?php echo e($item->name); ?></option>
+									<option <?php echo e($item->code == $request->parent ? 'selected' : ''); ?> value="<?php echo e($item->code); ?>"><?php echo e($item->name); ?></option>
 									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</select>
 							</div>
 							<div class="form-group">
-								<input type="text" name="key" class="form-control" placeholder="Từ khóa lọc...">
+								<input type="text" name="key" class="form-control" placeholder="Từ khóa lọc..." value="<?php echo e($request->key); ?>">
 							</div>
 							<button class="btn btn-fillter" type="submit">Lọc</button>
 						</form>

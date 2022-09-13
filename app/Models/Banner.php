@@ -9,6 +9,8 @@ class Banner extends Model
 {
 	protected $table = 'banner';
 
+	use HasFactory, Searchable;
+
 	protected $fillable = [
 		'id',
 		'name',
